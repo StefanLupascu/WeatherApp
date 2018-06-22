@@ -22,7 +22,7 @@ final class CityList {
     
     init() {
         
-        for index in 0...10 {
+        for index in 1...10 {
             let details = Detail(temperature: "randomTemp", population: index*10)
             let city = City(name: "City\(index)", details: details)
             

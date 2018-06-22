@@ -9,7 +9,9 @@
 import UIKit
 
 final class LocationsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-        
+    
+    var cities = CityList()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,12 +25,13 @@ final class LocationsViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return cities.getCount()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cityCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CityCell
-        cityCell.nameLabel.text = "City\(indexPath.item)"
+        //cityCell.nameLabel.text = "City\(indexPath.item)"
+        cityCell.nameLabel.text = cities.getCity(index: indexPath.item).name
         return cityCell
     }
     
