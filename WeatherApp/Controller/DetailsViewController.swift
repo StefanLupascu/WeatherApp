@@ -15,34 +15,22 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        view.backgroundColor = .gray
+        self.view = cityView
         
-        setupViews()
+        self.cityView.backButton.addTarget(self, action: "goBack:", for: .touchUpInside)
+        self.cityView.nameLabel.text = city.name
+        self.cityView.temperatureLabel.text = city.details.temperature
+        self.cityView.populationLabel.text = String(city.details.population)
+        self.cityView.setupViews()
     }
     
-    var backButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Back", for: UIControlState.normal)
-        
-        return button
-    }()
-    
-    var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "City details"
-        label.font = UIFont.boldSystemFont(ofSize: 25)
-        return label
-    }()
-    
-    func setupViews() {
-        self.view.addSubview(backButton)
-        self.view.addSubview(nameLabel)
+    func goBack(sender: UIButton!) {
+        self.dismiss(animated: true)
     }
     
     init(city: City) {
         self.city = city
-        
         super.init(nibName: nil, bundle: nil)
     }
     
