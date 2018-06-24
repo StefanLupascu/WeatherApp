@@ -11,7 +11,7 @@ import UIKit
 final class LocationsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var cities = CityList()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,13 +24,17 @@ final class LocationsViewController: UICollectionViewController, UICollectionVie
         collectionView?.register(CityHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailsViewController = DetailsViewController(city: cities.getCity(index: indexPath.item)) as DetailsViewController
+        self.present(detailsViewController, animated: true)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cities.getCount()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cityCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CityCell
-        //cityCell.nameLabel.text = "City\(indexPath.item)"
         cityCell.nameLabel.text = cities.getCity(index: indexPath.item).name
         return cityCell
     }
@@ -44,7 +48,7 @@ final class LocationsViewController: UICollectionViewController, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) ->CGSize {
-        return CGSize(width: view.frame.width, height: 100)
+        return CGSize(width: view.frame.width, height: 50)
     }
     
 }

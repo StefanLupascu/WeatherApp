@@ -21,8 +21,6 @@ class CityCell: UICollectionViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "City name"
-        //label.text = cities[0].name
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
@@ -30,15 +28,13 @@ class CityCell: UICollectionViewCell {
     
     func setupViews() {
         addSubview(nameLabel)
-        
+
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[v0]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v0]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
     }
 }
 
 class CityHeaderCell: UICollectionViewCell {
-    
-    var cities = CityList()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,28 +47,19 @@ class CityHeaderCell: UICollectionViewCell {
 
     let addButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Add city", for: [])
+        button.setTitle("+", for: [])
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 65)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
-    
-//    let nameLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "City header"
-//        //label.text = cities[0].name
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.font = UIFont.boldSystemFont(ofSize: 25)
-//        return label
-//    }()
+
     
     func setupViews() {
-        //addSubview(nameLabel)
         addSubview(addButton)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-330-[v0(80)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": addButton]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-330-[v0]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": addButton]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v0]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": addButton]))
 
-        //addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v0]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
     }
 }

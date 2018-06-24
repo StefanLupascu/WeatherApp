@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF420E010190093B713 /* DetailsViewController.swift */; };
+		A1674FF720E028170093B713 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF620E028170093B713 /* CityView.swift */; };
 		F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784420DCE81300DBC495 /* AppDelegate.swift */; };
 		F8C7784720DCE81300DBC495 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784620DCE81300DBC495 /* ViewController.swift */; };
 		F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784B20DCE81300DBC495 /* WeatherApp.xcdatamodeld */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A1674FF420E010190093B713 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		A1674FF620E028170093B713 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		F8C7784120DCE81300DBC495 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8C7784420DCE81300DBC495 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8C7784620DCE81300DBC495 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */,
-				F8C7786620DD281C00DBC495 /* CityCell.swift */,
+				A1674FF420E010190093B713 /* DetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -99,6 +103,8 @@
 		F8C7785F20DD150000DBC495 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F8C7786620DD281C00DBC495 /* CityCell.swift */,
+				A1674FF620E028170093B713 /* CityView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,7 +180,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */,
+				A1674FF720E028170093B713 /* CityView.swift in Sources */,
 				F8C7784720DCE81300DBC495 /* ViewController.swift in Sources */,
+				A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */,
 				F8C7786520DD15C300DBC495 /* Detail.swift in Sources */,
 				F8C7786120DD153800DBC495 /* City.swift in Sources */,
 				F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */,
