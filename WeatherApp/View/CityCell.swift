@@ -22,7 +22,7 @@ class CityCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         return label
     }()
     
@@ -32,7 +32,7 @@ class CityCell: UICollectionViewCell {
         nameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 22).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -18).isActive = true
 
     }
 }

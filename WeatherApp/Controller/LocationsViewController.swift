@@ -14,7 +14,7 @@ final class LocationsViewController: UICollectionViewController {
     
     var cities: [City] = {
         var cityList = [City]()
-        for index in 1...10 {
+        for index in 1...15 {
             let details = Detail(temperature: "randomTemp", population: index*10)
             let city = City(name: "City\(index)", details: details, notes: "random notes for City\(index)")
             
