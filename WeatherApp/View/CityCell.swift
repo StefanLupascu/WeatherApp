@@ -28,38 +28,11 @@ class CityCell: UICollectionViewCell {
     
     func setupViews() {
         addSubview(nameLabel)
-
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[v0]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v0]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
-    }
-}
-
-class CityHeaderCell: UICollectionViewCell {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    let addButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("+", for: [])
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 65)
-        button.translatesAutoresizingMaskIntoConstraints = false
         
-        return button
-    }()
-
-    
-    func setupViews() {
-        addSubview(addButton)
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-330-[v0]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": addButton]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v0]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": addButton]))
+        nameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 22).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 
     }
 }

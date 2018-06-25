@@ -12,21 +12,19 @@ class DetailsViewController: UIViewController {
     
     var city: City
     var cityView = CityView()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
-        self.view = cityView
+        view = cityView
+        navigationItem.title = "Information"
         
-        self.cityView.backButton.addTarget(self, action: "goBack:", for: .touchUpInside)
+        print("\(city.name)")
+        
         self.cityView.nameLabel.text = city.name
         self.cityView.temperatureLabel.text = city.details.temperature
         self.cityView.populationLabel.text = String(city.details.population)
+        self.cityView.notesTextView.text = city.notes
         self.cityView.setupViews()
-    }
-    
-    func goBack(sender: UIButton!) {
-        self.dismiss(animated: true)
     }
     
     init(city: City) {

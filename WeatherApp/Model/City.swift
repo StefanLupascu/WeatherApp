@@ -12,9 +12,11 @@ final class City {
     
     var name: String
     var details: Detail
+    var notes: String
     
-    init(name: String, details: Detail) {
+    init(name: String, details: Detail, notes: String) {
         self.name = name
         self.details = details
+        self.notes = notes
     }
 }

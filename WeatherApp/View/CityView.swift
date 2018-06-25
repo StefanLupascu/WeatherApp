@@ -13,7 +13,6 @@ class CityView: UIView {
     var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        //label.text = "City details"
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
@@ -34,30 +33,55 @@ class CityView: UIView {
         return label
     }()
     
-    let backButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Back", for: UIControlState.normal)
-        button.isEnabled = true
+    let notesTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = .gray
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.adjustsFontForContentSizeCategory = true
+        textView.isSelectable = true
+        textView.isEditable = true
+        textView.layer.cornerRadius = 10
+        textView.font = UIFont.systemFont(ofSize: 20)
         
-        return button
+        return textView
     }()
     
     func setupViews() {
-        backButton.frame = CGRect(x: self.frame.width, y: self.frame.height + 20, width: 100, height: 40)
-        nameLabel.frame = CGRect(x: self.frame.width + 20, y: self.frame.height + 80, width: 200, height: 60)
-        temperatureLabel.frame = CGRect(x: self.frame.width + 20, y: self.frame.height + 110, width: 200, height: 60)
-        populationLabel.frame = CGRect(x: self.frame.width + 20, y: self.frame.height + 140, width: 200, height: 60)
-
-        
         addSubview(nameLabel)
-        addSubview(backButton)
         addSubview(temperatureLabel)
         addSubview(populationLabel)
+        addSubview(notesTextView)
+        
+        //nameLabel setup
+        
+        nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 70).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
+        //nameLabel.bottomAnchor.constraint(equalTo: temperatureLabel.topAnchor, constant: 20).isActive = true
+        
+        //temperatureLabel setup
+        temperatureLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20).isActive = true
+        temperatureLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        temperatureLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
+        //temperatureLabel.bottomAnchor.constraint(equalTo: populationLabel.topAnchor, constant: 20).isActive = true
+        
+        //populationLabel setup
+        populationLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 20).isActive = true
+        populationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        populationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
+        //populationLabel.bottomAnchor.constraint(equalTo: populationLabel.topAnchor, constant: 20).isActive = true
+        
+        //notesTextView setup
+        notesTextView.topAnchor.constraint(equalTo: populationLabel.bottomAnchor, constant: 20).isActive = true
+        notesTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        notesTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        notesTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+    
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .gray
+        backgroundColor = .white
         
         setupViews()
     }

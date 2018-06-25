@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         
-        let collectionViewController = LocationsViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        window?.rootViewController = UINavigationController(rootViewController: collectionViewController)
+        let locationsViewController = LocationsViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        window?.rootViewController = UINavigationController(rootViewController: locationsViewController)
         
         return true
     }

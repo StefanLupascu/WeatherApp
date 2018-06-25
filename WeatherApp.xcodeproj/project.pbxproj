@@ -19,6 +19,10 @@
 		F8C7786320DD159C00DBC495 /* CityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786220DD159C00DBC495 /* CityList.swift */; };
 		F8C7786520DD15C300DBC495 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786420DD15C300DBC495 /* Detail.swift */; };
 		F8C7786720DD281C00DBC495 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786620DD281C00DBC495 /* CityCell.swift */; };
+		F8FFE47B20E0D1E0006D9E1A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */; };
+		F8FFE47D20E0D266006D9E1A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE47C20E0D266006D9E1A /* MapView.swift */; };
+		F8FFE48020E0E22B006D9E1A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FFE47F20E0E22B006D9E1A /* MapKit.framework */; };
+		F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE48120E0F0C8006D9E1A /* PinAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		F8C7786220DD159C00DBC495 /* CityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityList.swift; sourceTree = "<group>"; };
 		F8C7786420DD15C300DBC495 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		F8C7786620DD281C00DBC495 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F8FFE47C20E0D266006D9E1A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		F8FFE47F20E0E22B006D9E1A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F8FFE48120E0F0C8006D9E1A /* PinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8FFE48020E0E22B006D9E1A /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +63,7 @@
 			children = (
 				F8C7784320DCE81300DBC495 /* WeatherApp */,
 				F8C7784220DCE81300DBC495 /* Products */,
+				F8FFE47E20E0E22B006D9E1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +87,7 @@
 				F8C7785020DCE81600DBC495 /* LaunchScreen.storyboard */,
 				F8C7785320DCE81600DBC495 /* Info.plist */,
 				F8C7784B20DCE81300DBC495 /* WeatherApp.xcdatamodeld */,
+				F8FFE48120E0F0C8006D9E1A /* PinAnnotation.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -96,6 +107,7 @@
 			children = (
 				F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */,
 				A1674FF420E010190093B713 /* DetailsViewController.swift */,
+				F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -105,8 +117,17 @@
 			children = (
 				F8C7786620DD281C00DBC495 /* CityCell.swift */,
 				A1674FF620E028170093B713 /* CityView.swift */,
+				F8FFE47C20E0D266006D9E1A /* MapView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F8FFE47E20E0E22B006D9E1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8FFE47F20E0E22B006D9E1A /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +162,11 @@
 				TargetAttributes = {
 					F8C7784020DCE81300DBC495 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -179,9 +205,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8FFE47B20E0D1E0006D9E1A /* MapViewController.swift in Sources */,
+				F8FFE47D20E0D266006D9E1A /* MapView.swift in Sources */,
 				F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */,
 				A1674FF720E028170093B713 /* CityView.swift in Sources */,
 				F8C7784720DCE81300DBC495 /* ViewController.swift in Sources */,
+				F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */,
 				A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */,
 				F8C7786520DD15C300DBC495 /* Detail.swift in Sources */,
 				F8C7786120DD153800DBC495 /* City.swift in Sources */,
