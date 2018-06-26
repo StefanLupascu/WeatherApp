@@ -8,13 +8,21 @@
 
 import Foundation
 
-final class Detail {
+//final class Detail {
+//
+//    var temperature: String
+//    var population: Int
+//
+//    init(temperature: String, population: Int) {
+//        self.temperature = temperature
+//        self.population = population
+//    }
+//}
+
+struct Detail {
+    
+    // MARK: - Properties and Initialization
     
     var temperature: String
     var population: Int
-    
-    init(temperature: String, population: Int) {
-        self.temperature = temperature
-        self.population = population
-    }
 }

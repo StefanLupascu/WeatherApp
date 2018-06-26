@@ -10,6 +10,8 @@ import UIKit
 
 class CityView: UIView {
 
+    // MARK: - Properties and Initialization
+    
     var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +48,19 @@ class CityView: UIView {
         return textView
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .white
+        
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Setting up views
+    
     func setupViews() {
         addSubview(nameLabel)
         addSubview(temperatureLabel)
@@ -57,19 +72,16 @@ class CityView: UIView {
         nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 70).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
-        //nameLabel.bottomAnchor.constraint(equalTo: temperatureLabel.topAnchor, constant: 20).isActive = true
         
         //temperatureLabel setup
         temperatureLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20).isActive = true
         temperatureLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         temperatureLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
-        //temperatureLabel.bottomAnchor.constraint(equalTo: populationLabel.topAnchor, constant: 20).isActive = true
         
         //populationLabel setup
         populationLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 20).isActive = true
         populationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         populationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
-        //populationLabel.bottomAnchor.constraint(equalTo: populationLabel.topAnchor, constant: 20).isActive = true
         
         //notesTextView setup
         notesTextView.topAnchor.constraint(equalTo: populationLabel.bottomAnchor, constant: 20).isActive = true
@@ -77,17 +89,6 @@ class CityView: UIView {
         notesTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         notesTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
     
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .white
-        
-        setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

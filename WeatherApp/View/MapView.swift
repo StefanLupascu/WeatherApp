@@ -11,6 +11,8 @@ import MapKit
 
 class MapView: UIView {
     
+    // MARK: - Properties and Initialization
+    
     let map = MKMapView()
     
     let mapLabel: UILabel = {
@@ -20,6 +22,21 @@ class MapView: UIView {
         
         return label
     }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .lightGray
+        map.translatesAutoresizingMaskIntoConstraints = false
+        
+        setupMap()
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Setting up views
     
     func setupViews() {
         
@@ -40,16 +57,5 @@ class MapView: UIView {
         map.addAnnotation(pin)
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .lightGray
-        map.translatesAutoresizingMaskIntoConstraints = false
-        
-        setupMap()
-        setupViews()
-    }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }

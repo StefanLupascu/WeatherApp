@@ -11,6 +11,8 @@ import MapKit
 
 class MapViewController: UIViewController {
 
+    // MARK: - Properties and Initialization
+    
     let map = MKMapView()
     let mapView = MapView()
     
@@ -23,7 +25,9 @@ class MapViewController: UIViewController {
                 
     }
     
-    func setupButton() {
+    // MARK: - Setting up UI elements
+    
+    private func setupButton() {
         let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done(sender:)))
         button.setTitleTextAttributes([
             NSAttributedStringKey.font: UIFont(name: "Helvetica Neue",size: 20)!,
@@ -36,7 +40,7 @@ class MapViewController: UIViewController {
         
     }
     
-    func setupUI() {
+    private func setupUI() {
         self.view.addSubview(mapView)
         mapView.frame = self.view.frame
     }

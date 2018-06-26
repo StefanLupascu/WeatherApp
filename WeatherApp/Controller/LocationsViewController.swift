@@ -10,7 +10,7 @@ import UIKit
 
 final class LocationsViewController: UICollectionViewController {
     
-    //var cities = CityList()
+    // MARK: - Properties and Initialization
     
     var cities: [City] = {
         var cityList = [City]()
@@ -37,14 +37,7 @@ final class LocationsViewController: UICollectionViewController {
         //collectionView?.register(CityHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
     }
     
-    func setupButton() {
-        let button = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(goToMap(sender:)))
-        button.setTitleTextAttributes([
-            NSAttributedStringKey.font: UIFont(name: "Helvetica Neue",size: 35)!,
-            NSAttributedStringKey.foregroundColor: UIColor.blue,
-            ], for: .normal)
-        navigationItem.rightBarButtonItem = button
-    }
+    // MARK: - Collection view manipulation
     
     @objc func goToMap(sender: UIButton) {
         let mapViewController = MapViewController() as MapViewController
@@ -65,6 +58,17 @@ final class LocationsViewController: UICollectionViewController {
         let cityCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CityCell
         cityCell.nameLabel.text = cities[indexPath.item].name
         return cityCell
+    }
+    
+    // MARK: - Setting up add button
+    
+    private func setupButton() {
+        let button = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(goToMap(sender:)))
+        button.setTitleTextAttributes([
+            NSAttributedStringKey.font: UIFont(name: "Helvetica Neue",size: 35)!,
+            NSAttributedStringKey.foregroundColor: UIColor.blue,
+            ], for: .normal)
+        navigationItem.rightBarButtonItem = button
     }
 
 }

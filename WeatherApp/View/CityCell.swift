@@ -9,7 +9,16 @@
 import UIKit
 
 class CityCell: UICollectionViewCell {
-        
+    
+    // MARK: - Properties and Initialization
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -19,12 +28,7 @@ class CityCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 30)
-        return label
-    }()
+    //MARK: - Setting up views
     
     func setupViews() {
         addSubview(nameLabel)
