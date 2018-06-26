@@ -31,10 +31,9 @@ class DetailsViewController: UIViewController {
         
         print("\(city.name)")
         
-        self.cityView.nameLabel.text = city.name
-        self.cityView.temperatureLabel.text = city.details.temperature
-        self.cityView.populationLabel.text = String(city.details.population)
-        self.cityView.notesTextView.text = city.notes
+        var name = city.name.split(separator: "/")
+        self.cityView.nameLabel.text = String(name[1])
+        self.cityView.temperatureLabel.text = "Temperature of: " + String(city.temperature)
         self.cityView.setupViews()
     }
 

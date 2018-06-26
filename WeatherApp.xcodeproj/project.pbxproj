@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF420E010190093B713 /* DetailsViewController.swift */; };
 		A1674FF720E028170093B713 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF620E028170093B713 /* CityView.swift */; };
+		F8A30E8C20E2227C002203D4 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A30E8B20E2227C002203D4 /* Configuration.swift */; };
+		F8A30E8F20E2250C002203D4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A30E8E20E2250C002203D4 /* DataManager.swift */; };
 		F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784420DCE81300DBC495 /* AppDelegate.swift */; };
 		F8C7784720DCE81300DBC495 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784620DCE81300DBC495 /* ViewController.swift */; };
 		F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784B20DCE81300DBC495 /* WeatherApp.xcdatamodeld */; };
@@ -16,8 +18,6 @@
 		F8C7785220DCE81600DBC495 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8C7785020DCE81600DBC495 /* LaunchScreen.storyboard */; };
 		F8C7785A20DCEEB000DBC495 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */; };
 		F8C7786120DD153800DBC495 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786020DD153800DBC495 /* City.swift */; };
-		F8C7786320DD159C00DBC495 /* CityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786220DD159C00DBC495 /* CityList.swift */; };
-		F8C7786520DD15C300DBC495 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786420DD15C300DBC495 /* Detail.swift */; };
 		F8C7786720DD281C00DBC495 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786620DD281C00DBC495 /* CityCell.swift */; };
 		F8FFE47B20E0D1E0006D9E1A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */; };
 		F8FFE47D20E0D266006D9E1A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE47C20E0D266006D9E1A /* MapView.swift */; };
@@ -28,6 +28,8 @@
 /* Begin PBXFileReference section */
 		A1674FF420E010190093B713 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A1674FF620E028170093B713 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
+		F8A30E8B20E2227C002203D4 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		F8A30E8E20E2250C002203D4 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F8C7784120DCE81300DBC495 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8C7784420DCE81300DBC495 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8C7784620DCE81300DBC495 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,8 +39,6 @@
 		F8C7785320DCE81600DBC495 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		F8C7786020DD153800DBC495 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
-		F8C7786220DD159C00DBC495 /* CityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityList.swift; sourceTree = "<group>"; };
-		F8C7786420DD15C300DBC495 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		F8C7786620DD281C00DBC495 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F8FFE47C20E0D266006D9E1A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -58,6 +58,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F8A30E8A20E22267002203D4 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				F8A30E8B20E2227C002203D4 /* Configuration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		F8A30E8D20E224F1002203D4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F8A30E8E20E2250C002203D4 /* DataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		F8C7783820DCE81300DBC495 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +94,8 @@
 		F8C7784320DCE81300DBC495 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				F8A30E8D20E224F1002203D4 /* Managers */,
+				F8A30E8A20E22267002203D4 /* Configuration */,
 				F8C7785F20DD150000DBC495 /* View */,
 				F8C7785E20DD14FA00DBC495 /* Controller */,
 				F8C7785D20DD14F400DBC495 /* Model */,
@@ -96,8 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				F8C7786020DD153800DBC495 /* City.swift */,
-				F8C7786220DD159C00DBC495 /* CityList.swift */,
-				F8C7786420DD15C300DBC495 /* Detail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,17 +222,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8FFE47B20E0D1E0006D9E1A /* MapViewController.swift in Sources */,
+				F8A30E8F20E2250C002203D4 /* DataManager.swift in Sources */,
 				F8FFE47D20E0D266006D9E1A /* MapView.swift in Sources */,
 				F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */,
 				A1674FF720E028170093B713 /* CityView.swift in Sources */,
 				F8C7784720DCE81300DBC495 /* ViewController.swift in Sources */,
 				F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */,
 				A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */,
-				F8C7786520DD15C300DBC495 /* Detail.swift in Sources */,
 				F8C7786120DD153800DBC495 /* City.swift in Sources */,
+				F8A30E8C20E2227C002203D4 /* Configuration.swift in Sources */,
 				F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */,
 				F8C7786720DD281C00DBC495 /* CityCell.swift in Sources */,
-				F8C7786320DD159C00DBC495 /* CityList.swift in Sources */,
 				F8C7785A20DCEEB000DBC495 /* LocationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

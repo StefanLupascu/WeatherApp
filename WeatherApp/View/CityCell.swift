@@ -15,7 +15,8 @@ class CityCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        //label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = label.font.withSize(25)
         return label
     }()
     
@@ -33,10 +34,10 @@ class CityCell: UICollectionViewCell {
     func setupViews() {
         addSubview(nameLabel)
         
-        nameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 22).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -18).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
 
     }
 }

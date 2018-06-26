@@ -12,20 +12,30 @@ final class LocationsViewController: UICollectionViewController {
     
     // MARK: - Properties and Initialization
     
+//    var cities: [City] = {
+//        var cityList = [City]()
+//        for index in 1...15 {
+//            let details = Detail(temperature: "randomTemp", population: index*10)
+//            let city = City(name: "City\(index)", details: details, notes: "random notes for City\(index)")
+//
+//            cityList.append(city)
+//        }
+//
+//        return cityList
+//    }()
+    
     var cities: [City] = {
         var cityList = [City]()
-        for index in 1...15 {
-            let details = Detail(temperature: "randomTemp", population: index*10)
-            let city = City(name: "City\(index)", details: details, notes: "random notes for City\(index)")
-            
-            cityList.append(city)
-        }
         
         return cityList
     }()
     
+    var mapViewController = MapViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.title = "Cities"
         setupButton()
@@ -34,20 +44,19 @@ final class LocationsViewController: UICollectionViewController {
         collectionView?.alwaysBounceVertical = true
         
         collectionView?.register(CityCell.self, forCellWithReuseIdentifier: "cellId")
-        //collectionView?.register(CityHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
+        
+        mapViewController.delegate = self
     }
     
     // MARK: - Collection view manipulation
     
     @objc func goToMap(sender: UIButton) {
-        let mapViewController = MapViewController() as MapViewController
         self.navigationController?.pushViewController(mapViewController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = DetailsViewController(city: cities[indexPath.item]) as DetailsViewController
         self.navigationController?.pushViewController(detailsViewController, animated: true)
-        //present(detailsViewController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,7 +65,11 @@ final class LocationsViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cityCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CityCell
-        cityCell.nameLabel.text = cities[indexPath.item].name
+        //cityCell.nameLabel.text = cities[indexPath.item].name
+        
+        var name = cities[indexPath.item].name.split(separator: "/")
+        cityCell.nameLabel.text = String(name[1])
+        
         return cityCell
     }
     
@@ -78,4 +91,15 @@ extension LocationsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 50)
     }
+}
+
+extension LocationsViewController: MapViewDelegate {
+    
+    func didRecieveNewWeatherData(city: City) {
+        cities.append(city)
+        collectionView?.reloadData()
+        //saveToDatabase
+    }
+    
+    
 }

@@ -23,6 +23,8 @@ class MapView: UIView {
         return label
     }()
     
+    var location = CLLocationCoordinate2DMake(48.83664488641497, 2.320432662963867)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .lightGray
@@ -50,12 +52,8 @@ class MapView: UIView {
     }
     
     func setupMap() {
-        let location = CLLocationCoordinate2DMake(48.83664488641497, 2.320432662963867)
-        map.setRegion(MKCoordinateRegionMakeWithDistance(location, 50000, 50000), animated: true)
         
-        let pin = PinAnnotation(title: "Eiffel Tower", coordinate: location)
-        map.addAnnotation(pin)
+        map.setRegion(MKCoordinateRegionMakeWithDistance(location, 10000000, 10000000), animated: true)
     }
-    
     
 }

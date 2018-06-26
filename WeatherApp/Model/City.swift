@@ -26,6 +26,5 @@ struct City {
     // MARK: - Properties and Initialization
     
     var name: String
-    var details: Detail
-    var notes: String
+    var temperature: Double
 }
