@@ -27,14 +27,6 @@ class CityView: UIView {
         return label
     }()
     
-    var populationLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
-        
-        return label
-    }()
-    
     let notesTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .gray
@@ -64,7 +56,6 @@ class CityView: UIView {
     func setupViews() {
         addSubview(nameLabel)
         addSubview(temperatureLabel)
-        addSubview(populationLabel)
         addSubview(notesTextView)
         
         //nameLabel setup
@@ -78,13 +69,8 @@ class CityView: UIView {
         temperatureLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         temperatureLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
         
-        //populationLabel setup
-        populationLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 20).isActive = true
-        populationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        populationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
-        
         //notesTextView setup
-        notesTextView.topAnchor.constraint(equalTo: populationLabel.bottomAnchor, constant: 20).isActive = true
+        notesTextView.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 200).isActive = true
         notesTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         notesTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         notesTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true

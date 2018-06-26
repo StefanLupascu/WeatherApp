@@ -27,4 +27,5 @@ struct City {
     
     var name: String
     var temperature: Double
+    var notes: String
 }

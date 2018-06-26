@@ -77,8 +77,8 @@ final class DataManager {
 //
 //            return weatherInfo
 //        }
-        guard let timezone = content["timezone"] as? String,  let currently = content["currently"] as? [String: AnyObject], let temperature = currently["apparentTemperature"] as? Double  else { return City(name: "Default", temperature: 0.00) }
-        let weatherInfo = City(name: timezone, temperature: temperature)
+        guard let timezone = content["timezone"] as? String,  let currently = content["currently"] as? [String: AnyObject], let temperature = currently["apparentTemperature"] as? Double  else { return City(name: "Default", temperature: 0.00, notes: "") }
+        let weatherInfo = City(name: timezone, temperature: temperature, notes: "")
         
         return weatherInfo
        // return City(name: "Default", temperature: 0.00)
