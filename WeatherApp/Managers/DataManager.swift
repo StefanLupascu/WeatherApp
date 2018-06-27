@@ -11,9 +11,9 @@ import MapKit
 
 enum DataManagerError: Error {
     
-    case Unknown
-    case FailedRequest
-    case InvalidResponse
+    case unknown
+    case failedRequest
+    case invalidResponse
 }
 
 final class DataManager {
@@ -32,7 +32,7 @@ final class DataManager {
     //Mark: - Requesting Data
     
     //latitude: Double, longitude: Double
-    func weatherDataForLocation(location: CLLocationCoordinate2D, completion: @escaping WeatherDataCompletion) {
+    func weatherData(for location: CLLocationCoordinate2D, completion: @escaping WeatherDataCompletion) {
         // Create URL
         let URL = baseURL.appendingPathComponent("\(location.latitude),\(location.longitude)")
         
@@ -44,16 +44,16 @@ final class DataManager {
     
     private func didFetchWeatherData(data: Data?, response: URLResponse?, error: Error?, completion: WeatherDataCompletion) {
         if let _ = error {
-            completion(nil, .FailedRequest)
+            completion(nil, .failedRequest)
         }
         else if let data = data, let response = response as? HTTPURLResponse {
             if response.statusCode == 200 {
                 processWeatherData(data: data, completion: completion)
             } else {
-                completion(nil, .FailedRequest)
+                completion(nil, .failedRequest)
             }
         } else {
-            completion(nil, .Unknown)
+            completion(nil, .unknown)
         }
     }
     
@@ -64,24 +64,16 @@ final class DataManager {
             }
             completion(JSON, nil)
         } else {
-            completion(nil, .InvalidResponse)
+            completion(nil, .invalidResponse)
         }
     }
     
     func addWeatherInfo() -> City{
         
-//        if let timezone = content["timezone"] as? String,
-//        let currently = content["currently"] as? [String: AnyObject],
-//            let temperature = currently["apparentTemperature"] as? Double {
-//            let weatherInfo = City(name: timezone, temperature: temperature)
-//
-//            return weatherInfo
-//        }
         guard let timezone = content["timezone"] as? String,  let currently = content["currently"] as? [String: AnyObject], let temperature = currently["apparentTemperature"] as? Double  else { return City(name: "Default", temperature: 0.00, notes: "") }
         let weatherInfo = City(name: timezone, temperature: temperature, notes: "")
         
         return weatherInfo
-       // return City(name: "Default", temperature: 0.00)
     }
     
     

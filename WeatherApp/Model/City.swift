@@ -8,24 +8,14 @@
 
 import Foundation
 
-//final class City {
-//
-//    var name: String
-//    var details: Detail
-//    var notes: String
-//
-//    init(name: String, details: Detail, notes: String) {
-//        self.name = name
-//        self.details = details
-//        self.notes = notes
-//    }
-//}
-
 struct City {
     
     // MARK: - Properties and Initialization
     
     var name: String
+    //var latitude: Double
+    //var longitude: Double
+    //var details: Detail
     var temperature: Double
     var notes: String
 }

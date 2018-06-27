@@ -57,7 +57,7 @@ class MapViewController: UIViewController {
     // MARK: - Setting up actions
     
     @objc func done(sender: UIButton!) {
-        //print("\(weatherInfo)")
+        print("\(weatherInfo)")
         let city = dataManager.addWeatherInfo()
 //        print("\(city.name)")
 //        print("\(city.temperature)")
@@ -77,7 +77,7 @@ class MapViewController: UIViewController {
         annotation.coordinate = locationCoordinates
         mapView.map.removeAnnotations(mapView.map.annotations)
         mapView.map.addAnnotation(annotation)
-        dataManager.weatherDataForLocation(location: locationCoordinates) { (response, error) in
+        dataManager.weatherData(for: locationCoordinates) { (response, error) in
             
             self.weatherInfo = String(describing: response)
         }
