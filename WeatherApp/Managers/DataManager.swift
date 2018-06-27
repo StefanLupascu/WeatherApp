@@ -7,74 +7,72 @@
 //
 
 import Foundation
-import MapKit
 
 enum DataManagerError: Error {
-    
     case unknown
     case failedRequest
     case invalidResponse
 }
 
-final class DataManager {
+struct DataManager {
+    // MARK: - Properties
     
-    typealias WeatherDataCompletion = (AnyObject?, DataManagerError?) -> ()
+    typealias WeatherDataCompletion = (Detail?, DataManagerError?) -> Void
     
-    let baseURL: URL
-    var content = [String: AnyObject]()
-    
-    //Mark: - Initialization
-    
-    init(baseURL: URL) {
-        self.baseURL = baseURL
+    private var baseURL: String {
+        return "https://api.forecast.io/forecast/b575743a969d064f18d37a4249f3fd4f/"
     }
     
-    //Mark: - Requesting Data
+    // MARK: - Functions
     
-    //latitude: Double, longitude: Double
-    func weatherData(for location: CLLocationCoordinate2D, completion: @escaping WeatherDataCompletion) {
-        // Create URL
-        let URL = baseURL.appendingPathComponent("\(location.latitude),\(location.longitude)")
+    func weatherDetailsFor(latitude: Double, longitude: Double, completion: @escaping WeatherDataCompletion) {
+        let url = URL(string: "\(baseURL)\(latitude),\(longitude)")!
         
-        //Create Data Task
-        URLSession.shared.dataTask(with: URL) { (data, response, error) in
-            self.didFetchWeatherData(data: data, response: response, error: error, completion: completion)
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            self.didFetchWeatherData(data: data, response: response, error: error, completion: { (details, error) in
+                DispatchQueue.main.async {
+                    completion(details, error)
+                }
+            })
         }.resume()
     }
     
+    // MARK: - Private Functions
+    
     private func didFetchWeatherData(data: Data?, response: URLResponse?, error: Error?, completion: WeatherDataCompletion) {
-        if let _ = error {
+        guard error == nil else {
             completion(nil, .failedRequest)
+            return
         }
-        else if let data = data, let response = response as? HTTPURLResponse {
-            if response.statusCode == 200 {
-                processWeatherData(data: data, completion: completion)
-            } else {
-                completion(nil, .failedRequest)
-            }
-        } else {
+        
+        guard let data = data, let response = response as? HTTPURLResponse else {
             completion(nil, .unknown)
+            return
         }
+        
+        guard response.statusCode == 200 else {
+            completion(nil, .failedRequest)
+            return
+        }
+        
+        process(data: data, completion: completion)
     }
     
-    private func processWeatherData(data: Data, completion: WeatherDataCompletion) {
-        if let JSON = try? JSONSerialization.jsonObject(with: data, options: []) as AnyObject {
-            if let content = JSON as? [String: AnyObject] {
-                self.content = content
-            }
-            completion(JSON, nil)
-        } else {
+    private func process(data: Data, completion: WeatherDataCompletion) {
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as?  [String: AnyObject] else {
             completion(nil, .invalidResponse)
+            return
         }
-    }
-    
-    func addWeatherInfo() -> City{
         
-        guard let timezone = content["timezone"] as? String,  let currently = content["currently"] as? [String: AnyObject], let temperature = currently["apparentTemperature"] as? Double  else { return City(name: "Default", temperature: 0.00, notes: "") }
-        let weatherInfo = City(name: timezone, temperature: temperature, notes: "")
+        guard let currently = json?["currently"] as? [String: AnyObject],
+            let temperature = currently["temperature"] as? Double,
+            let humidity = currently["humidity"] as? Double,
+            let pressure = currently["pressure"] as? Double,
+            let summary = currently["summary"] as? String else {
+                completion(nil, .invalidResponse)
+                return
+        }
         
-        return weatherInfo
+        completion(Detail(temperature: temperature, humidity: humidity, pressure: pressure, summary: summary), nil)
     }
-    
-    
 }

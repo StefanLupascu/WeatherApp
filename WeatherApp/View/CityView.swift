@@ -12,14 +12,38 @@ class CityView: UIView {
 
     // MARK: - Properties and Initialization
     
-    var nameLabel: UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
     
-    var temperatureLabel: UILabel = {
+    let temperatureLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(20)
+        
+        return label
+    }()
+    
+    let humidityLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(20)
+        
+        return label
+    }()
+    
+    let pressureLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(20)
+        
+        return label
+    }()
+    
+    let summaryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(20)
@@ -56,6 +80,9 @@ class CityView: UIView {
     func setupViews() {
         addSubview(nameLabel)
         addSubview(temperatureLabel)
+        addSubview(humidityLabel)
+        addSubview(pressureLabel)
+        addSubview(summaryLabel)
         addSubview(notesTextView)
         
         //nameLabel setup
@@ -69,8 +96,23 @@ class CityView: UIView {
         temperatureLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         temperatureLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
         
+        //humidityLabel setup
+        humidityLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 20).isActive = true
+        humidityLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        humidityLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
+        
+        //pressureLabel setup
+        pressureLabel.topAnchor.constraint(equalTo: humidityLabel.bottomAnchor, constant: 20).isActive = true
+        pressureLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        pressureLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
+        
+        //summaryLabel setup
+        summaryLabel.topAnchor.constraint(equalTo: pressureLabel.bottomAnchor, constant: 20).isActive = true
+        summaryLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        summaryLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
+        
         //notesTextView setup
-        notesTextView.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 200).isActive = true
+        notesTextView.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 180).isActive = true
         notesTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         notesTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         notesTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true

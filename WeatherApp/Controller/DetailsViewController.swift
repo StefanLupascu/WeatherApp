@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailsViewController: UIViewController {
     
@@ -28,13 +29,15 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         view = cityView
         navigationItem.title = "Information"
+        setupGesture()
         
-        print("\(city.name)")
-        
-        var name = city.name.split(separator: "/")
-        self.cityView.nameLabel.text = String(name[1])
-        self.cityView.temperatureLabel.text = "Temperature of: " + String(city.temperature)
-        self.cityView.notesTextView.text = city.notes
+//        var name = city.name.split(separator: "/")
+        self.cityView.nameLabel.text = city.name
+        self.cityView.temperatureLabel.text = "Temperature of: " + String((city.details?.temperature)!)
+        self.cityView.humidityLabel.text = "Humidity: " + String((city.details?.humidity)!)
+        self.cityView.pressureLabel.text = "Pressure: " + String((city.details?.pressure)!)
+        self.cityView.summaryLabel.text = "Summary: " + (city.details?.summary)!
+        self.cityView.notesTextView.text = city.note
         self.cityView.setupViews()
     }
     
@@ -45,6 +48,11 @@ class DetailsViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func setupGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
+        self.cityView.addGestureRecognizer(gesture)
     }
     
     @objc func keyboardWillAppear(_ notification: NSNotification) {
@@ -58,20 +66,15 @@ class DetailsViewController: UIViewController {
     
     @objc func keyboardWillDisappear(_ notification: NSNotification) {
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height
+                self.view.frame.origin.y = 0
             }
         }
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
+    @objc func dismissKeyboard(sender: UITapGestureRecognizer!) {
+        view.endEditing(true)
+    }
     
 }

@@ -15,12 +15,11 @@ protocol MapViewDelegate: class {
 
 class MapViewController: UIViewController {
 
+    typealias CityNameCompletion = (String?, DataManagerError?) -> Void
+    
     // MARK: - Properties and Initialization
     
-    var weatherInfo = String()
     var delegate: MapViewDelegate?
-    
-    private let dataManager = DataManager(baseURL: API.AuthenticatedBaseURL)
     let mapView = MapView()
     
     override func viewDidLoad() {
@@ -54,35 +53,66 @@ class MapViewController: UIViewController {
         mapView.frame = self.view.frame
     }
     
-    // MARK: - Setting up actions
-    
-    @objc func done(sender: UIButton!) {
-        print("\(weatherInfo)")
-        let city = dataManager.addWeatherInfo()
-//        print("\(city.name)")
-//        print("\(city.temperature)")
-        delegate?.didRecieveNewWeatherData(city: city)
-        mapView.map.removeAnnotations(mapView.map.annotations)
-        navigationItem.rightBarButtonItem = nil
+    private func getCityAt(latitude: Double, longitude: Double, completion: @escaping CityNameCompletion){
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: latitude, longitude: longitude)
         
-        navigationController?.popViewController(animated: true)
+        geoCoder.reverseGeocodeLocation(location) {
+            (placemarks, error) in
+            
+            let placeArray = placemarks as [CLPlacemark]?
+            
+            var placeMark: CLPlacemark!
+            placeMark = placeArray?[0]
+            
+            guard let locationName = placeMark.locality else {
+                completion(nil, .failedRequest)
+                return
+            }
+            
+            print("\(String(describing: locationName))")
+            DispatchQueue.main.async {
+                completion(placeMark.locality, nil)
+            }
+        }
     }
     
-    @objc func addPin(sender: UITapGestureRecognizer!) {
+    // MARK: - Setting up actions
+    
+    @objc func done(sender: UIButton) {
+        guard let cityAnnotation = mapView.map.annotations.first else {
+            return
+        }
         
+        // TODO: Geocoding/Reverse geocoding
+//        let cityName = getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude)
+
+        getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude) { [weak self] (cityName, error) in
+            
+            guard let name = cityName else {
+                return
+            }
+            
+            let city = City(name: name, latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude)
+            
+            self?.delegate?.didRecieveNewWeatherData(city: city)
+            
+            self?.mapView.map.removeAnnotations((self?.mapView.map.annotations)!)
+            self?.navigationItem.rightBarButtonItem = nil
+            self?.navigationController?.popViewController(animated: true)
+        }
+
+    }
+    
+    @objc func addPin(sender: UITapGestureRecognizer) {
         let location = sender.location(in: mapView.map)
         let locationCoordinates = mapView.map.convert(location, toCoordinateFrom: mapView.map)
         let annotation = MKPointAnnotation()
-        
         annotation.coordinate = locationCoordinates
+        
         mapView.map.removeAnnotations(mapView.map.annotations)
         mapView.map.addAnnotation(annotation)
-        dataManager.weatherData(for: locationCoordinates) { (response, error) in
-            
-            self.weatherInfo = String(describing: response)
-        }
         
         setupButton()
     }
-    
 }

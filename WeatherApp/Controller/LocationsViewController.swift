@@ -7,30 +7,17 @@
 //
 
 import UIKit
+import MapKit
 
 final class LocationsViewController: UICollectionViewController {
     
     // MARK: - Properties and Initialization
     
-//    var cities: [City] = {
-//        var cityList = [City]()
-//        for index in 1...15 {
-//            let details = Detail(temperature: "randomTemp", population: index*10)
-//            let city = City(name: "City\(index)", details: details, notes: "random notes for City\(index)")
-//
-//            cityList.append(city)
-//        }
-//
-//        return cityList
-//    }()
+    private var cities = [City]()
     
-    var cities: [City] = {
-        var cityList = [City]()
-        
-        return cityList
-    }()
-    
-    var mapViewController = MapViewController()
+    private let  mapViewController = MapViewController()
+    private let dataManager = DataManager()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +42,7 @@ final class LocationsViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailsViewController = DetailsViewController(city: cities[indexPath.item]) as DetailsViewController
-        self.navigationController?.pushViewController(detailsViewController, animated: true)
+        presentDetails(for: cities[indexPath.item])
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,12 +51,29 @@ final class LocationsViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cityCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CityCell
-        //cityCell.nameLabel.text = cities[indexPath.item].name
-        
-        var name = cities[indexPath.item].name.split(separator: "/")
-        cityCell.nameLabel.text = String(name[1])
+        cityCell.nameLabel.text = cities[indexPath.item].name
         
         return cityCell
+    }
+    
+    private func presentDetails(for city: City) {
+        dataManager.weatherDetailsFor(latitude: city.latitude, longitude: city.longitude) { [weak self] (details, error) in
+            guard let strongSelf = self, let details = details else { return }
+            
+            let updatedCity = strongSelf.update(city: city, with: details)
+            let detailsViewController = DetailsViewController(city: updatedCity)
+            strongSelf.navigationController?.pushViewController(detailsViewController, animated: true)
+        }
+    }
+    
+    @discardableResult private func update(city: City, with details: Detail) -> City {
+        guard let index = cities.index(of: city) else {
+            fatalError("Sanity check")
+        }
+        
+        cities[index].details = details
+        
+        return cities[index]
     }
     
     // MARK: - Setting up add button
@@ -94,12 +97,9 @@ extension LocationsViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension LocationsViewController: MapViewDelegate {
-    
     func didRecieveNewWeatherData(city: City) {
         cities.append(city)
         collectionView?.reloadData()
         //saveToDatabase
     }
-    
-    
 }

@@ -53,7 +53,7 @@ class MapView: UIView {
     
     func setupMap() {
         
-        map.setRegion(MKCoordinateRegionMakeWithDistance(location, 10000000, 10000000), animated: true)
+        map.setRegion(MKCoordinateRegionMakeWithDistance(location, 1000000, 1000000), animated: true)
     }
     
 }
