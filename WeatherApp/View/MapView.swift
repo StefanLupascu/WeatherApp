@@ -23,7 +23,7 @@ class MapView: UIView {
         return label
     }()
     
-    var location = CLLocationCoordinate2DMake(48.83664488641497, 2.320432662963867)
+    var location = CLLocationCoordinate2DMake(44.83664488641497, 26.320432662963867)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,7 +53,7 @@ class MapView: UIView {
     
     func setupMap() {
         
-        map.setRegion(MKCoordinateRegionMakeWithDistance(location, 1000000, 1000000), animated: true)
+        map.setRegion(MKCoordinateRegionMakeWithDistance(location, 900000, 900000), animated: true)
     }
     
 }

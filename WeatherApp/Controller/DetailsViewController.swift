@@ -31,7 +31,6 @@ class DetailsViewController: UIViewController {
         navigationItem.title = "Information"
         setupGesture()
         
-//        var name = city.name.split(separator: "/")
         self.cityView.nameLabel.text = city.name
         self.cityView.temperatureLabel.text = "Temperature of: " + String((city.details?.temperature)!)
         self.cityView.humidityLabel.text = "Humidity: " + String((city.details?.humidity)!)
