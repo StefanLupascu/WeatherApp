@@ -17,12 +17,10 @@ final class LocationsViewController: UICollectionViewController {
     
     private let  mapViewController = MapViewController()
     private let dataManager = DataManager()
-
+    private let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.title = "Cities"
         setupButton()
@@ -56,13 +54,29 @@ final class LocationsViewController: UICollectionViewController {
         return cityCell
     }
     
+    private func showActivityIndicator() {
+        activityIndicator.frame = view.frame
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    
     private func presentDetails(for city: City) {
+        showActivityIndicator()
+        
         dataManager.weatherDetailsFor(latitude: city.latitude, longitude: city.longitude) { [weak self] (details, error) in
-            guard let strongSelf = self, let details = details else { return }
+            guard let strongSelf = self, let details = details else {
+                return
+            }
             
             let updatedCity = strongSelf.update(city: city, with: details)
             let detailsViewController = DetailsViewController(city: updatedCity)
             strongSelf.navigationController?.pushViewController(detailsViewController, animated: true)
+            
+            self?.activityIndicator.stopAnimating()
         }
     }
     

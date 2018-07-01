@@ -21,11 +21,13 @@ class MapViewController: UIViewController {
     
     var delegate: MapViewDelegate?
     let mapView = MapView()
+    private let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Map"
         navigationItem.largeTitleDisplayMode = .never
+        //navigationItem.rightBarButtonItem?.isEnabled = true
         
         setupUI()
         setupGesture()
@@ -72,22 +74,47 @@ class MapViewController: UIViewController {
             
             print("\(String(describing: locationName))")
             DispatchQueue.main.async {
-                completion(placeMark.locality, nil)
+                completion(locationName, nil)
             }
         }
+    }
+    
+    private func showActivityIndicator() {
+        activityIndicator.frame = view.frame
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: "Error", message: "No city found at this location", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Setting up actions
     
     @objc func done(sender: UIButton) {
+        showActivityIndicator()
+        
         guard let cityAnnotation = mapView.map.annotations.first else {
             return
         }
-        
-        // TODO: Geocoding/Reverse geocoding
-//        let cityName = getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude)
 
         getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude) { [weak self] (cityName, error) in
+            
+            guard cityName != nil else {
+                self?.activityIndicator.stopAnimating()
+                //print("not city found")
+                self?.showAlert()
+                return
+            }
             
             guard let name = cityName else {
                 return
@@ -100,6 +127,8 @@ class MapViewController: UIViewController {
             self?.mapView.map.removeAnnotations((self?.mapView.map.annotations)!)
             self?.navigationItem.rightBarButtonItem = nil
             self?.navigationController?.popViewController(animated: true)
+            
+            self?.activityIndicator.stopAnimating()
         }
 
     }
