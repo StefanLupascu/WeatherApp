@@ -111,7 +111,6 @@ class MapViewController: UIViewController {
             
             guard cityName != nil else {
                 self?.activityIndicator.stopAnimating()
-                //print("not city found")
                 self?.showAlert()
                 return
             }
@@ -120,7 +119,12 @@ class MapViewController: UIViewController {
                 return
             }
             
-            let city = City(name: name, latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude)
+            //let city = City(name: name, latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude)
+            let city = City(context: PersistenceService.context)
+            city.name = name
+            city.latitude = cityAnnotation.coordinate.latitude
+            city.longitude = cityAnnotation.coordinate.longitude
+            city.note = ""
             
             self?.delegate?.didRecieveNewWeatherData(city: city)
             

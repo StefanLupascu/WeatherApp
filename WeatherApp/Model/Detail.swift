@@ -9,24 +9,10 @@
 import Foundation
 
 struct Detail {
+    // MARK: - Properties
     
-    var temperature: Double
-    var humidity: Double
-    var pressure: Double
-    var summary: String
-    
-    init() {
-        temperature = 0.00
-        humidity = 0.00
-        pressure = 0.00
-        summary = ""
-    }
-    
-    init(temperature: Double, humidity: Double, pressure: Double, summary: String) {
-        
-        self.temperature = temperature
-        self.humidity = humidity
-        self.pressure = pressure
-        self.summary = summary
-    }
+    var temperature = 0.0
+    var humidity = 0.0
+    var pressure = 0.0
+    var summary = ""
 }

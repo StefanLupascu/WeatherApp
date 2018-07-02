@@ -9,26 +9,17 @@
 import UIKit
 import MapKit
 
-class MapView: UIView {
-    
-    // MARK: - Properties and Initialization
+final class MapView: UIView {
+    // MARK: - Properties
     
     let map = MKMapView()
-    
-    let mapLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Test Map"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
     var location = CLLocationCoordinate2DMake(44.83664488641497, 26.320432662963867)
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .lightGray
-        map.translatesAutoresizingMaskIntoConstraints = false
         
         setupMap()
         setupViews()
@@ -38,12 +29,12 @@ class MapView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setting up views
+    // MARK: - Private Functions
     
-    func setupViews() {
-        
+    private func setupViews() {
         addSubview(map)
 
+        map.translatesAutoresizingMaskIntoConstraints = false
         map.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         map.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         map.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -52,7 +43,6 @@ class MapView: UIView {
     }
     
     func setupMap() {
-        
         map.setRegion(MKCoordinateRegionMakeWithDistance(location, 900000, 900000), animated: true)
     }
     

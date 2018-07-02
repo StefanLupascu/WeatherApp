@@ -9,12 +9,16 @@
 import UIKit
 import MapKit
 
-class DetailsViewController: UIViewController {
-    
+protocol DetailsViewDelegate: class {
+    func didUpdateNote(city: City)
+}
+
+final class DetailsViewController: UIViewController {
     // MARK: - Properties and Initialization
     
     var city: City
     var cityView = CityView()
+    var delegate: DetailsViewDelegate?
     
     init(city: City) {
         self.city = city
@@ -37,7 +41,6 @@ class DetailsViewController: UIViewController {
         self.cityView.pressureLabel.text = "Pressure: " + String((city.details?.pressure)!)
         self.cityView.summaryLabel.text = "Summary: " + (city.details?.summary)!
         self.cityView.notesTextView.text = city.note
-        self.cityView.setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +76,9 @@ class DetailsViewController: UIViewController {
     }
 
     @objc func dismissKeyboard(sender: UITapGestureRecognizer!) {
+        city.note = cityView.notesTextView.text
+        self.delegate?.didUpdateNote(city: city)
+        //print("\(city.note)")
         view.endEditing(true)
     }
     

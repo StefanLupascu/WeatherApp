@@ -8,17 +8,17 @@
 
 import UIKit
 
-class CityCell: UICollectionViewCell {
-    
-    // MARK: - Properties and Initialization
+final class CityCell: UICollectionViewCell {
+    // MARK: - Properties
     
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        //label.font = UIFont.boldSystemFont(ofSize: 30)
         label.font = label.font.withSize(25)
         return label
     }()
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,9 +29,9 @@ class CityCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Setting up views
+    // MARK: - Private Functions
     
-    func setupViews() {
+    private func setupViews() {
         addSubview(nameLabel)
         
         nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true

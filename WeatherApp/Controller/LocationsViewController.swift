@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 final class LocationsViewController: UICollectionViewController {
     
@@ -15,22 +16,21 @@ final class LocationsViewController: UICollectionViewController {
     
     private var cities = [City]()
     
-    private let  mapViewController = MapViewController()
+    private let mapViewController = MapViewController()
     private let dataManager = DataManager()
     private let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "Cities"
-        setupButton()
         
         collectionView?.backgroundColor = UIColor.white
         collectionView?.alwaysBounceVertical = true
-        
         collectionView?.register(CityCell.self, forCellWithReuseIdentifier: "cellId")
         
         mapViewController.delegate = self
+        setupButton()
+        getData()
     }
     
     // MARK: - Collection view manipulation
@@ -54,6 +54,18 @@ final class LocationsViewController: UICollectionViewController {
         return cityCell
     }
     
+    //MARK: - Private Functions
+    
+    private func getData() {
+        let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
+        do {
+            let cities = try PersistenceService.context.fetch(fetchRequest)
+            self.cities = cities
+        } catch {
+            print("Error \(error)")
+        }
+    }
+    
     private func showActivityIndicator() {
         activityIndicator.frame = view.frame
         activityIndicator.center = view.center
@@ -74,6 +86,7 @@ final class LocationsViewController: UICollectionViewController {
             
             let updatedCity = strongSelf.update(city: city, with: details)
             let detailsViewController = DetailsViewController(city: updatedCity)
+            detailsViewController.delegate = self
             strongSelf.navigationController?.pushViewController(detailsViewController, animated: true)
             
             self?.activityIndicator.stopAnimating()
@@ -90,8 +103,6 @@ final class LocationsViewController: UICollectionViewController {
         return cities[index]
     }
     
-    // MARK: - Setting up add button
-    
     private func setupButton() {
         let button = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(goToMap(sender:)))
         button.setTitleTextAttributes([
@@ -99,6 +110,15 @@ final class LocationsViewController: UICollectionViewController {
             NSAttributedStringKey.foregroundColor: UIColor.blue,
             ], for: .normal)
         navigationItem.rightBarButtonItem = button
+    }
+    
+    private func updateCity(city: City) {
+        for index in 0..<cities.count {
+            if cities[index].latitude == city.latitude && cities[index].longitude == city.longitude {
+                cities[index].note = city.note
+                //print("\(city.note)")
+            }
+        }
     }
 
 }
@@ -114,6 +134,14 @@ extension LocationsViewController: MapViewDelegate {
     func didRecieveNewWeatherData(city: City) {
         cities.append(city)
         collectionView?.reloadData()
-        //saveToDatabase
+        PersistenceService.saveContext()
+    }
+}
+
+extension LocationsViewController: DetailsViewDelegate {
+    func didUpdateNote(city: City) {
+        updateCity(city: city)
+        collectionView?.reloadData()
+        PersistenceService.saveContext()
     }
 }
