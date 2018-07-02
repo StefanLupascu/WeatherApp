@@ -85,6 +85,9 @@ final class CityView: UIView {
     // MARK: - Private Functions
     
     private func setupViews() {
+        let screensize = UIScreen.main.bounds
+        scrollView.contentSize = CGSize(width: screensize.width, height: screensize.height)
+        
         addSubview(scrollView)
         scrollView.addSubview(nameLabel)
         scrollView.addSubview(temperatureLabel)

@@ -17,7 +17,7 @@ class MapViewController: UIViewController {
 
     typealias CityNameCompletion = (String?, DataManagerError?) -> Void
     
-    // MARK: - Properties and Initialization
+    // MARK: - Properties
     
     var delegate: MapViewDelegate?
     let mapView = MapView()
@@ -27,14 +27,12 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Map"
         navigationItem.largeTitleDisplayMode = .never
-        //navigationItem.rightBarButtonItem?.isEnabled = true
         
         setupUI()
-        setupGesture()
-        
+        setupGesture()        
     }
     
-    // MARK: - Setting up UI elements
+    // MARK: - Private Functions
     
     private func setupGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(addPin(sender:)))
@@ -119,7 +117,6 @@ class MapViewController: UIViewController {
                 return
             }
             
-            //let city = City(name: name, latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude)
             let city = City(context: PersistenceService.context)
             city.name = name
             city.latitude = cityAnnotation.coordinate.latitude

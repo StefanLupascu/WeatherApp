@@ -14,11 +14,13 @@ protocol DetailsViewDelegate: class {
 }
 
 final class DetailsViewController: UIViewController {
-    // MARK: - Properties and Initialization
+    // MARK: - Properties
     
     var city: City
     var cityView = CityView()
-    var delegate: DetailsViewDelegate?
+    weak var delegate: DetailsViewDelegate?
+    
+    // MARK: - Init
     
     init(city: City) {
         self.city = city
@@ -29,8 +31,11 @@ final class DetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - ViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view = cityView
         navigationItem.title = "Information"
         setupGesture()
@@ -41,45 +46,43 @@ final class DetailsViewController: UIViewController {
         self.cityView.pressureLabel.text = "Pressure: " + String((city.details?.pressure)!)
         self.cityView.summaryLabel.text = "Summary: " + (city.details?.summary)!
         self.cityView.notesTextView.text = city.note
+        self.cityView.notesTextView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: .UIKeyboardWillShow, object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
-    }
+    // MARK: - Private Functions
     
     private func setupGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
         self.cityView.addGestureRecognizer(gesture)
     }
     
-    @objc func keyboardWillAppear(_ notification: NSNotification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            }
+    // MARK: - Keyboard Handling
+    
+    @objc private func keyboardWillAppear(_ notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue, view.frame.origin.y == 0 else {
+            return
         }
+        
+        self.view.frame.origin.y -= keyboardSize.height
     }
     
-    @objc func keyboardWillDisappear(_ notification: NSNotification) {
-        
-        if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 0
-            }
-        }
+    @objc private func keyboardWillDisappear(_ notification: NSNotification) {
+        view.frame.origin.y = 0
     }
-
-    @objc func dismissKeyboard(sender: UITapGestureRecognizer!) {
-        city.note = cityView.notesTextView.text
-        self.delegate?.didUpdateNote(city: city)
-        //print("\(city.note)")
+    
+    @objc private func dismissKeyboard(sender: UITapGestureRecognizer!) {
         view.endEditing(true)
     }
-    
+}
+
+// MARK: - UITextViewDelegate
+
+extension DetailsViewController: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        city.note = textView.text
+        self.delegate?.didUpdateNote(city: city)
+    }
 }

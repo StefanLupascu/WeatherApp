@@ -5,8 +5,17 @@
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="details" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Detail" inverseName="city" inverseEntity="Detail" syncable="YES"/>
+    </entity>
+    <entity name="Detail" representedClassName="Detail" syncable="YES">
+        <attribute name="humidity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pressure" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="details" inverseEntity="City" syncable="YES"/>
     </entity>
     <elements>
-        <element name="City" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="City" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Detail" positionX="-54" positionY="18" width="128" height="120"/>
     </elements>
 </model>

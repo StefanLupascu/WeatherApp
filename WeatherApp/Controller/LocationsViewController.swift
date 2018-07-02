@@ -11,8 +11,7 @@ import MapKit
 import CoreData
 
 final class LocationsViewController: UICollectionViewController {
-    
-    // MARK: - Properties and Initialization
+    // MARK: - Properties
     
     private var cities = [City]()
     
@@ -122,6 +121,8 @@ final class LocationsViewController: UICollectionViewController {
     }
 
 }
+
+//MARK: - Extensions
 
 extension LocationsViewController: UICollectionViewDelegateFlowLayout {
     

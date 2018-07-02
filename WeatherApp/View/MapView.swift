@@ -42,7 +42,7 @@ final class MapView: UIView {
       
     }
     
-    func setupMap() {
+    private func setupMap() {
         map.setRegion(MKCoordinateRegionMakeWithDistance(location, 900000, 900000), animated: true)
     }
     
