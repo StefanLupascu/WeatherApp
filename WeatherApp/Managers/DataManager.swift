@@ -73,7 +73,6 @@ struct DataManager {
                 return
         }
         
-//        completion(Detail(temperature: temperature, humidity: humidity, pressure: pressure, summary: summary), nil)
         let details = Detail(context: PersistenceService.context)
         details.temperature = temperature
         details.humidity = humidity

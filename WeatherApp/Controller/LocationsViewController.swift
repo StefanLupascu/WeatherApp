@@ -39,7 +39,7 @@ final class LocationsViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presentDetails(for: cities[indexPath.item])
+        self.showAlert(city: cities[indexPath.item])
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -73,6 +73,30 @@ final class LocationsViewController: UICollectionViewController {
         
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+    }
+    
+    private func showAlert(city: City) {
+        let alert = UIAlertController(title: "Select", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "See details", style: UIAlertActionStyle.default, handler: { [weak self](action) in
+            self?.presentDetails(for: city)
+        }))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self](action) in
+            self?.delete(city: city)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func delete(city: City) {
+        print("deleteCity")
+        
+        let deleteIndex = cities.index(of: city)
+        self.cities.remove(at: deleteIndex!)
+        self.collectionView?.reloadData()
+        
+        PersistenceService.context.delete(city)
+        PersistenceService.saveContext()
+        
     }
     
     private func presentDetails(for city: City) {
