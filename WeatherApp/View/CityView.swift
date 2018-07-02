@@ -12,6 +12,12 @@ class CityView: UIView {
 
     // MARK: - Properties and Initialization
     
+    let scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -78,16 +84,31 @@ class CityView: UIView {
     // MARK: - Setting up views
     
     func setupViews() {
-        addSubview(nameLabel)
-        addSubview(temperatureLabel)
-        addSubview(humidityLabel)
-        addSubview(pressureLabel)
-        addSubview(summaryLabel)
-        addSubview(notesTextView)
+        let screensize: CGRect = UIScreen.main.bounds
+        scrollView.frame = CGRect(x: 0, y: 120, width: screensize.width, height: screensize.height)
+        scrollView.contentSize = CGSize(width: screensize.width, height: screensize.height)
+        addSubview(scrollView)
+//        addSubview(nameLabel)
+//        addSubview(temperatureLabel)
+//        addSubview(humidityLabel)
+//        addSubview(pressureLabel)
+//        addSubview(summaryLabel)
+//        addSubview(notesTextView)
+        scrollView.addSubview(nameLabel)
+        scrollView.addSubview(temperatureLabel)
+        scrollView.addSubview(humidityLabel)
+        scrollView.addSubview(pressureLabel)
+        scrollView.addSubview(summaryLabel)
+        scrollView.addSubview(notesTextView)
+        
+        //scrollView setup
+        scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         //nameLabel setup
-        
-        nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 70).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 5).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
         
@@ -112,7 +133,7 @@ class CityView: UIView {
         summaryLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 20).isActive = true
         
         //notesTextView setup
-        notesTextView.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 180).isActive = true
+        notesTextView.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 20).isActive = true
         notesTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         notesTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         notesTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
