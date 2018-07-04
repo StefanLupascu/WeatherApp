@@ -35,10 +35,10 @@ final class MapView: UIView {
         addSubview(map)
 
         map.translatesAutoresizingMaskIntoConstraints = false
-        map.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        map.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        map.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        map.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        map.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        map.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        map.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        map.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
       
     }
     

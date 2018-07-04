@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CityCell: UICollectionViewCell {
+final class CityCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     // MARK: - Properties
     
     let nameLabel: UILabel = {
@@ -34,10 +34,11 @@ final class CityCell: UICollectionViewCell {
     private func setupViews() {
         addSubview(nameLabel)
         
-        nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-
+        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        
     }
+    
 }

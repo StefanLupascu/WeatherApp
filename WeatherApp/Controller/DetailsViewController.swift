@@ -40,13 +40,13 @@ final class DetailsViewController: UIViewController {
         navigationItem.title = "Information"
         setupGesture()
         
-        self.cityView.nameLabel.text = city.name
-        self.cityView.temperatureLabel.text = "Temperature of: " + String((city.details?.temperature)!)
-        self.cityView.humidityLabel.text = "Humidity: " + String((city.details?.humidity)!)
-        self.cityView.pressureLabel.text = "Pressure: " + String((city.details?.pressure)!)
-        self.cityView.summaryLabel.text = "Summary: " + (city.details?.summary)!
-        self.cityView.notesTextView.text = city.note
-        self.cityView.notesTextView.delegate = self
+        cityView.nameLabel.text = city.name
+        cityView.temperatureLabel.text = "Temperature of: " + String((city.details?.temperature)!)
+        cityView.humidityLabel.text = "Humidity: " + String((city.details?.humidity)!)
+        cityView.pressureLabel.text = "Pressure: " + String((city.details?.pressure)!)
+        cityView.summaryLabel.text = "Summary: " + (city.details?.summary)!
+        cityView.notesTextView.text = city.note
+        cityView.notesTextView.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: .UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: .UIKeyboardWillShow, object: nil)
@@ -56,7 +56,7 @@ final class DetailsViewController: UIViewController {
     
     private func setupGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
-        self.cityView.addGestureRecognizer(gesture)
+        cityView.addGestureRecognizer(gesture)
     }
     
     // MARK: - Keyboard Handling
@@ -66,7 +66,7 @@ final class DetailsViewController: UIViewController {
             return
         }
         
-        self.view.frame.origin.y -= keyboardSize.height
+        view.frame.origin.y -= keyboardSize.height
     }
     
     @objc private func keyboardWillDisappear(_ notification: NSNotification) {
@@ -83,6 +83,6 @@ final class DetailsViewController: UIViewController {
 extension DetailsViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         city.note = textView.text
-        self.delegate?.didUpdateNote(city: city)
+        delegate?.didUpdateNote(city: city)
     }
 }

@@ -97,40 +97,40 @@ final class CityView: UIView {
         scrollView.addSubview(notesTextView)
         
         //scrollView setup
-        scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         //nameLabel setup
         nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: Padding.f5).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Padding.f20).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Padding.f20).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
         
         //temperatureLabel setup
         temperatureLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        temperatureLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Padding.f20).isActive = true
-        temperatureLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Padding.f20).isActive = true
+        temperatureLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
+        temperatureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
         
         //humidityLabel setup
         humidityLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        humidityLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Padding.f20).isActive = true
-        humidityLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Padding.f20).isActive = true
+        humidityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
+        humidityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
         
         //pressureLabel setup
         pressureLabel.topAnchor.constraint(equalTo: humidityLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        pressureLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Padding.f20).isActive = true
-        pressureLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Padding.f20).isActive = true
+        pressureLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
+        pressureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
         
         //summaryLabel setup
         summaryLabel.topAnchor.constraint(equalTo: pressureLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        summaryLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Padding.f20).isActive = true
-        summaryLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Padding.f20).isActive = true
+        summaryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
+        summaryLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
         
         //notesTextView setup
         notesTextView.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        notesTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Padding.f20).isActive = true
-        notesTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Padding.f20).isActive = true
-        notesTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Padding.f20).isActive = true
+        notesTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
+        notesTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Padding.f20).isActive = true
+        notesTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Padding.f20).isActive = true
     }
 }

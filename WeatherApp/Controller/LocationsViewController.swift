@@ -10,10 +10,11 @@ import UIKit
 import MapKit
 import CoreData
 
-final class LocationsViewController: UICollectionViewController {
+final class LocationsViewController: UICollectionViewController, UIGestureRecognizerDelegate {
     // MARK: - Properties
     
     private var cities = [City]()
+    private let cellId = "cellId"
     
     private let mapViewController = MapViewController()
     private let dataManager = DataManager()
@@ -25,21 +26,22 @@ final class LocationsViewController: UICollectionViewController {
         
         collectionView?.backgroundColor = UIColor.white
         collectionView?.alwaysBounceVertical = true
-        collectionView?.register(CityCell.self, forCellWithReuseIdentifier: "cellId")
+        collectionView?.register(CityCell.self, forCellWithReuseIdentifier: cellId)
         
         mapViewController.delegate = self
         setupButton()
+        setupGesture()
         getData()
     }
     
     // MARK: - Collection view manipulation
     
     @objc func goToMap(sender: UIButton) {
-        self.navigationController?.pushViewController(mapViewController, animated: true)
+        navigationController?.pushViewController(mapViewController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.showAlert(city: cities[indexPath.item])
+        presentDetails(for: cities[indexPath.item])
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,7 +49,7 @@ final class LocationsViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cityCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CityCell
+        let cityCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CityCell
         cityCell.nameLabel.text = cities[indexPath.item].name
         
         return cityCell
@@ -75,28 +77,26 @@ final class LocationsViewController: UICollectionViewController {
         activityIndicator.startAnimating()
     }
     
-    private func showAlert(city: City) {
-        let alert = UIAlertController(title: "Select", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "See details", style: UIAlertActionStyle.default, handler: { [weak self](action) in
-            self?.presentDetails(for: city)
+    private func showAlert(deleteIndex: IndexPath) {
+        let alert = UIAlertController(title: "Delete this city?", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { [weak self](action) in
+            self?.delete(deleteIndex: deleteIndex)
         }))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self](action) in
-            self?.delete(city: city)
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
         }))
-        
-        self.present(alert, animated: true, completion: nil)
+
+        present(alert, animated: true, completion: nil)
     }
     
-    private func delete(city: City) {
-        print("deleteCity")
+    private func delete(deleteIndex: IndexPath) {
         
-        let deleteIndex = cities.index(of: city)
-        self.cities.remove(at: deleteIndex!)
-        self.collectionView?.reloadData()
+        PersistenceService.context.delete(cities[deleteIndex.item])
+        cities.remove(at: deleteIndex.item)
         
-        PersistenceService.context.delete(city)
         PersistenceService.saveContext()
         
+        collectionView?.reloadData()
     }
     
     private func presentDetails(for city: City) {
@@ -113,6 +113,18 @@ final class LocationsViewController: UICollectionViewController {
             strongSelf.navigationController?.pushViewController(detailsViewController, animated: true)
             
             self?.activityIndicator.stopAnimating()
+        }
+    }
+    
+    @objc func handleGesture(gesture: UILongPressGestureRecognizer) {
+        if gesture.state != .ended {
+            return
+        }
+        
+        let p = gesture.location(in: collectionView)
+        
+        if let indexPath = collectionView?.indexPathForItem(at: p) {
+            showAlert(deleteIndex: indexPath)
         }
     }
     
@@ -135,21 +147,27 @@ final class LocationsViewController: UICollectionViewController {
         navigationItem.rightBarButtonItem = button
     }
     
+    private func setupGesture() {
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleGesture))
+        gesture.delegate = self
+        gesture.minimumPressDuration = 0.3
+        gesture.delaysTouchesBegan = true
+        collectionView?.addGestureRecognizer(gesture)
+    }
+    
     private func updateCity(city: City) {
         for index in 0..<cities.count {
             if cities[index].latitude == city.latitude && cities[index].longitude == city.longitude {
                 cities[index].note = city.note
-                //print("\(city.note)")
             }
         }
     }
 
 }
 
-//MARK: - Extensions
+// MARK: - Extensions
 
 extension LocationsViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 50)
     }

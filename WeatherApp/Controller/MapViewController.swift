@@ -93,7 +93,7 @@ class MapViewController: UIViewController {
             alert.dismiss(animated: true, completion: nil)
         }))
         
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Setting up actions
