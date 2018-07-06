@@ -58,7 +58,7 @@ final class CityView: UIView {
     
     let notesTextView: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = .gray
+        textView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.adjustsFontForContentSizeCategory = true
         textView.isSelectable = true
@@ -87,6 +87,7 @@ final class CityView: UIView {
     private func setupViews() {
         let screensize = UIScreen.main.bounds
         scrollView.contentSize = CGSize(width: screensize.width, height: screensize.height)
+        backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         
         addSubview(scrollView)
         scrollView.addSubview(nameLabel)

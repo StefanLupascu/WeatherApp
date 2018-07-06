@@ -8,7 +8,8 @@
 
 import UIKit
 
-final class CityCell: UICollectionViewCell, UIGestureRecognizerDelegate {
+//final class CityCell: UICollectionViewCell, UIGestureRecognizerDelegate {
+final class CityCell: UITableViewCell {
     // MARK: - Properties
     
     let nameLabel: UILabel = {
@@ -20,8 +21,13 @@ final class CityCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     
     // MARK: - Init
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        setupViews()
+//    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
     
@@ -32,13 +38,13 @@ final class CityCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     // MARK: - Private Functions
     
     private func setupViews() {
+        backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         addSubview(nameLabel)
         
-        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-        
+        nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
     }
     
 }
