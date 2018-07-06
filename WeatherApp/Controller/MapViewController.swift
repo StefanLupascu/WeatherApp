@@ -70,7 +70,7 @@ class MapViewController: UIViewController {
                 return
             }
             
-            print("\(String(describing: locationName))")
+//            print("\(String(describing: locationName))")
             DispatchQueue.main.async {
                 completion(locationName, nil)
             }

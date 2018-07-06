@@ -190,7 +190,6 @@
 //}
 
 import UIKit
-import MapKit
 import CoreData
 
 final class LocationsViewController: UITableViewController, UIGestureRecognizerDelegate {
