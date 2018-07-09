@@ -208,6 +208,7 @@ final class LocationsViewController: UITableViewController, UIGestureRecognizerD
         
         tableView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         tableView.register(CityCell.self, forCellReuseIdentifier: "cellId")
+        navigationItem.hidesBackButton = true
         
         mapViewController.delegate = self
         setupButton()

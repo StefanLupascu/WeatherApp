@@ -9,8 +9,14 @@
 /* Begin PBXBuildFile section */
 		A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF420E010190093B713 /* DetailsViewController.swift */; };
 		A1674FF720E028170093B713 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF620E028170093B713 /* CityView.swift */; };
-		F838EE9320E37BA1003F8CFE /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838EE9220E37BA1003F8CFE /* Detail.swift */; };
 		F8A30E8F20E2250C002203D4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A30E8E20E2250C002203D4 /* DataManager.swift */; };
+		F8AFA78020F348B80050293E /* DemoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA77F20F348B80050293E /* DemoPageViewController.swift */; };
+		F8AFA78220F349EA0050293E /* LocationsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA78120F349EA0050293E /* LocationsDemoViewController.swift */; };
+		F8AFA78420F34A020050293E /* DetailsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA78320F34A020050293E /* DetailsDemoViewController.swift */; };
+		F8AFA78620F34A0F0050293E /* MapDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA78520F34A0F0050293E /* MapDemoViewController.swift */; };
+		F8AFA78920F34F290050293E /* LocationsDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA78820F34F290050293E /* LocationsDemoView.swift */; };
+		F8AFA78B20F35F510050293E /* DetailsDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA78A20F35F510050293E /* DetailsDemoView.swift */; };
+		F8AFA78D20F35F620050293E /* MapDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA78C20F35F620050293E /* MapDemoView.swift */; };
 		F8C31D5920EA08FD008F3125 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C31D5820EA08FD008F3125 /* Padding.swift */; };
 		F8C31D5B20EA1765008F3125 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C31D5A20EA1765008F3125 /* PersistenceService.swift */; };
 		F8C31D5E20EA1EBF008F3125 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C31D5C20EA1EBF008F3125 /* City+CoreDataClass.swift */; };
@@ -23,7 +29,6 @@
 		F8C7784F20DCE81600DBC495 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8C7784E20DCE81600DBC495 /* Assets.xcassets */; };
 		F8C7785220DCE81600DBC495 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8C7785020DCE81600DBC495 /* LaunchScreen.storyboard */; };
 		F8C7785A20DCEEB000DBC495 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */; };
-		F8C7786120DD153800DBC495 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786020DD153800DBC495 /* City.swift */; };
 		F8C7786720DD281C00DBC495 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786620DD281C00DBC495 /* CityCell.swift */; };
 		F8FFE47B20E0D1E0006D9E1A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */; };
 		F8FFE47D20E0D266006D9E1A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE47C20E0D266006D9E1A /* MapView.swift */; };
@@ -34,8 +39,14 @@
 /* Begin PBXFileReference section */
 		A1674FF420E010190093B713 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A1674FF620E028170093B713 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
-		F838EE9220E37BA1003F8CFE /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		F8A30E8E20E2250C002203D4 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		F8AFA77F20F348B80050293E /* DemoPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPageViewController.swift; sourceTree = "<group>"; };
+		F8AFA78120F349EA0050293E /* LocationsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsDemoViewController.swift; sourceTree = "<group>"; };
+		F8AFA78320F34A020050293E /* DetailsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDemoViewController.swift; sourceTree = "<group>"; };
+		F8AFA78520F34A0F0050293E /* MapDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDemoViewController.swift; sourceTree = "<group>"; };
+		F8AFA78820F34F290050293E /* LocationsDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsDemoView.swift; sourceTree = "<group>"; };
+		F8AFA78A20F35F510050293E /* DetailsDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDemoView.swift; sourceTree = "<group>"; };
+		F8AFA78C20F35F620050293E /* MapDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDemoView.swift; sourceTree = "<group>"; };
 		F8C31D5820EA08FD008F3125 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
 		F8C31D5A20EA1765008F3125 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		F8C31D5C20EA1EBF008F3125 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -50,7 +61,6 @@
 		F8C7785120DCE81600DBC495 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8C7785320DCE81600DBC495 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
-		F8C7786020DD153800DBC495 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		F8C7786620DD281C00DBC495 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F8FFE47C20E0D266006D9E1A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -76,6 +86,27 @@
 				F8A30E8E20E2250C002203D4 /* DataManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		F8AFA77E20F348850050293E /* DemoController */ = {
+			isa = PBXGroup;
+			children = (
+				F8AFA77F20F348B80050293E /* DemoPageViewController.swift */,
+				F8AFA78120F349EA0050293E /* LocationsDemoViewController.swift */,
+				F8AFA78320F34A020050293E /* DetailsDemoViewController.swift */,
+				F8AFA78520F34A0F0050293E /* MapDemoViewController.swift */,
+			);
+			path = DemoController;
+			sourceTree = "<group>";
+		};
+		F8AFA78720F34F0A0050293E /* DemoView */ = {
+			isa = PBXGroup;
+			children = (
+				F8AFA78820F34F290050293E /* LocationsDemoView.swift */,
+				F8AFA78A20F35F510050293E /* DetailsDemoView.swift */,
+				F8AFA78C20F35F620050293E /* MapDemoView.swift */,
+			);
+			path = DemoView;
 			sourceTree = "<group>";
 		};
 		F8C31D6020EA3967008F3125 /* CodeData Model */ = {
@@ -124,7 +155,6 @@
 				F8A30E8D20E224F1002203D4 /* Managers */,
 				F8C7785F20DD150000DBC495 /* View */,
 				F8C7785E20DD14FA00DBC495 /* Controller */,
-				F8C7785D20DD14F400DBC495 /* Model */,
 				F8C7784420DCE81300DBC495 /* AppDelegate.swift */,
 				F8C7784620DCE81300DBC495 /* ViewController.swift */,
 				F8C7784E20DCE81600DBC495 /* Assets.xcassets */,
@@ -135,18 +165,10 @@
 			path = WeatherApp;
 			sourceTree = "<group>";
 		};
-		F8C7785D20DD14F400DBC495 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F8C7786020DD153800DBC495 /* City.swift */,
-				F838EE9220E37BA1003F8CFE /* Detail.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		F8C7785E20DD14FA00DBC495 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F8AFA77E20F348850050293E /* DemoController */,
 				F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */,
 				A1674FF420E010190093B713 /* DetailsViewController.swift */,
 				F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */,
@@ -157,6 +179,7 @@
 		F8C7785F20DD150000DBC495 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F8AFA78720F34F0A0050293E /* DemoView */,
 				F8C7786620DD281C00DBC495 /* CityCell.swift */,
 				A1674FF620E028170093B713 /* CityView.swift */,
 				F8FFE47C20E0D266006D9E1A /* MapView.swift */,
@@ -252,19 +275,24 @@
 				F8FFE47B20E0D1E0006D9E1A /* MapViewController.swift in Sources */,
 				F8A30E8F20E2250C002203D4 /* DataManager.swift in Sources */,
 				F8FFE47D20E0D266006D9E1A /* MapView.swift in Sources */,
+				F8AFA78220F349EA0050293E /* LocationsDemoViewController.swift in Sources */,
 				F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */,
 				A1674FF720E028170093B713 /* CityView.swift in Sources */,
 				F8C7784720DCE81300DBC495 /* ViewController.swift in Sources */,
 				F8C31D6520EA484C008F3125 /* Detail+CoreDataProperties.swift in Sources */,
+				F8AFA78D20F35F620050293E /* MapDemoView.swift in Sources */,
+				F8AFA78920F34F290050293E /* LocationsDemoView.swift in Sources */,
 				F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */,
 				A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */,
 				F8C31D5F20EA1EBF008F3125 /* City+CoreDataProperties.swift in Sources */,
-				F838EE9320E37BA1003F8CFE /* Detail.swift in Sources */,
 				F8C31D5920EA08FD008F3125 /* Padding.swift in Sources */,
 				F8C31D5B20EA1765008F3125 /* PersistenceService.swift in Sources */,
-				F8C7786120DD153800DBC495 /* City.swift in Sources */,
 				F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */,
+				F8AFA78420F34A020050293E /* DetailsDemoViewController.swift in Sources */,
 				F8C7786720DD281C00DBC495 /* CityCell.swift in Sources */,
+				F8AFA78020F348B80050293E /* DemoPageViewController.swift in Sources */,
+				F8AFA78B20F35F510050293E /* DetailsDemoView.swift in Sources */,
+				F8AFA78620F34A0F0050293E /* MapDemoViewController.swift in Sources */,
 				F8C7785A20DCEEB000DBC495 /* LocationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
