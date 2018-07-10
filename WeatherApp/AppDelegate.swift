@@ -20,10 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-        
-        //let locationsViewController = LocationsViewController(collectionViewLayout: UICollectionViewFlowLayout())
-//        let locationsViewController = LocationsViewController()
-//        window?.rootViewController = UINavigationController(rootViewController: locationsViewController)
 
         let demoViewController = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         window?.rootViewController = UINavigationController(rootViewController: demoViewController)

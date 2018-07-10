@@ -8,23 +8,18 @@
 
 import UIKit
 
-//final class CityCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 final class CityCell: UITableViewCell {
     // MARK: - Properties
     
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(25)
+        label.font = label.font.withSize(Padding.f25)
         return label
     }()
     
     // MARK: - Init
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        setupViews()
-//    }
+
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -41,10 +36,10 @@ final class CityCell: UITableViewCell {
         backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         addSubview(nameLabel)
         
-        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: Padding.f10).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Padding.f10).isActive = true
     }
     
 }

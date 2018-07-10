@@ -20,14 +20,14 @@ final class CityView: UIView {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.font = UIFont.boldSystemFont(ofSize: Padding.f25)
         return label
     }()
     
     let temperatureLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
+        label.font = label.font.withSize(Padding.f20)
         
         return label
     }()
@@ -35,7 +35,7 @@ final class CityView: UIView {
     let humidityLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
+        label.font = label.font.withSize(Padding.f20)
         
         return label
     }()
@@ -43,7 +43,7 @@ final class CityView: UIView {
     let pressureLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
+        label.font = label.font.withSize(Padding.f20)
         
         return label
     }()
@@ -51,7 +51,7 @@ final class CityView: UIView {
     let summaryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
+        label.font = label.font.withSize(Padding.f20)
         
         return label
     }()
@@ -63,8 +63,8 @@ final class CityView: UIView {
         textView.adjustsFontForContentSizeCategory = true
         textView.isSelectable = true
         textView.isEditable = true
-        textView.layer.cornerRadius = 10
-        textView.font = UIFont.systemFont(ofSize: 20)
+        textView.layer.cornerRadius = Padding.f10
+        textView.font = UIFont.systemFont(ofSize: Padding.f20)
         
         return textView
     }()

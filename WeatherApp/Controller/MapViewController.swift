@@ -42,7 +42,7 @@ class MapViewController: UIViewController {
     private func setupButton() {
         let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done(sender:)))
         button.setTitleTextAttributes([
-            NSAttributedStringKey.font: UIFont(name: "Helvetica Neue",size: 20)!,
+            NSAttributedStringKey.font: UIFont(name: "Helvetica Neue",size: Padding.f20)!,
             NSAttributedStringKey.foregroundColor: UIColor.blue,
             ], for: .normal)
         navigationItem.rightBarButtonItem = button

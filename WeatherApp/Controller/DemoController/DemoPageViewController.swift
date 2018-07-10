@@ -58,10 +58,6 @@ extension DemoPageViewController: UIPageViewControllerDataSource {
             return nil
         }
         
-//        if currentIndex == pages.count - 1 {
-//            setupButton()
-//        }
-        
         return pages[currentIndex + 1]
     }
     
