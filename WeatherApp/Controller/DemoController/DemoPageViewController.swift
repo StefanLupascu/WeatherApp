@@ -13,6 +13,8 @@ class DemoPageViewController: UIPageViewController {
     
     var pages = [UIViewController]()
     
+    // MARK: - Base class overrides
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +47,8 @@ class DemoPageViewController: UIPageViewController {
         navigationController?.pushViewController(locationsViewController, animated: true)
     }
 }
+
+// MARK: - UIPageViewControllerDataSource
 
 extension DemoPageViewController: UIPageViewControllerDataSource {
     // MARK: - Page View Handling

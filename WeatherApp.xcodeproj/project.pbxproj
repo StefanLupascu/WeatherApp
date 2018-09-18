@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A107A7652150D7720095D588 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A107A7642150D7720095D588 /* SideMenuViewController.swift */; };
+		A107A7672150D7DA0095D588 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A107A7662150D7DA0095D588 /* SideMenuView.swift */; };
+		A1264C6D20FEA93F00EDF417 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1264C6C20FEA93F00EDF417 /* SnapKit.framework */; };
+		A1264C6E20FEA93F00EDF417 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1264C6C20FEA93F00EDF417 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF420E010190093B713 /* DetailsViewController.swift */; };
 		A1674FF720E028170093B713 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF620E028170093B713 /* CityView.swift */; };
 		F8A30E8F20E2250C002203D4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A30E8E20E2250C002203D4 /* DataManager.swift */; };
@@ -24,7 +28,6 @@
 		F8C31D6420EA484C008F3125 /* Detail+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C31D6220EA484C008F3125 /* Detail+CoreDataClass.swift */; };
 		F8C31D6520EA484C008F3125 /* Detail+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C31D6320EA484C008F3125 /* Detail+CoreDataProperties.swift */; };
 		F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784420DCE81300DBC495 /* AppDelegate.swift */; };
-		F8C7784720DCE81300DBC495 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784620DCE81300DBC495 /* ViewController.swift */; };
 		F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784B20DCE81300DBC495 /* WeatherApp.xcdatamodeld */; };
 		F8C7784F20DCE81600DBC495 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8C7784E20DCE81600DBC495 /* Assets.xcassets */; };
 		F8C7785220DCE81600DBC495 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8C7785020DCE81600DBC495 /* LaunchScreen.storyboard */; };
@@ -36,7 +39,24 @@
 		F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE48120E0F0C8006D9E1A /* PinAnnotation.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A1264C6F20FEA93F00EDF417 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A1264C6E20FEA93F00EDF417 /* SnapKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A107A7642150D7720095D588 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		A107A7662150D7DA0095D588 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		A1264C6C20FEA93F00EDF417 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		A1674FF420E010190093B713 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A1674FF620E028170093B713 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		F8A30E8E20E2250C002203D4 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -55,7 +75,6 @@
 		F8C31D6320EA484C008F3125 /* Detail+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F8C7784120DCE81300DBC495 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8C7784420DCE81300DBC495 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F8C7784620DCE81300DBC495 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F8C7784C20DCE81300DBC495 /* WeatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherApp.xcdatamodel; sourceTree = "<group>"; };
 		F8C7784E20DCE81600DBC495 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8C7785120DCE81600DBC495 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8FFE48020E0E22B006D9E1A /* MapKit.framework in Frameworks */,
+				A1264C6D20FEA93F00EDF417 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +153,7 @@
 		F8C7783820DCE81300DBC495 = {
 			isa = PBXGroup;
 			children = (
+				A1264C6C20FEA93F00EDF417 /* SnapKit.framework */,
 				F8C7784320DCE81300DBC495 /* WeatherApp */,
 				F8C7784220DCE81300DBC495 /* Products */,
 				F8FFE47E20E0E22B006D9E1A /* Frameworks */,
@@ -150,16 +171,15 @@
 		F8C7784320DCE81300DBC495 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				F8C31D6120EA3988008F3125 /* Utils */,
-				F8C31D6020EA3967008F3125 /* CodeData Model */,
-				F8A30E8D20E224F1002203D4 /* Managers */,
-				F8C7785F20DD150000DBC495 /* View */,
-				F8C7785E20DD14FA00DBC495 /* Controller */,
 				F8C7784420DCE81300DBC495 /* AppDelegate.swift */,
-				F8C7784620DCE81300DBC495 /* ViewController.swift */,
 				F8C7784E20DCE81600DBC495 /* Assets.xcassets */,
-				F8C7785020DCE81600DBC495 /* LaunchScreen.storyboard */,
+				F8C31D6020EA3967008F3125 /* CodeData Model */,
+				F8C7785E20DD14FA00DBC495 /* Controller */,
 				F8C7785320DCE81600DBC495 /* Info.plist */,
+				F8C7785020DCE81600DBC495 /* LaunchScreen.storyboard */,
+				F8A30E8D20E224F1002203D4 /* Managers */,
+				F8C31D6120EA3988008F3125 /* Utils */,
+				F8C7785F20DD150000DBC495 /* View */,
 				F8C7784B20DCE81300DBC495 /* WeatherApp.xcdatamodeld */,
 			);
 			path = WeatherApp;
@@ -172,6 +192,7 @@
 				F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */,
 				A1674FF420E010190093B713 /* DetailsViewController.swift */,
 				F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */,
+				A107A7642150D7720095D588 /* SideMenuViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -183,6 +204,7 @@
 				F8C7786620DD281C00DBC495 /* CityCell.swift */,
 				A1674FF620E028170093B713 /* CityView.swift */,
 				F8FFE47C20E0D266006D9E1A /* MapView.swift */,
+				A107A7662150D7DA0095D588 /* SideMenuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,6 +227,7 @@
 				F8C7783D20DCE81300DBC495 /* Sources */,
 				F8C7783E20DCE81300DBC495 /* Frameworks */,
 				F8C7783F20DCE81300DBC495 /* Resources */,
+				A1264C6F20FEA93F00EDF417 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -278,13 +301,14 @@
 				F8AFA78220F349EA0050293E /* LocationsDemoViewController.swift in Sources */,
 				F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */,
 				A1674FF720E028170093B713 /* CityView.swift in Sources */,
-				F8C7784720DCE81300DBC495 /* ViewController.swift in Sources */,
 				F8C31D6520EA484C008F3125 /* Detail+CoreDataProperties.swift in Sources */,
 				F8AFA78D20F35F620050293E /* MapDemoView.swift in Sources */,
 				F8AFA78920F34F290050293E /* LocationsDemoView.swift in Sources */,
 				F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */,
+				A107A7652150D7720095D588 /* SideMenuViewController.swift in Sources */,
 				A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */,
 				F8C31D5F20EA1EBF008F3125 /* City+CoreDataProperties.swift in Sources */,
+				A107A7672150D7DA0095D588 /* SideMenuView.swift in Sources */,
 				F8C31D5920EA08FD008F3125 /* Padding.swift in Sources */,
 				F8C31D5B20EA1765008F3125 /* PersistenceService.swift in Sources */,
 				F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */,
@@ -431,7 +455,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9298QC9R96;
+				DEVELOPMENT_TEAM = BSU69XA3A9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -451,7 +479,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9298QC9R96;
+				DEVELOPMENT_TEAM = BSU69XA3A9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

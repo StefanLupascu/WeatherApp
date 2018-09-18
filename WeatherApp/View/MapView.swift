@@ -34,11 +34,9 @@ final class MapView: UIView {
     private func setupViews() {
         addSubview(map)
 
-        map.translatesAutoresizingMaskIntoConstraints = false
-        map.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        map.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        map.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        map.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        map.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
       
     }
     

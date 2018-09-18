@@ -80,7 +80,7 @@ class MapViewController: UIViewController {
         activityIndicator.frame = view.frame
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
@@ -130,7 +130,6 @@ class MapViewController: UIViewController {
             
             self?.activityIndicator.stopAnimating()
         }
-
     }
     
     @objc func addPin(sender: UITapGestureRecognizer) {

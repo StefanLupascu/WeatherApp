@@ -21,8 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
 
-        let demoViewController = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        window?.rootViewController = UINavigationController(rootViewController: demoViewController)
+        if !UserDefaults.standard.bool(forKey: "demo") {
+            let demoViewController = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+            window?.rootViewController = UINavigationController(rootViewController: demoViewController)
+            UserDefaults.standard.set(true, forKey: "demo")
+        }
+        else {
+            let locationsViewController = LocationsViewController()
+            window?.rootViewController = UINavigationController(rootViewController: locationsViewController)
+        }
         
         return true
     }

@@ -13,13 +13,11 @@ final class CityCell: UITableViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(Padding.f25)
         return label
     }()
     
     // MARK: - Init
-
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,10 +34,10 @@ final class CityCell: UITableViewCell {
         backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         addSubview(nameLabel)
         
-        nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: Padding.f10).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Padding.f10).isActive = true
+        nameLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Padding.f10)
+            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.bottom.equalToSuperview().offset(-Padding.f10)
+        }
     }
-    
 }

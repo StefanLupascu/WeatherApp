@@ -13,6 +13,7 @@ struct Padding {
     static let f10: CGFloat = 10
     static let f20: CGFloat = 20
     static let f25: CGFloat = 25
+    static let f40: CGFloat = 40
     static let f70: CGFloat = 70
     static let f75: CGFloat = 75
     static let f90: CGFloat = 90

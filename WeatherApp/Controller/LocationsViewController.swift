@@ -14,11 +14,10 @@ final class LocationsViewController: UITableViewController, UIGestureRecognizerD
     
     private var cities = [City]()
     private let cellId = "cellId"
-    
+
     private let mapViewController = MapViewController()
     private let dataManager = DataManager()
     private let activityIndicator = UIActivityIndicatorView()
-    private let searchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +29,6 @@ final class LocationsViewController: UITableViewController, UIGestureRecognizerD
         
         mapViewController.delegate = self
         setupButton()
-        setupSearchBar()
         getData()
     }
     
@@ -66,17 +64,6 @@ final class LocationsViewController: UITableViewController, UIGestureRecognizerD
         navigationController?.pushViewController(mapViewController, animated: true)
     }
     
-    private func setupSearchBar() {
-        searchBar.tintColor = .white
-        searchBar.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        
-        view.addSubview(searchBar)
-        searchBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-//        searchBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    }
-    
     private func getData() {
         let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
         do {
@@ -91,7 +78,7 @@ final class LocationsViewController: UITableViewController, UIGestureRecognizerD
         activityIndicator.frame = view.frame
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
@@ -133,7 +120,7 @@ final class LocationsViewController: UITableViewController, UIGestureRecognizerD
         
         return cities[index]
     }
-    
+
     private func setupButton() {
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToMap(sender:)))
         navigationItem.rightBarButtonItem = button
@@ -148,7 +135,7 @@ final class LocationsViewController: UITableViewController, UIGestureRecognizerD
     }
 }
 
-// MARK: - Extensions
+// MARK: - MapViewDelegate
 
 extension LocationsViewController: MapViewDelegate {
     func didRecieveNewWeatherData(city: City) {
@@ -158,6 +145,8 @@ extension LocationsViewController: MapViewDelegate {
         PersistenceService.saveContext()
     }
 }
+
+// MARK: - DetailsViewDelegate
 
 extension LocationsViewController: DetailsViewDelegate {
     func didUpdateNote(city: City) {

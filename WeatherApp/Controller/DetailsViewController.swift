@@ -31,7 +31,7 @@ final class DetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - ViewController
+    // MARK: - Base class overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +66,7 @@ final class DetailsViewController: UIViewController {
             return
         }
         
-        view.frame.origin.y -= keyboardSize.height
+        view.frame.origin.y -= keyboardSize.height / 2
     }
     
     @objc private func keyboardWillDisappear(_ notification: NSNotification) {

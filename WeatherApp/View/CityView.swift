@@ -7,26 +7,24 @@
 //
 
 import UIKit
+import SnapKit
 
 final class CityView: UIView {
     // MARK: - Properties
     
     let scrollView: UIScrollView = {
         let view = UIScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: Padding.f25)
         return label
     }()
     
     let temperatureLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(Padding.f20)
         
         return label
@@ -34,7 +32,6 @@ final class CityView: UIView {
     
     let humidityLabel: UILabel = {
        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(Padding.f20)
         
         return label
@@ -42,7 +39,6 @@ final class CityView: UIView {
     
     let pressureLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(Padding.f20)
         
         return label
@@ -50,7 +46,6 @@ final class CityView: UIView {
     
     let summaryLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(Padding.f20)
         
         return label
@@ -59,7 +54,6 @@ final class CityView: UIView {
     let notesTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        textView.translatesAutoresizingMaskIntoConstraints = false
         textView.adjustsFontForContentSizeCategory = true
         textView.isSelectable = true
         textView.isEditable = true
@@ -96,42 +90,46 @@ final class CityView: UIView {
         scrollView.addSubview(pressureLabel)
         scrollView.addSubview(summaryLabel)
         scrollView.addSubview(notesTextView)
-        
-        //scrollView setup
-        scrollView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        scrollView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-        //nameLabel setup
-        nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: Padding.f5).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
+
+        scrollView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
+
+        nameLabel.snp.makeConstraints {
+            $0.top.equalTo(scrollView).offset(Padding.f20)
+            $0.leading.trailing.equalToSuperview().offset(Padding.f20)
+        }
         
         //temperatureLabel setup
-        temperatureLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        temperatureLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
-        temperatureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
+        temperatureLabel.snp.makeConstraints {
+            $0.top.equalTo(nameLabel.snp.bottom).offset(Padding.f20)
+            $0.leading.equalToSuperview().offset(Padding.f20)
+        }
         
         //humidityLabel setup
-        humidityLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        humidityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
-        humidityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
+        humidityLabel.snp.makeConstraints {
+            $0.top.equalTo(temperatureLabel.snp.bottom).offset(Padding.f20)
+            $0.leading.equalToSuperview().offset(Padding.f20)
+        }
         
         //pressureLabel setup
-        pressureLabel.topAnchor.constraint(equalTo: humidityLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        pressureLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
-        pressureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
+        pressureLabel.snp.makeConstraints {
+            $0.top.equalTo(humidityLabel.snp.bottom).offset(Padding.f20)
+            $0.leading.equalToSuperview().offset(Padding.f20)
+        }
         
         //summaryLabel setup
-        summaryLabel.topAnchor.constraint(equalTo: pressureLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        summaryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
-        summaryLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Padding.f20).isActive = true
+        summaryLabel.snp.makeConstraints {
+            $0.top.equalTo(pressureLabel.snp.bottom).offset(Padding.f20)
+            $0.leading.equalToSuperview().offset(Padding.f20)
+        }
         
         //notesTextView setup
-        notesTextView.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: Padding.f20).isActive = true
-        notesTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
-        notesTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Padding.f20).isActive = true
-        notesTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Padding.f20).isActive = true
+        notesTextView.snp.makeConstraints {
+            $0.top.equalTo(summaryLabel.snp.bottom).offset(Padding.f20)
+            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.width.equalTo(335)
+            $0.height.equalTo(300)
+        }
     }
 }

@@ -13,7 +13,6 @@ class MapDemoView: UIView {
     
     var infoView: UITextView = {
         let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isEditable = false
         textView.font = UIFont.systemFont(ofSize: Padding.f20)
         textView.backgroundColor = .clear
@@ -45,10 +44,11 @@ class MapDemoView: UIView {
         addSubview(infoView)
         addSubview(screenImage)
         
-        infoView.topAnchor.constraint(equalTo: topAnchor, constant: Padding.f70).isActive = true
-        infoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Padding.f20).isActive = true
-        infoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Padding.f20).isActive = true
-        infoView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Padding.f400).isActive = true
+        infoView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Padding.f70)
+            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.bottom.equalToSuperview().offset(-Padding.f400)
+        }
         
         infoView.text = "Use the map to navigate and tap anywhere on it to place a pin. After placing the pin, tap on the 'Done' button to get the location."
     }
