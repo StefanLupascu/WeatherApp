@@ -7,31 +7,22 @@
 //
 
 import UIKit
+import SnapKit
 
 class DetailsDemoView: UIView {
     // MARK: - Properties
     
-    var infoView: UITextView = {
-        let textView = UITextView()
-        textView.isEditable = false
-        textView.font = UIFont.systemFont(ofSize: Padding.f20)
-        textView.backgroundColor = .clear
-        return textView
-    }()
-    
-    var screenImage: UIImageView = {
-        let image = UIImage(named: "screen3")
-        let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: Padding.f75, y: Padding.f190, width: Padding.f230, height: Padding.f400)
-        return imageView
-    }()
+    private let infoLabel = UILabel()
+    private let imageView = UIImageView()
     
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupViews()
+        setupImage()
+        setupTextview()
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,16 +31,35 @@ class DetailsDemoView: UIView {
     
     // MARK: - Private Functions
     
-    private func setupViews() {
-        addSubview(infoView)
-        addSubview(screenImage)
+    private func setupImage() {
+        let image = UIImage(named: "screen3")
+        imageView.image = image
+    }
+    
+    private func setupTextview() {
+        infoLabel.textColor = .black
+        infoLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+        infoLabel.backgroundColor = .clear
+        infoLabel.numberOfLines = 0
+        infoLabel.text = "In the details screen you can check details about the weather of the selected location. You can also write a note about it."
+    }
+    
+    private func setupUI() {
+        addSubview(infoLabel)
+        addSubview(imageView)
         
-        infoView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f70)
-            $0.leading.equalToSuperview().offset(Padding.f20)
-            $0.bottom.equalToSuperview().offset(-Padding.f400)
+        infoLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Padding.f50)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(Height.h50)
+            $0.width.equalTo(Height.h300)
         }
         
-        infoView.text = "In the details screen you can check details about the weather of the selected location. You can also write a note about it."
+        imageView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-Padding.f40)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(Height.h400)
+            $0.width.equalTo(Height.h220)
+        }
     }
 }

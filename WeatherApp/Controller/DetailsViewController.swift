@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MapKit
 
 protocol DetailsViewDelegate: class {
     func didUpdateNote(city: City)
@@ -39,20 +38,32 @@ final class DetailsViewController: UIViewController {
         view = cityView
         navigationItem.title = "Information"
         setupGesture()
+        setupCity()
         
-        cityView.nameLabel.text = city.name
-        cityView.temperatureLabel.text = "Temperature of: " + String((city.details?.temperature)!)
-        cityView.humidityLabel.text = "Humidity: " + String((city.details?.humidity)!)
-        cityView.pressureLabel.text = "Pressure: " + String((city.details?.pressure)!)
-        cityView.summaryLabel.text = "Summary: " + (city.details?.summary)!
-        cityView.notesTextView.text = city.note
-        cityView.notesTextView.delegate = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: .UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     // MARK: - Private Functions
+    
+    private func setupCity() {
+        guard let temperature = city.details?.temperature,
+              let humidity = city.details?.humidity,
+              let pressure = city.details?.pressure,
+              let summary = city.details?.summary else {
+                return
+        }
+        
+        let temperatureInCelsius = Int((temperature - 32) * 5 / 9)
+        
+        cityView.nameLabel.text = city.name
+        cityView.temperatureLabel.text = "Temperature of: \(temperatureInCelsius)ºC"
+        cityView.humidityLabel.text = "Humidity: \(Int(100 * humidity))%"
+        cityView.pressureLabel.text = "Pressure: \(pressure)"
+        cityView.summaryLabel.text = "Summary: \(summary)"
+        cityView.notesTextView.text = city.note
+        cityView.notesTextView.delegate = self
+    }
     
     private func setupGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
@@ -62,7 +73,7 @@ final class DetailsViewController: UIViewController {
     // MARK: - Keyboard Handling
     
     @objc private func keyboardWillAppear(_ notification: NSNotification) {
-        guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue, view.frame.origin.y == 0 else {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue, view.frame.origin.y == 0 else {
             return
         }
         

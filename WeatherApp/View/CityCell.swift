@@ -7,21 +7,20 @@
 //
 
 import UIKit
+import SnapKit
 
 final class CityCell: UITableViewCell {
     // MARK: - Properties
     
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = label.font.withSize(Padding.f25)
-        return label
-    }()
+    let nameLabel = UILabel()
     
     // MARK: - Init
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupViews()
+        
+        nameLabel.font = UIFont.systemFont(ofSize: Padding.f25)
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,7 +29,7 @@ final class CityCell: UITableViewCell {
     
     // MARK: - Private Functions
     
-    private func setupViews() {
+    private func setupUI() {
         backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         addSubview(nameLabel)
         

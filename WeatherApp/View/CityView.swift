@@ -12,56 +12,15 @@ import SnapKit
 final class CityView: UIView {
     // MARK: - Properties
     
-    let scrollView: UIScrollView = {
-        let view = UIScrollView()
-        return view
-    }()
+    private let scrollView = UIScrollView()
+    private let cityImageView = UIImageView()
     
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: Padding.f25)
-        return label
-    }()
-    
-    let temperatureLabel: UILabel = {
-        let label = UILabel()
-        label.font = label.font.withSize(Padding.f20)
-        
-        return label
-    }()
-    
-    let humidityLabel: UILabel = {
-       let label = UILabel()
-        label.font = label.font.withSize(Padding.f20)
-        
-        return label
-    }()
-    
-    let pressureLabel: UILabel = {
-        let label = UILabel()
-        label.font = label.font.withSize(Padding.f20)
-        
-        return label
-    }()
-    
-    let summaryLabel: UILabel = {
-        let label = UILabel()
-        label.font = label.font.withSize(Padding.f20)
-        
-        return label
-    }()
-    
-    let notesTextView: UITextView = {
-        let textView = UITextView()
-        textView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        textView.adjustsFontForContentSizeCategory = true
-        textView.isSelectable = true
-        textView.isEditable = true
-        textView.layer.cornerRadius = Padding.f10
-        textView.font = UIFont.systemFont(ofSize: Padding.f20)
-        
-        return textView
-    }()
+    let nameLabel = UILabel()
+    let temperatureLabel = UILabel()
+    let humidityLabel = UILabel()
+    let pressureLabel = UILabel()
+    let summaryLabel = UILabel()
+    let notesTextView = UITextView()
     
     // MARK: - Init
     
@@ -69,6 +28,9 @@ final class CityView: UIView {
         super.init(frame: frame)
         backgroundColor = .white
         
+        setupImage()
+        setupTextview()
+        setupLabels()
         setupViews()
     }
     
@@ -77,6 +39,28 @@ final class CityView: UIView {
     }
     
     // MARK: - Private Functions
+    
+    private func setupImage() {
+        let image = UIImage(named: "city")
+        cityImageView.image = image
+    }
+    
+    private func setupTextview() {
+        notesTextView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        notesTextView.adjustsFontForContentSizeCategory = true
+        notesTextView.isSelectable = true
+        notesTextView.isEditable = true
+        notesTextView.layer.cornerRadius = Padding.f10
+        notesTextView.font = UIFont.systemFont(ofSize: Padding.f20)
+    }
+    
+    private func setupLabels() {
+        nameLabel.font = UIFont.boldSystemFont(ofSize: Padding.f25)
+        temperatureLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+        humidityLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+        pressureLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+        summaryLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+    }
     
     private func setupViews() {
         let screensize = UIScreen.main.bounds
@@ -90,6 +74,7 @@ final class CityView: UIView {
         scrollView.addSubview(pressureLabel)
         scrollView.addSubview(summaryLabel)
         scrollView.addSubview(notesTextView)
+        scrollView.addSubview(cityImageView)
 
         scrollView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
@@ -104,6 +89,12 @@ final class CityView: UIView {
         temperatureLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(Padding.f20)
             $0.leading.equalToSuperview().offset(Padding.f20)
+        }
+        
+        //city image setup
+        cityImageView.snp.makeConstraints {
+            $0.top.equalTo(nameLabel.snp.top).offset(Padding.f20)
+            $0.leading.equalTo(temperatureLabel.snp.trailing).offset(Padding.f20)
         }
         
         //humidityLabel setup
@@ -128,8 +119,8 @@ final class CityView: UIView {
         notesTextView.snp.makeConstraints {
             $0.top.equalTo(summaryLabel.snp.bottom).offset(Padding.f20)
             $0.leading.equalToSuperview().offset(Padding.f20)
-            $0.width.equalTo(335)
-            $0.height.equalTo(300)
+            $0.width.equalTo(Height.h335)
+            $0.height.equalTo(Height.h300)
         }
     }
 }

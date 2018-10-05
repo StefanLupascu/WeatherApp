@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SnapKit
 
 final class MapView: UIView {
     // MARK: - Properties
@@ -21,7 +22,7 @@ final class MapView: UIView {
         super.init(frame: frame)
         backgroundColor = .lightGray
         
-        setupMap()
+        map.setRegion(MKCoordinateRegion.init(center: location, latitudinalMeters: 900000, longitudinalMeters: 900000), animated: true)
         setupViews()
     }
     
@@ -37,11 +38,5 @@ final class MapView: UIView {
         map.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
         }
-      
     }
-    
-    private func setupMap() {
-        map.setRegion(MKCoordinateRegionMakeWithDistance(location, 900000, 900000), animated: true)
-    }
-    
 }

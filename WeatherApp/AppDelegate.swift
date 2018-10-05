@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         window = UIWindow()
@@ -23,12 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if !UserDefaults.standard.bool(forKey: "demo") {
             let demoViewController = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-            window?.rootViewController = UINavigationController(rootViewController: demoViewController)
+            window?.rootViewController = demoViewController
             UserDefaults.standard.set(true, forKey: "demo")
         }
         else {
-            let locationsViewController = LocationsViewController()
-            window?.rootViewController = UINavigationController(rootViewController: locationsViewController)
+            window?.rootViewController = LoginViewController()
         }
         
         return true

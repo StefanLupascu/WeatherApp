@@ -18,7 +18,17 @@ class MapDemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        mapDemoView.delegate = self
         view = mapDemoView
         view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+    }
+}
+
+// MARK: - MapDemoViewDelegate
+
+extension MapDemoViewController: MapDemoViewDelegate {
+    func presentLocations() {
+        let navigationController = UINavigationController(rootViewController: LocationsViewController())
+        present(navigationController, animated: true)
     }
 }

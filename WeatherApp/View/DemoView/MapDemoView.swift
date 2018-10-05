@@ -7,31 +7,30 @@
 //
 
 import UIKit
+import SnapKit
+
+protocol MapDemoViewDelegate {
+    func presentLocations()
+}
 
 class MapDemoView: UIView {
     // MARK: - Properties
     
-    var infoView: UITextView = {
-        let textView = UITextView()
-        textView.isEditable = false
-        textView.font = UIFont.systemFont(ofSize: Padding.f20)
-        textView.backgroundColor = .clear
-        return textView
-    }()
+    var delegate: MapDemoViewDelegate?
     
-    var screenImage: UIImageView = {
-        let image = UIImage(named: "screen4")
-        let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: Padding.f75, y: Padding.f190, width: Padding.f230, height: Padding.f400)
-        return imageView
-    }()
+    private let infoLabel = UILabel()
+    private let imageView = UIImageView()
+    private let startButton = UIButton()
     
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupViews()
+        setupImage()
+        setupTextview()
+        setupButton()
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,16 +39,53 @@ class MapDemoView: UIView {
     
     // MARK: - Private Functions
     
-    private func setupViews() {
-        addSubview(infoView)
-        addSubview(screenImage)
+    @objc private func goToApp() {
+        delegate?.presentLocations()
+    }
+    
+    private func setupImage() {
+        let image = UIImage(named: "screen4")
+        imageView.image = image
+    }
+    
+    private func setupTextview() {
+        infoLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+        infoLabel.backgroundColor = .clear
+        infoLabel.textColor = .black
+        infoLabel.numberOfLines = 0
+        infoLabel.text = "Use the map to navigate and tap anywhere on it to place a pin. After placing the pin, tap on the 'Done' button to get the location."
+    }
+    
+    private func setupButton() {
+        startButton.setTitle("Go to App", for: .normal)
+        startButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        startButton.layer.cornerRadius = 10
+        startButton.addTarget(self, action: #selector(goToApp), for: .touchUpInside)
+    }
+    
+    private func setupUI() {
+        addSubview(startButton)
+        addSubview(infoLabel)
+        addSubview(imageView)
         
-        infoView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f70)
-            $0.leading.equalToSuperview().offset(Padding.f20)
-            $0.bottom.equalToSuperview().offset(-Padding.f400)
+        startButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Padding.f40)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(Height.h200)
         }
         
-        infoView.text = "Use the map to navigate and tap anywhere on it to place a pin. After placing the pin, tap on the 'Done' button to get the location."
+        infoLabel.snp.makeConstraints {
+            $0.top.equalTo(startButton.snp.bottom)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(Height.h100)
+            $0.width.equalTo(Height.h300)
+        }
+        
+        imageView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-Padding.f40)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(Height.h400)
+            $0.width.equalTo(Height.h220)
+        }
     }
 }

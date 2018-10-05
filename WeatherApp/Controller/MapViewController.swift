@@ -20,8 +20,10 @@ class MapViewController: UIViewController {
     // MARK: - Properties
     
     var delegate: MapViewDelegate?
-    let mapView = MapView()
+    private let mapView = MapView()
     private let activityIndicator = UIActivityIndicatorView()
+    
+    // MARK: - Base class overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +44,8 @@ class MapViewController: UIViewController {
     private func setupButton() {
         let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done(sender:)))
         button.setTitleTextAttributes([
-            NSAttributedStringKey.font: UIFont(name: "Helvetica Neue",size: Padding.f20)!,
-            NSAttributedStringKey.foregroundColor: UIColor.blue,
+            NSAttributedString.Key.font: UIFont(name: "Helvetica Neue",size: Padding.f20)!,
+            NSAttributedString.Key.foregroundColor: UIColor.blue,
             ], for: .normal)
         navigationItem.rightBarButtonItem = button
     }
@@ -70,6 +72,13 @@ class MapViewController: UIViewController {
                 return
             }
             
+            guard let countryName = placeMark.country else {
+                completion(nil, .failedRequest)
+                return
+            }
+            
+            print(countryName)
+            
             DispatchQueue.main.async {
                 completion(locationName, nil)
             }
@@ -80,15 +89,15 @@ class MapViewController: UIViewController {
         activityIndicator.frame = view.frame
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
         
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
     }
     
     private func showAlert() {
-        let alert = UIAlertController(title: "Error", message: "No city found at this location", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+        let alert = UIAlertController(title: "Error", message: "No city found at this location", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))
         
