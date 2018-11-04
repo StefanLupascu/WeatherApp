@@ -85,7 +85,7 @@ final class SideMenuView: UIView {
         addSubview(logoutButton)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f50)
+            $0.top.equalToSuperview().offset(Padding.f75)
             $0.centerX.equalToSuperview()
         }
         

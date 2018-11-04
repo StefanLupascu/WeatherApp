@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import FirebaseAuth
 
 final class LocationsViewController: UIViewController {
     // MARK: Properties
@@ -26,6 +27,7 @@ final class LocationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "Cities"
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back")
@@ -86,8 +88,9 @@ final class LocationsViewController: UIViewController {
                 return
             }
             let updatedCity = strongSelf.update(city: city, with: details)
-            let detailsViewController = DetailsViewController(city: updatedCity)
-            detailsViewController.delegate = self
+//            let detailsViewController = DetailsViewController(city: updatedCity)
+//            detailsViewController.delegate = self
+            let detailsViewController = InformationViewController(city: updatedCity)
             strongSelf.navigationController?.pushViewController(detailsViewController, animated: true)
             
             self?.activityIndicator.stopAnimating()
@@ -108,10 +111,10 @@ final class LocationsViewController: UIViewController {
         sideMenuView.snp.updateConstraints {
             $0.leading.equalToSuperview()
         }
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
             self.rightView.backgroundColor = UIColor(white: 0, alpha: 0.7)
-        }
+        }, completion: nil)
         rightView.isUserInteractionEnabled = true
     }
 
@@ -132,7 +135,7 @@ final class LocationsViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        tableView.backgroundColor = .clear
         tableView.register(CityCell.self, forCellReuseIdentifier: "cellId")
         tableView.dataSource = self
         tableView.delegate = self
@@ -159,6 +162,7 @@ final class LocationsViewController: UIViewController {
     }
     
     private func setupUI() {
+        view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         setupGestures()
         rightView.backgroundColor = UIColor(white: 0, alpha: 0)
         
@@ -167,7 +171,8 @@ final class LocationsViewController: UIViewController {
         view.addSubview(sideMenuView)
         
         tableView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalToSuperview().offset(Padding.f20)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
         rightView.snp.makeConstraints {
@@ -177,7 +182,7 @@ final class LocationsViewController: UIViewController {
         sideMenuView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().offset(Padding.f40)
             $0.leading.equalToSuperview().offset(-Padding.f250)
-            $0.width.equalTo(Height.h250)
+            $0.width.equalTo(view.frame.width * 3/5)
         }
     }
 }
@@ -192,17 +197,22 @@ extension LocationsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cityCell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CityCell
         cityCell.nameLabel.text = cities[indexPath.row].name
+
         return cityCell
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            delete(deleteIndex: indexPath)
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { _,_ in
+            self.delete(deleteIndex: indexPath)
         }
+        
+        delete.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        
+        return [delete]
     }
 }
 
@@ -212,6 +222,10 @@ extension LocationsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presentDetails(for: cities[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Height.h70
     }
 }
 
@@ -249,6 +263,12 @@ extension LocationsViewController: SideMenuViewDelegate {
     }
     
     func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        
         let loginViewController = LoginViewController()
         present(loginViewController, animated: true)
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
 
 protocol LoginViewDelegate: class {
     func login(validated: Bool)
@@ -22,6 +23,7 @@ final class LoginView: UIView {
     private let userTextfield = UITextField()
     private let passwordTextfield = UITextField()
     private let loginButton = UIButton()
+    private let activityIndicator = UIActivityIndicatorView()
     
     // MARK: - Init
     
@@ -42,17 +44,29 @@ final class LoginView: UIView {
     @objc private func login() {
         guard let username = userTextfield.text,
             let password = passwordTextfield.text else {
-            delegate?.login(validated: false)
-            return
-        }
-        
-        guard User.username == username,
-            User.password == password else {
-                delegate?.login(validated: false)
                 return
         }
+
+        self.showActivityIndicator()
+        Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
+            if error != nil {
+                self.delegate?.login(validated: false)
+            } else {
+//                self.showActivityIndicator()
+                self.delegate?.login(validated: true)
+            }
+        }
+    }
+    
+    private func showActivityIndicator() {
+        activityIndicator.frame = frame
+        activityIndicator.center = center
+        activityIndicator.hidesWhenStopped = true
+//        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
         
-        delegate?.login(validated: true)
+        addSubview(activityIndicator)
+        activityIndicator.startAnimating()
     }
     
     private func setupTextfields() {

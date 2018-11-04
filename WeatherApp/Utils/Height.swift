@@ -13,7 +13,10 @@ struct Height {
     static let h30: CGFloat = 30
     static let h40: CGFloat = 40
     static let h50: CGFloat = 50
+    static let h60: CGFloat = 60
+    static let h70: CGFloat = 70
     static let h100: CGFloat = 100
+    static let h150: CGFloat = 150
     static let h200: CGFloat = 200
     static let h220: CGFloat = 220
     static let h250: CGFloat = 250
