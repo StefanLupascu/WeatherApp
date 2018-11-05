@@ -91,6 +91,7 @@ final class LocationsViewController: UIViewController {
 //            let detailsViewController = DetailsViewController(city: updatedCity)
 //            detailsViewController.delegate = self
             let detailsViewController = InformationViewController(city: updatedCity)
+            detailsViewController.delegate = self
             strongSelf.navigationController?.pushViewController(detailsViewController, animated: true)
             
             self?.activityIndicator.stopAnimating()
@@ -200,10 +201,6 @@ extension LocationsViewController: UITableViewDataSource {
 
         return cityCell
     }
-    
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { _,_ in

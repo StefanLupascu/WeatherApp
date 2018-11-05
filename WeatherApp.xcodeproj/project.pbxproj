@@ -19,6 +19,8 @@
 		A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF420E010190093B713 /* DetailsViewController.swift */; };
 		A1674FF720E028170093B713 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF620E028170093B713 /* CityView.swift */; };
 		A1B8630A215B640600688A53 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B86309215B640600688A53 /* User.swift */; };
+		A1D117D121905F9B00415121 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D117D021905F9B00415121 /* NotesView.swift */; };
+		A1D117D321906B3100415121 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D117D221906B3100415121 /* SummaryView.swift */; };
 		A1F6617B217711C000151E14 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6617A217711C000151E14 /* TemperatureView.swift */; };
 		A1F6617D217713B800151E14 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6617C217713B800151E14 /* TemperatureViewController.swift */; };
 		A1F6617F2177701400151E14 /* PressureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6617E2177701400151E14 /* PressureView.swift */; };
@@ -77,6 +79,8 @@
 		A1674FF420E010190093B713 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A1674FF620E028170093B713 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		A1B86309215B640600688A53 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A1D117D021905F9B00415121 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		A1D117D221906B3100415121 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		A1F6617A217711C000151E14 /* TemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
 		A1F6617C217713B800151E14 /* TemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureViewController.swift; sourceTree = "<group>"; };
 		A1F6617E2177701400151E14 /* PressureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressureView.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				A1F6617A217711C000151E14 /* TemperatureView.swift */,
 				A1F6617E2177701400151E14 /* PressureView.swift */,
 				A1F661802177702C00151E14 /* HumidityView.swift */,
+				A1D117D021905F9B00415121 /* NotesView.swift */,
+				A1D117D221906B3100415121 /* SummaryView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -441,12 +447,14 @@
 				F8C31D5F20EA1EBF008F3125 /* City+CoreDataProperties.swift in Sources */,
 				A107A7672150D7DA0095D588 /* SideMenuView.swift in Sources */,
 				F8C31D5920EA08FD008F3125 /* Padding.swift in Sources */,
+				A1D117D321906B3100415121 /* SummaryView.swift in Sources */,
 				F8C31D5B20EA1765008F3125 /* PersistenceService.swift in Sources */,
 				F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */,
 				A1F661812177702C00151E14 /* HumidityView.swift in Sources */,
 				F8AFA78420F34A020050293E /* DetailsDemoViewController.swift in Sources */,
 				A14225EE21691ADD007578C7 /* InformationViewController.swift in Sources */,
 				A10901A9215A878C00002903 /* LoginView.swift in Sources */,
+				A1D117D121905F9B00415121 /* NotesView.swift in Sources */,
 				F8C7786720DD281C00DBC495 /* CityCell.swift in Sources */,
 				F8AFA78020F348B80050293E /* DemoPageViewController.swift in Sources */,
 				F8AFA78B20F35F510050293E /* DetailsDemoView.swift in Sources */,
@@ -601,7 +609,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.p3.WeatherApp.stefanl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.p3.WeatherApp.stefann;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -627,7 +635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.p3.WeatherApp.stefanl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.p3.WeatherApp.stefann;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

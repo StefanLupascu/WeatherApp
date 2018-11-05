@@ -20,6 +20,8 @@ final class CityCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         nameLabel.font = UIFont.systemFont(ofSize: Padding.f25)
+        nameLabel.textColor = .white
+        nameLabel.shadowColor = .black
         setupUI()
     }
     
@@ -35,7 +37,7 @@ final class CityCell: UITableViewCell {
         
         nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Padding.f10)
-            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.leading.equalToSuperview().offset(Padding.f30)
             $0.bottom.equalToSuperview().offset(-Padding.f10)
         }
     }

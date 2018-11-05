@@ -13,7 +13,7 @@ import SnapKit
 final class TemperatureView: UICollectionViewCell {
     // MARK: - Properties
     
-    var temperature: Double = 0{
+    var temperature: Double = 0 {
         didSet {
             temperatureLabel.text = "Temperature:\n\(Int(temperature))ºC"
             animate(temperature: temperature)
