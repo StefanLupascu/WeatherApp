@@ -14,10 +14,11 @@ final class SummaryView: UICollectionViewCell {
     
     var summary: String = "" {
         didSet {
-            summaryLabel.text = "Summary: \n" + summary
+            summaryLabel.text = summary
         }
     }
     
+    private let titleLabel = UILabel()
     private let summaryLabel = UILabel()
     
     // MARK: - Init
@@ -37,20 +38,36 @@ final class SummaryView: UICollectionViewCell {
     private func setupUI() {
         backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         
-        setupLabel()
+        setupTitleLabel()
+        setupSummaryLabel()
     }
     
-    private func setupLabel() {
-        addSubview(summaryLabel)
+    private func setupTitleLabel() {
+        addSubview(titleLabel)
         
-        summaryLabel.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Padding.f75)
             $0.centerX.equalToSuperview()
         }
         
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        titleLabel.text = "Summary: "
+    }
+    
+    private func setupSummaryLabel() {
+        addSubview(summaryLabel)
+        
+        summaryLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.f30)
+            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.trailing.equalToSuperview().offset(-Padding.f20)
+        }
+        
         summaryLabel.textAlignment = .center
         summaryLabel.textColor = .white
-        summaryLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        summaryLabel.font = UIFont.systemFont(ofSize: 20)
         summaryLabel.numberOfLines = 0
     }
 }

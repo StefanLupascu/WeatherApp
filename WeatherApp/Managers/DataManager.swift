@@ -67,8 +67,13 @@ struct DataManager {
         guard let currently = json?["currently"] as? [String: AnyObject],
             let temperature = currently["temperature"] as? Double,
             let humidity = currently["humidity"] as? Double,
-            let pressure = currently["pressure"] as? Double,
-            let summary = currently["summary"] as? String else {
+            let pressure = currently["pressure"] as? Double else {
+                completion(nil, .invalidResponse)
+                return
+        }
+        
+        guard let hourly = json?["hourly"] as? [String: AnyObject],
+            let summary = hourly["summary"] as? String else {
                 completion(nil, .invalidResponse)
                 return
         }

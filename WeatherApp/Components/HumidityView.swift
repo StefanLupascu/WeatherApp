@@ -21,7 +21,7 @@ final class HumidityView: UICollectionViewCell {
     var humidity: Double = 0 {
         didSet {
             animate()
-            percentageLabel.text = "\(100 * humidity)%"
+            percentageLabel.text = "\(Int(100 * humidity))%"
         }
     }
     

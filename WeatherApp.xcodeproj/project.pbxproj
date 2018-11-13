@@ -22,7 +22,6 @@
 		A1D117D121905F9B00415121 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D117D021905F9B00415121 /* NotesView.swift */; };
 		A1D117D321906B3100415121 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D117D221906B3100415121 /* SummaryView.swift */; };
 		A1F6617B217711C000151E14 /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6617A217711C000151E14 /* TemperatureView.swift */; };
-		A1F6617D217713B800151E14 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6617C217713B800151E14 /* TemperatureViewController.swift */; };
 		A1F6617F2177701400151E14 /* PressureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F6617E2177701400151E14 /* PressureView.swift */; };
 		A1F661812177702C00151E14 /* HumidityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F661802177702C00151E14 /* HumidityView.swift */; };
 		F8A30E8F20E2250C002203D4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A30E8E20E2250C002203D4 /* DataManager.swift */; };
@@ -82,7 +81,6 @@
 		A1D117D021905F9B00415121 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		A1D117D221906B3100415121 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		A1F6617A217711C000151E14 /* TemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
-		A1F6617C217713B800151E14 /* TemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureViewController.swift; sourceTree = "<group>"; };
 		A1F6617E2177701400151E14 /* PressureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressureView.swift; sourceTree = "<group>"; };
 		A1F661802177702C00151E14 /* HumidityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityView.swift; sourceTree = "<group>"; };
 		EA69AD1A53B8A0A55587FC3E /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,10 +197,10 @@
 		F8C31D6020EA3967008F3125 /* CodeData Model */ = {
 			isa = PBXGroup;
 			children = (
+				F8C31D5C20EA1EBF008F3125 /* City+CoreDataClass.swift */,
+				F8C31D5D20EA1EBF008F3125 /* City+CoreDataProperties.swift */,
 				F8C31D6220EA484C008F3125 /* Detail+CoreDataClass.swift */,
 				F8C31D6320EA484C008F3125 /* Detail+CoreDataProperties.swift */,
-				F8C31D5D20EA1EBF008F3125 /* City+CoreDataProperties.swift */,
-				F8C31D5C20EA1EBF008F3125 /* City+CoreDataClass.swift */,
 			);
 			path = "CodeData Model";
 			sourceTree = "<group>";
@@ -242,12 +240,12 @@
 		F8C7784320DCE81300DBC495 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				A1F66179217711B100151E14 /* Components */,
-				F8C7785320DCE81600DBC495 /* Info.plist */,
-				A11A4FF6216771FB00F20E9C /* GoogleService-Info.plist */,
 				F8C7784420DCE81300DBC495 /* AppDelegate.swift */,
 				F8C31D6020EA3967008F3125 /* CodeData Model */,
+				A1F66179217711B100151E14 /* Components */,
 				F8C7785E20DD14FA00DBC495 /* Controller */,
+				A11A4FF6216771FB00F20E9C /* GoogleService-Info.plist */,
+				F8C7785320DCE81600DBC495 /* Info.plist */,
 				F8A30E8D20E224F1002203D4 /* Managers */,
 				A1566E3F21523C59001FB76C /* Resources */,
 				F8C31D6120EA3988008F3125 /* Utils */,
@@ -265,7 +263,6 @@
 				F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */,
 				A10901A6215A873600002903 /* LoginViewController.swift */,
 				A14225ED21691ADD007578C7 /* InformationViewController.swift */,
-				A1F6617C217713B800151E14 /* TemperatureViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -440,7 +437,6 @@
 				A1674FF720E028170093B713 /* CityView.swift in Sources */,
 				F8C31D6520EA484C008F3125 /* Detail+CoreDataProperties.swift in Sources */,
 				F8AFA78D20F35F620050293E /* MapDemoView.swift in Sources */,
-				A1F6617D217713B800151E14 /* TemperatureViewController.swift in Sources */,
 				F8AFA78920F34F290050293E /* LocationsDemoView.swift in Sources */,
 				F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */,
 				A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */,

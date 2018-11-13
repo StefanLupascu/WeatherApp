@@ -29,10 +29,11 @@ final class LocationsViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Cities"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "back")
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         
         mapViewController.delegate = self
         sideMenuView.delegate = self
@@ -48,6 +49,8 @@ final class LocationsViewController: UIViewController {
     @objc private func goToMap() {
         navigationController?.pushViewController(mapViewController, animated: true)
     }
+    
+    // MARK: - Get data
     
     private func getData() {
         let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
@@ -68,6 +71,8 @@ final class LocationsViewController: UIViewController {
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
     }
+    
+    // MARK: - Delete
     
     private func delete(deleteIndex: IndexPath) {
         PersistenceService.context.delete(cities[deleteIndex.row])
@@ -113,7 +118,7 @@ final class LocationsViewController: UIViewController {
             $0.leading.equalToSuperview()
         }
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
+            self.navigationController?.view.layoutIfNeeded()
             self.rightView.backgroundColor = UIColor(white: 0, alpha: 0.7)
         }, completion: nil)
         rightView.isUserInteractionEnabled = true
@@ -147,7 +152,7 @@ final class LocationsViewController: UIViewController {
             $0.leading.equalToSuperview().offset(-Padding.f250)
         }
         UIView.animate(withDuration: 0.6) {
-            self.view.layoutIfNeeded()
+            self.navigationController?.view.layoutIfNeeded()
             self.rightView.backgroundColor = UIColor(white: 0, alpha: 0)
         }
         rightView.isUserInteractionEnabled = false
@@ -168,8 +173,8 @@ final class LocationsViewController: UIViewController {
         rightView.backgroundColor = UIColor(white: 0, alpha: 0)
         
         view.addSubview(tableView)
-        view.addSubview(rightView)
-        view.addSubview(sideMenuView)
+        navigationController?.view.addSubview(rightView)
+        navigationController?.view.addSubview(sideMenuView)
         
         tableView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Padding.f20)
@@ -181,9 +186,9 @@ final class LocationsViewController: UIViewController {
         }
         
         sideMenuView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().offset(Padding.f40)
+            $0.top.bottom.equalToSuperview()//.offset(Padding.f40)
             $0.leading.equalToSuperview().offset(-Padding.f250)
-            $0.width.equalTo(view.frame.width * 3/5)
+            $0.width.equalTo(view.frame.width * 6/9)
         }
     }
 }
@@ -213,6 +218,29 @@ extension LocationsViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - MapViewDelegate
+// MARK: - Add
+
+extension LocationsViewController: MapViewDelegate {
+    func didRecieveNewWeatherData(city: City) {
+        cities.append(city)
+        
+        tableView.reloadData()
+        dismissSideMenu()
+        PersistenceService.saveContext()
+    }
+}
+
+// MARK: - DetailsViewDelegate
+// MARK: - Update
+
+extension LocationsViewController: DetailsViewDelegate {
+    func didUpdateNote(city: City) {
+        updateCity(city: city)
+        PersistenceService.saveContext()
+    }
+}
+
 // MARK: - UITableViewDelegate
 
 extension LocationsViewController: UITableViewDelegate {
@@ -223,27 +251,6 @@ extension LocationsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Height.h70
-    }
-}
-
-// MARK: - MapViewDelegate
-
-extension LocationsViewController: MapViewDelegate {
-    func didRecieveNewWeatherData(city: City) {
-        cities.append(city)
-
-        tableView.reloadData()
-        dismissSideMenu()
-        PersistenceService.saveContext()
-    }
-}
-
-// MARK: - DetailsViewDelegate
-
-extension LocationsViewController: DetailsViewDelegate {
-    func didUpdateNote(city: City) {
-        updateCity(city: city)
-        PersistenceService.saveContext()
     }
 }
 
