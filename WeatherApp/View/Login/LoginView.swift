@@ -52,7 +52,6 @@ final class LoginView: UIView {
             if error != nil {
                 self.delegate?.login(validated: false)
             } else {
-//                self.showActivityIndicator()
                 self.delegate?.login(validated: true)
             }
         }
@@ -62,7 +61,6 @@ final class LoginView: UIView {
         activityIndicator.frame = frame
         activityIndicator.center = center
         activityIndicator.hidesWhenStopped = true
-//        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
         activityIndicator.style = UIActivityIndicatorView.Style.gray
         
         addSubview(activityIndicator)

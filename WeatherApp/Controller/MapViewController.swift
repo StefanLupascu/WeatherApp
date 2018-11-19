@@ -28,7 +28,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Map"
-//        navigationItem.largeTitleDisplayMode = .never
         
         setupUI()
         setupGesture()        
