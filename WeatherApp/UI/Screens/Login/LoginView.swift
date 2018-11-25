@@ -99,12 +99,12 @@ final class LoginView: UIView {
         addSubview(loginButton)
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f75)
+            $0.top.equalTo(safeAreaLayoutGuide).offset(Padding.f75)
             $0.centerX.equalToSuperview()
         }
         
         userTextfield.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f220)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f200)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
             $0.width.equalTo(Height.h300)

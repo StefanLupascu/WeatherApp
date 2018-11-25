@@ -37,7 +37,7 @@ class MapViewController: UIViewController {
     
     private func setupGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(addPin(sender:)))
-        self.mapView.addGestureRecognizer(gesture)
+        mapView.addGestureRecognizer(gesture)
     }
     
     private func setupButton() {
@@ -50,8 +50,16 @@ class MapViewController: UIViewController {
     }
     
     private func setupUI() {
-        self.view.addSubview(mapView)
-        mapView.frame = self.view.frame
+        view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        
+        setupMapView()
+    }
+    
+    private func setupMapView() {
+        view.addSubview(mapView)
+        mapView.snp.makeConstraints {
+            $0.top.leading.bottom.trailing.equalToSuperview()
+        }
     }
     
     private func getCityAt(latitude: Double, longitude: Double, completion: @escaping CityNameCompletion){

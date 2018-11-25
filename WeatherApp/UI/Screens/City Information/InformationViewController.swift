@@ -108,7 +108,7 @@ final class InformationViewController: UIViewController {
     }
     
     private func setupUI() {
-        containerView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        containerView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
         view.addSubview(containerView)
 

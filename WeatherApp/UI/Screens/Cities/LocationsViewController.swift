@@ -13,8 +13,8 @@ import FirebaseAuth
 final class LocationsViewController: UIViewController {
     // MARK: Properties
     
-    private var cities = [City]()
-    private let cellId = "cellId"
+    private var viewModel: CityViewModel
+    private let cellId = "cityCellId"
     
     private let sideMenuView = SideMenuView()
     private let rightView = UIView()
@@ -23,6 +23,18 @@ final class LocationsViewController: UIViewController {
     private let dataManager = DataManager()
     private let activityIndicator = UIActivityIndicatorView()
     
+    // MARK: - Init
+    
+    init(viewModel: CityViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Base class overrides
     
     override func viewDidLoad() {
@@ -30,36 +42,22 @@ final class LocationsViewController: UIViewController {
         
         navigationItem.title = "Cities"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        navigationItem.hidesBackButton = true
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "back")
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
         mapViewController.delegate = self
         sideMenuView.delegate = self
+        viewModel.delegate = self
         
         setupTableView()
         setupUI()
         setupButtons()
-        getData()
     }
     
     // MARK: - Private Functions
     
     @objc private func goToMap() {
         navigationController?.pushViewController(mapViewController, animated: true)
-    }
-    
-    // MARK: - Get data
-    
-    private func getData() {
-        let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
-        do {
-            let cities = try PersistenceService.context.fetch(fetchRequest)
-            self.cities = cities
-        } catch {
-            print("Error \(error)")
-        }
     }
     
     private func showActivityIndicator() {
@@ -72,20 +70,30 @@ final class LocationsViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
+    private func presentAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Delete
     
     private func delete(deleteIndex: IndexPath) {
-        PersistenceService.context.delete(cities[deleteIndex.row])
-        cities.remove(at: deleteIndex.row)
+        viewModel.removeCity(at: deleteIndex.row)
         
         tableView.beginUpdates()
         tableView.deleteRows(at: [deleteIndex], with: .automatic)
         tableView.endUpdates()
-        
-        PersistenceService.saveContext()
     }
     
     private func presentDetails(for city: City) {
+        guard Reachability.isConnectedToNetwork() else {
+            presentAlert(message: "No internet connection!")
+            return
+        }
         showActivityIndicator()
         
         dataManager.weatherDetailsFor(latitude: city.latitude, longitude: city.longitude) { [weak self](details, error) in
@@ -104,13 +112,13 @@ final class LocationsViewController: UIViewController {
     }
     
     @discardableResult private func update(city: City, with details: Detail) -> City {
-        guard let index = cities.index(of: city) else {
+        guard let index = viewModel.cities.index(of: city) else {
             fatalError("Sanity check")
         }
         
-        cities[index].details = details
+        viewModel.cities[index].details = details
         
-        return cities[index]
+        return viewModel.cities[index]
     }
     
     @objc private func menuButtonTapped() {
@@ -132,14 +140,6 @@ final class LocationsViewController: UIViewController {
         navigationItem.leftBarButtonItem = menuButton
     }
     
-    private func updateCity(city: City) {
-        for index in 0..<cities.count {
-            if cities[index].latitude == city.latitude && cities[index].longitude == city.longitude {
-                cities[index].note = city.note
-            }
-        }
-    }
-    
     private func setupTableView() {
         tableView.backgroundColor = .clear
         tableView.register(CityCell.self, forCellReuseIdentifier: "cellId")
@@ -149,7 +149,7 @@ final class LocationsViewController: UIViewController {
     
     @objc private func dismissSideMenu() {
         sideMenuView.snp.updateConstraints {
-            $0.leading.equalToSuperview().offset(-Padding.f250)
+            $0.leading.equalToSuperview().offset(-Padding.f285)
         }
         UIView.animate(withDuration: 0.6) {
             self.navigationController?.view.layoutIfNeeded()
@@ -185,10 +185,12 @@ final class LocationsViewController: UIViewController {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
         
+        rightView.isUserInteractionEnabled = false
+        
         sideMenuView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()//.offset(Padding.f40)
-            $0.leading.equalToSuperview().offset(-Padding.f250)
-            $0.width.equalTo(view.frame.width * 6/9)
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(-Padding.f285)
+            $0.width.equalTo(view.frame.width * 0.75)
         }
     }
 }
@@ -197,18 +199,22 @@ final class LocationsViewController: UIViewController {
 
 extension LocationsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cities.count
+        return viewModel.cities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cityCell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CityCell
-        cityCell.nameLabel.text = cities[indexPath.row].name
+        cityCell.nameLabel.text = viewModel.cities[indexPath.row].name
 
         return cityCell
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { _,_ in
+            guard Reachability.isConnectedToNetwork() else {
+                self.presentAlert(message: "Cannot delete while not connected to internet!")
+                return
+            }
             self.delete(deleteIndex: indexPath)
         }
         
@@ -219,25 +225,21 @@ extension LocationsViewController: UITableViewDataSource {
 }
 
 // MARK: - MapViewDelegate
-// MARK: - Add
 
 extension LocationsViewController: MapViewDelegate {
     func didRecieveNewWeatherData(city: City) {
-        cities.append(city)
+        viewModel.addCity(city)
         
         tableView.reloadData()
         dismissSideMenu()
-        PersistenceService.saveContext()
     }
 }
 
 // MARK: - DetailsViewDelegate
-// MARK: - Update
 
 extension LocationsViewController: DetailsViewDelegate {
     func didUpdateNote(city: City) {
-        updateCity(city: city)
-        PersistenceService.saveContext()
+        viewModel.updateCity(city: city)
     }
 }
 
@@ -245,7 +247,7 @@ extension LocationsViewController: DetailsViewDelegate {
 
 extension LocationsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presentDetails(for: cities[indexPath.row])
+        presentDetails(for: viewModel.cities[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -275,5 +277,17 @@ extension LocationsViewController: SideMenuViewDelegate {
         
         let loginViewController = LoginViewController()
         present(loginViewController, animated: true)
+    }
+}
+
+// MARK: - CitiesDelegate
+
+extension LocationsViewController: CitiesDelegate {
+    func cityListChanged() {
+        tableView.reloadData()
+    }
+    
+    func didNotAdd() {
+        presentAlert(message: "Cannot add the same city twice!")
     }
 }
