@@ -25,7 +25,7 @@ final class CityViewModel {
     
     init() {
         guard Reachability.isConnectedToNetwork() else {
-            getData()
+            cities = getData()
             return
         }
         
@@ -53,8 +53,7 @@ final class CityViewModel {
             self.delegate?.didNotAdd()
             return
         }
-        cities.append(city)
-        PersistenceService.saveContext()
+        addLocally(city: city)
     }
     
     func removeCity(at index: Int) {
@@ -64,9 +63,7 @@ final class CityViewModel {
             cityManager.deleteCity(city: city)
         }
         
-        PersistenceService.context.delete(cities[index])
-        cities.remove(at: index)
-        PersistenceService.saveContext()
+        removeLocally(index: index)
     }
     
     func updateCity(city: City) {
@@ -74,12 +71,7 @@ final class CityViewModel {
             cityManager.updateCity(city: city)
         }
         
-        for index in 0 ..< cities.count {
-            if cities[index].latitude == city.latitude && cities[index].longitude == city.longitude {
-                cities[index].note = city.note
-            }
-        }
-        PersistenceService.saveContext()
+        updateLocally(city: city)
     }
     
     // MARK: - Private functions
@@ -94,14 +86,47 @@ final class CityViewModel {
         return false
     }
     
-    private func getData() {
+    private func updateCities() {
+        let cachedCities = getData()
+        
+        cachedCities.forEach { city in
+            if !findCity(city: city) {
+                cityManager.saveCity(city: city)
+            }
+        }
+    }
+    
+    private func addLocally(city: City) {
+        cities.append(city)
+        PersistenceService.saveContext()
+    }
+    
+    private func removeLocally(index: Int) {
+        PersistenceService.context.delete(cities[index])
+        cities.remove(at: index)
+        PersistenceService.saveContext()
+    }
+    
+    private func updateLocally(city: City) {
+        for index in 0 ..< cities.count {
+            if cities[index].latitude == city.latitude && cities[index].longitude == city.longitude {
+                cities[index].note = city.note
+            }
+        }
+        PersistenceService.saveContext()
+    }
+    
+    private func getData() -> [City] {
         let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
         do {
             let cities = try PersistenceService.context.fetch(fetchRequest)
-            self.cities = cities
+//            self.cities = cities
+            return cities
         } catch {
             print("Error \(error)")
         }
+        
+        return []
     }
     
     private func format(data: Data) {

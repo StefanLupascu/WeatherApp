@@ -63,6 +63,11 @@ class MapViewController: UIViewController {
     }
     
     private func getCityAt(latitude: Double, longitude: Double, completion: @escaping CityNameCompletion){
+        guard Reachability.isConnectedToNetwork() else {
+            showAlert(message: "Cannot get city location if not connected to internet!")
+            return
+        }
+        
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: latitude, longitude: longitude)
         
@@ -102,8 +107,8 @@ class MapViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
-    private func showAlert() {
-        let alert = UIAlertController(title: "Error", message: "No city found at this location", preferredStyle: UIAlertController.Style.alert)
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))
@@ -124,7 +129,7 @@ class MapViewController: UIViewController {
             
             guard cityName != nil else {
                 self?.activityIndicator.stopAnimating()
-                self?.showAlert()
+                self?.showAlert(message: "No city found at this location")
                 return
             }
             

@@ -66,7 +66,12 @@ final class CityManager {
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         
-        let updateParameters = "name=\(String(describing: city.name))&notes=\(String(describing: city.note))"
+        guard let name = city.name,
+                let note = city.note else {
+            return
+        }
+        
+        let updateParameters = "name=\(name)&notes=\(note)"
         request.httpBody = updateParameters.data(using: .utf8)
         
         processRequest(request: request)
@@ -78,7 +83,12 @@ final class CityManager {
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         
-        let deleteParameters = "name=\(String(describing: city.name))"
+        
+        guard let name = city.name else {
+            return
+        }
+        
+        let deleteParameters = "name=\(name)"
         request.httpBody = deleteParameters.data(using: .utf8)
         
         processRequest(request: request)
@@ -135,14 +145,7 @@ final class CityManager {
                 return
             }
             
-            guard let errorMessage = json?["error"] as? Bool else {
-                print("invalid response")
-                return
-            }
-            
-            if errorMessage {
-                print(message)
-            }
+            print(message)
             
             }.resume()
     }
