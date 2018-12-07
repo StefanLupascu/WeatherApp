@@ -120,7 +120,6 @@ final class CityViewModel {
         let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
         do {
             let cities = try PersistenceService.context.fetch(fetchRequest)
-//            self.cities = cities
             return cities
         } catch {
             print("Error \(error)")

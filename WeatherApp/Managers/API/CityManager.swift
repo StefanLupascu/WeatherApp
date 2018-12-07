@@ -21,10 +21,15 @@ final class CityManager {
     
     //192.168.0.102
     
-    private let postURL = "http://192.168.0.102/CityAPI/api/addCity.php"
-    private let getURL = "http://192.168.0.102/CityAPI/api/getCities.php"
-    private let deleteURL = "http://192.168.0.102/CityAPI/api/deleteCity.php"
-    private let updateURL = "http://192.168.0.102/CityAPI/api/updateCity.php"
+    private let postURL = "http://172.30.115.198/CityAPI/api/addCity.php"
+    private let getURL = "http://172.30.115.198/CityAPI/api/getCities.php"
+    private let deleteURL = "http://172.30.115.198/CityAPI/api/deleteCity.php"
+    private let updateURL = "http://172.30.115.198/CityAPI/api/updateCity.php"
+    
+//    private let postURL = "http://192.168.0.102/CityAPI/api/addCity.php"
+//    private let getURL = "http://192.168.0.102/CityAPI/api/getCities.php"
+//    private let deleteURL = "http://192.168.0.102/CityAPI/api/deleteCity.php"
+//    private let updateURL = "http://192.168.0.102/CityAPI/api/updateCity.php"
     
     // MARK: - Functions
     

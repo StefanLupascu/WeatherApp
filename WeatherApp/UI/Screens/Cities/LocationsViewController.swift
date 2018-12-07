@@ -13,7 +13,8 @@ import FirebaseAuth
 final class LocationsViewController: UIViewController {
     // MARK: Properties
     
-    private var viewModel: CityViewModel
+    private var viewModel: LocationsViewModel
+//    private var viewModel: CityViewModel
     private let cellId = "cityCellId"
     
     private let sideMenuView = SideMenuView()
@@ -25,11 +26,18 @@ final class LocationsViewController: UIViewController {
     
     // MARK: - Init
     
-    init(viewModel: CityViewModel) {
+//    init(viewModel: CityViewModel) {
+//        self.viewModel = viewModel
+//
+//        super.init(nibName: nil, bundle: nil)
+//    }
+    
+    init(viewModel: LocationsViewModel) {
         self.viewModel = viewModel
-        
+
         super.init(nibName: nil, bundle: nil)
     }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -289,5 +297,17 @@ extension LocationsViewController: CitiesDelegate {
     
     func didNotAdd() {
         presentAlert(message: "Cannot add the same city twice!")
+    }
+}
+
+// MARK: - LocationsDelegate
+
+extension LocationsViewController: LocationsDelegate {
+    func didAddCity(ok: Bool) {
+        if ok {
+            tableView.reloadData()
+        } else {
+            presentAlert(message: "Cannot add the same city twice!")
+        }
     }
 }

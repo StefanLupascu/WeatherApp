@@ -63,11 +63,6 @@ class MapViewController: UIViewController {
     }
     
     private func getCityAt(latitude: Double, longitude: Double, completion: @escaping CityNameCompletion){
-        guard Reachability.isConnectedToNetwork() else {
-            showAlert(message: "Cannot get city location if not connected to internet!")
-            return
-        }
-        
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: latitude, longitude: longitude)
         
@@ -119,11 +114,21 @@ class MapViewController: UIViewController {
     // MARK: - Setting up actions
     
     @objc func done(sender: UIButton) {
-        showActivityIndicator()
+//        showActivityIndicator()
         
         guard let cityAnnotation = mapView.map.annotations.first else {
             return
         }
+        
+        guard Reachability.isConnectedToNetwork() else {
+            //            showAlert(message: "Cannot get city location if not connected to internet!")
+            let city = City(name: "Custom name \(cityAnnotation.coordinate.latitude)", latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude, note: "")
+            delegate?.didRecieveNewWeatherData(city: city)
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        showActivityIndicator()
 
         getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude) { [weak self] (cityName, error) in
             

@@ -17,7 +17,7 @@ final class PressureView: UICollectionViewCell {
             pressureLabel.text = "\(Int(pressure))"
         }
     }
-    
+
     private let titleLabel = UILabel()
     private let pressureLabel = UILabel()
     

@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else {
 //            window?.rootViewController = LoginViewController()
-            let viewModel = CityViewModel()
+//            let viewModel = CityViewModel()
+            let viewModel = LocationsViewModel()
             window?.rootViewController = UINavigationController(rootViewController: LocationsViewController(viewModel: viewModel))
         }
         
