@@ -27,13 +27,23 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Map"
         
+        setupNavigationBar()
         setupUI()
         setupGesture()        
     }
     
     // MARK: - Private Functions
+    
+    private func setupNavigationBar() {
+        let label = UILabel()
+        label.text = "Map"
+        label.textColor = .white
+        label.shadowColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        
+        navigationItem.titleView = label
+    }
     
     private func setupGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(addPin(sender:)))

@@ -8,17 +8,15 @@
 
 import UIKit
 import CoreData
-import FirebaseAuth
+//import FirebaseAuth
 
-final class LocationsViewController: UIViewController {
+final class LocationsViewController: NavigationController {
     // MARK: Properties
     
     private var viewModel: LocationsViewModel
 //    private var viewModel: CityViewModel
     private let cellId = "cityCellId"
     
-    private let sideMenuView = SideMenuView()
-    private let rightView = UIView()
     private let tableView = UITableView()
     private let mapViewController = MapViewController()
     private let dataManager = DataManager()
@@ -48,13 +46,13 @@ final class LocationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Cities"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back")
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        setupNavigationBar()
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+//        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back")
+//        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
         mapViewController.delegate = self
-        sideMenuView.delegate = self
+//        sideMenuView.delegate = self
         viewModel.delegate = self
         
         setupTableView()
@@ -66,6 +64,16 @@ final class LocationsViewController: UIViewController {
     
     @objc private func goToMap() {
         navigationController?.pushViewController(mapViewController, animated: true)
+    }
+    
+    private func setupNavigationBar() {
+        let label = UILabel()
+        label.text = "Cities"
+        label.textColor = .white
+        label.shadowColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        
+        navigationItem.titleView = label
     }
     
     private func showActivityIndicator() {
@@ -128,24 +136,10 @@ final class LocationsViewController: UIViewController {
         
         return viewModel.cities[index]
     }
-    
-    @objc private func menuButtonTapped() {
-        sideMenuView.snp.updateConstraints {
-            $0.leading.equalToSuperview()
-        }
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
-            self.navigationController?.view.layoutIfNeeded()
-            self.rightView.backgroundColor = UIColor(white: 0, alpha: 0.7)
-        }, completion: nil)
-        rightView.isUserInteractionEnabled = true
-    }
 
     private func setupButtons() {
         let button = UIBarButtonItem(image: UIImage(named: "map"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(goToMap))
         navigationItem.rightBarButtonItem = button
-        
-        let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(menuButtonTapped))
-        navigationItem.leftBarButtonItem = menuButton
     }
     
     private func setupTableView() {
@@ -155,51 +149,40 @@ final class LocationsViewController: UIViewController {
         tableView.delegate = self
     }
     
-    @objc private func dismissSideMenu() {
-        sideMenuView.snp.updateConstraints {
-            $0.leading.equalToSuperview().offset(-Padding.f285)
-        }
-        UIView.animate(withDuration: 0.6) {
-            self.navigationController?.view.layoutIfNeeded()
-            self.rightView.backgroundColor = UIColor(white: 0, alpha: 0)
-        }
-        rightView.isUserInteractionEnabled = false
-    }
-    
-    private func setupGestures() {
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissSideMenu))
-        leftSwipe.direction = .left
-        sideMenuView.addGestureRecognizer(leftSwipe)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu))
-        rightView.addGestureRecognizer(tap)
-    }
+//    private func setupGestures() {
+//        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissSideMenu))
+//        leftSwipe.direction = .left
+//        sideMenuView.addGestureRecognizer(leftSwipe)
+//
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu))
+//        rightView.addGestureRecognizer(tap)
+//    }
     
     private func setupUI() {
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        setupGestures()
-        rightView.backgroundColor = UIColor(white: 0, alpha: 0)
+//        setupGestures()
+//        rightView.backgroundColor = UIColor(white: 0, alpha: 0)
         
         view.addSubview(tableView)
-        navigationController?.view.addSubview(rightView)
-        navigationController?.view.addSubview(sideMenuView)
+//        navigationController?.view.addSubview(rightView)
+//        navigationController?.view.addSubview(sideMenuView)
         
         tableView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Padding.f20)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        rightView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
-        }
-        
-        rightView.isUserInteractionEnabled = false
-        
-        sideMenuView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(-Padding.f285)
-            $0.width.equalTo(view.frame.width * 0.75)
-        }
+//        rightView.snp.makeConstraints {
+//            $0.top.leading.trailing.bottom.equalToSuperview()
+//        }
+//
+//        rightView.isUserInteractionEnabled = false
+//
+//        sideMenuView.snp.makeConstraints {
+//            $0.top.bottom.equalToSuperview()
+//            $0.leading.equalToSuperview().offset(-Padding.f285)
+//            $0.width.equalTo(view.frame.width * 0.75)
+//        }
     }
 }
 
@@ -239,7 +222,7 @@ extension LocationsViewController: MapViewDelegate {
         viewModel.addCity(city)
         
         tableView.reloadData()
-        dismissSideMenu()
+//        dismissSideMenu()
     }
 }
 
@@ -266,27 +249,32 @@ extension LocationsViewController: UITableViewDelegate {
 
 // MARK: - SideMenuViewDelegate
 
-extension LocationsViewController: SideMenuViewDelegate {
-    func seeTutorial() {
-        let tutorialVC = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        present(tutorialVC, animated: true)
-    }
-    
-    func openMap() {
-        goToMap()
-    }
-    
-    func logout() {
-        do {
-            try Auth.auth().signOut()
-        } catch let logoutError {
-            print(logoutError)
-        }
-        
-        let loginViewController = LoginViewController()
-        present(loginViewController, animated: true)
-    }
-}
+//extension LocationsViewController: SideMenuViewDelegate {
+//    func seeTutorial() {
+//        let tutorialVC = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+//        present(tutorialVC, animated: true)
+//    }
+//
+//    func openMap() {
+//        goToMap()
+//    }
+//
+//    func goToVacationPlanning() {
+//        let vacationViewController = VacationViewController()
+//        present(vacationViewController, animated: true)
+//    }
+//
+//    func logout() {
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let logoutError {
+//            print(logoutError)
+//        }
+//
+//        let loginViewController = LoginViewController()
+//        present(loginViewController, animated: true)
+//    }
+//}
 
 // MARK: - CitiesDelegate
 

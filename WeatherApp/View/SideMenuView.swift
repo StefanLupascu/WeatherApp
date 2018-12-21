@@ -11,7 +11,8 @@ import SnapKit
 
 protocol SideMenuViewDelegate {
     func seeTutorial()
-    func openMap()
+    func goToCities()
+    func goToVacationPlanning()
     func logout()
 }
 
@@ -23,7 +24,8 @@ final class SideMenuView: UIView {
     private let titleLabel = UILabel()
     private let tutorialButton = UIButton()
     private let logoutButton = UIButton()
-    private let mapButton = UIButton()
+    private let citiesButton = UIButton()
+    private let vacationButton = UIButton()
     
     // MARK: - Init
     
@@ -45,8 +47,12 @@ final class SideMenuView: UIView {
         delegate?.seeTutorial()
     }
     
-    @objc private func openMap() {
-        delegate?.openMap()
+    @objc private func goToCities() {
+        delegate?.goToCities()
+    }
+    
+    @objc private func goToVacationPlanning() {
+        delegate?.goToVacationPlanning()
     }
     
     @objc private func logout() {
@@ -65,10 +71,15 @@ final class SideMenuView: UIView {
         tutorialButton.setTitle("See Tutorial", for: .normal)
         tutorialButton.addTarget(self, action: #selector(seeTutorial), for: .touchUpInside)
         
-        mapButton.layer.cornerRadius = 10
-        mapButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        mapButton.setTitle("Open Map", for: .normal)
-        mapButton.addTarget(self, action: #selector(openMap), for: .touchUpInside)
+        citiesButton.layer.cornerRadius = 10
+        citiesButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        citiesButton.setTitle("Cities", for: .normal)
+        citiesButton.addTarget(self, action: #selector(goToCities), for: .touchUpInside)
+        
+        vacationButton.layer.cornerRadius = 10
+        vacationButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        vacationButton.setTitle("Vacation", for: .normal)
+        vacationButton.addTarget(self, action: #selector(goToVacationPlanning), for: .touchUpInside)
         
         logoutButton.layer.cornerRadius = 10
         logoutButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
@@ -81,7 +92,8 @@ final class SideMenuView: UIView {
         
         addSubview(titleLabel)
         addSubview(tutorialButton)
-        addSubview(mapButton)
+        addSubview(citiesButton)
+        addSubview(vacationButton)
         addSubview(logoutButton)
         
         titleLabel.snp.makeConstraints {
@@ -92,21 +104,28 @@ final class SideMenuView: UIView {
         tutorialButton.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.f40)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(Height.h200)
+            $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
         }
         
-        mapButton.snp.makeConstraints {
+        citiesButton.snp.makeConstraints {
             $0.top.equalTo(tutorialButton.snp.bottom).offset(Padding.f5)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(Height.h200)
+            $0.width.equalTo(Height.h250)
+            $0.height.equalTo(Height.h50)
+        }
+        
+        vacationButton.snp.makeConstraints {
+            $0.top.equalTo(citiesButton.snp.bottom).offset(Padding.f5)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
         }
         
         logoutButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-Padding.f75)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(Height.h200)
+            $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
         }
     }
