@@ -10,7 +10,6 @@
 		5854C02F2D16B31EC0BBA6AE /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71FE6880FBE92A4DAE911759 /* Pods_WeatherApp.framework */; };
 		A107A7672150D7DA0095D588 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A107A7662150D7DA0095D588 /* SideMenuView.swift */; };
 		A10901A7215A873600002903 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10901A6215A873600002903 /* LoginViewController.swift */; };
-		A10901A9215A878C00002903 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10901A8215A878C00002903 /* LoginView.swift */; };
 		A11A4FF7216771FB00F20E9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11A4FF6216771FB00F20E9C /* GoogleService-Info.plist */; };
 		A11DDA8721C1732D00FEC9F5 /* VacationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DDA8621C1732D00FEC9F5 /* VacationsViewController.swift */; };
 		A11DDA8921C1779700FEC9F5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DDA8821C1779700FEC9F5 /* NavigationController.swift */; };
@@ -79,7 +78,6 @@
 		71FE6880FBE92A4DAE911759 /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A107A7662150D7DA0095D588 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		A10901A6215A873600002903 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		A10901A8215A878C00002903 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A11A4FF6216771FB00F20E9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A11DDA8621C1732D00FEC9F5 /* VacationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationsViewController.swift; sourceTree = "<group>"; };
 		A11DDA8821C1779700FEC9F5 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 		A1F72A9F21A99F5300B06E06 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A10901A8215A878C00002903 /* LoginView.swift */,
 				A10901A6215A873600002903 /* LoginViewController.swift */,
 			);
 			path = Login;
@@ -552,7 +549,6 @@
 				A1F661812177702C00151E14 /* HumidityView.swift in Sources */,
 				F8AFA78420F34A020050293E /* DetailsDemoViewController.swift in Sources */,
 				A14225EE21691ADD007578C7 /* InformationViewController.swift in Sources */,
-				A10901A9215A878C00002903 /* LoginView.swift in Sources */,
 				A1D117D121905F9B00415121 /* NotesView.swift in Sources */,
 				F8C7786720DD281C00DBC495 /* CityCell.swift in Sources */,
 				A11DDA8721C1732D00FEC9F5 /* VacationsViewController.swift in Sources */,
