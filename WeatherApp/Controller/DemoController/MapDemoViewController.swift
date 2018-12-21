@@ -28,7 +28,11 @@ class MapDemoViewController: UIViewController {
 
 extension MapDemoViewController: MapDemoViewDelegate {
     func presentLocations() {
-        let navigationController = UINavigationController(rootViewController: LocationsViewController())
+//        let viewModel = CityViewModel()
+        let viewModel = LocationsViewModel()
+        let vc = LocationsViewController(viewModel: viewModel)
+        let navigationController = UINavigationController(rootViewController: vc)
+        
         present(navigationController, animated: true)
     }
 }

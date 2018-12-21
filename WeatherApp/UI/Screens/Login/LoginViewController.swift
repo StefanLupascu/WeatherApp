@@ -63,7 +63,11 @@ final class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewDelegate {
     func login(validated: Bool) {
         if validated {
-            let navigationController = UINavigationController(rootViewController: LocationsViewController())
+//            let viewModel = CityViewModel()
+            let viewModel = LocationsViewModel()
+            let vc = LocationsViewController(viewModel: viewModel)
+            let navigationController = UINavigationController(rootViewController: vc)
+            
             present(navigationController, animated: true)
         }
         else {

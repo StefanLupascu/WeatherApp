@@ -27,17 +27,27 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Map"
         
+        setupNavigationBar()
         setupUI()
         setupGesture()        
     }
     
     // MARK: - Private Functions
     
+    private func setupNavigationBar() {
+        let label = UILabel()
+        label.text = "Map"
+        label.textColor = .white
+        label.shadowColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        
+        navigationItem.titleView = label
+    }
+    
     private func setupGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(addPin(sender:)))
-        self.mapView.addGestureRecognizer(gesture)
+        mapView.addGestureRecognizer(gesture)
     }
     
     private func setupButton() {
@@ -50,8 +60,16 @@ class MapViewController: UIViewController {
     }
     
     private func setupUI() {
-        self.view.addSubview(mapView)
-        mapView.frame = self.view.frame
+        view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        
+        setupMapView()
+    }
+    
+    private func setupMapView() {
+        view.addSubview(mapView)
+        mapView.snp.makeConstraints {
+            $0.top.leading.bottom.trailing.equalToSuperview()
+        }
     }
     
     private func getCityAt(latitude: Double, longitude: Double, completion: @escaping CityNameCompletion){
@@ -94,8 +112,8 @@ class MapViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
-    private func showAlert() {
-        let alert = UIAlertController(title: "Error", message: "No city found at this location", preferredStyle: UIAlertController.Style.alert)
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))
@@ -106,17 +124,27 @@ class MapViewController: UIViewController {
     // MARK: - Setting up actions
     
     @objc func done(sender: UIButton) {
-        showActivityIndicator()
+//        showActivityIndicator()
         
         guard let cityAnnotation = mapView.map.annotations.first else {
             return
         }
+        
+        guard Reachability.isConnectedToNetwork() else {
+            //            showAlert(message: "Cannot get city location if not connected to internet!")
+            let city = City(name: "Custom name \(cityAnnotation.coordinate.latitude)", latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude, note: "")
+            delegate?.didRecieveNewWeatherData(city: city)
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        showActivityIndicator()
 
         getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude) { [weak self] (cityName, error) in
             
             guard cityName != nil else {
                 self?.activityIndicator.stopAnimating()
-                self?.showAlert()
+                self?.showAlert(message: "No city found at this location")
                 return
             }
             

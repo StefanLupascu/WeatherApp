@@ -43,8 +43,9 @@ class DemoPageViewController: UIPageViewController {
     }
     
     @objc private func startApp(sender: UIBarButtonItem) {
-        let locationsViewController = LocationsViewController()
-        navigationController?.pushViewController(locationsViewController, animated: true)
+//        let locationsViewController = LocationsViewController()
+        let loginViewController = LoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
     }
 }
 

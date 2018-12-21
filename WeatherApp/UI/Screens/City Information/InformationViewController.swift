@@ -55,9 +55,8 @@ final class InformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.title = "Information"
 
+        setupNavigationBar()
         setupCollectionView()
         setupViews()
         setupLabel()
@@ -72,6 +71,16 @@ final class InformationViewController: UIViewController {
     }
     
     // MARK: - Private functions
+    
+    private func setupNavigationBar() {
+        let label = UILabel()
+        label.text = "Information"
+        label.textColor = .white
+        label.shadowColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        
+        navigationItem.titleView = label
+    }
     
     private func setupCollectionView() {
         collectionView.register(TemperatureView.self, forCellWithReuseIdentifier: temperatureCellId)
@@ -108,7 +117,7 @@ final class InformationViewController: UIViewController {
     }
     
     private func setupUI() {
-        containerView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        containerView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
         view.addSubview(containerView)
 
