@@ -153,14 +153,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		A11DDA8521C1731100FEC9F5 /* Vacation */ = {
+		A11DDA8521C1731100FEC9F5 /* Vacations */ = {
 			isa = PBXGroup;
 			children = (
 				A11DDA8E21C7D7D400FEC9F5 /* Cell */,
 				A11DDA8621C1732D00FEC9F5 /* VacationsViewController.swift */,
 				A11DDA8A21C7D51B00FEC9F5 /* VacationsViewModel.swift */,
 			);
-			path = Vacation;
+			path = Vacations;
 			sourceTree = "<group>";
 		};
 		A11DDA8E21C7D7D400FEC9F5 /* Cell */ = {
@@ -241,7 +241,7 @@
 		A1F72AA021A99F9400B06E06 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				A11DDA8521C1731100FEC9F5 /* Vacation */,
+				A11DDA8521C1731100FEC9F5 /* Vacations */,
 				A1F72A9C21A99F3300B06E06 /* Cities */,
 				A1F72A9D21A99F4000B06E06 /* Map */,
 				A1F72A9F21A99F5300B06E06 /* Login */,

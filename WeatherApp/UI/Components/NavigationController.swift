@@ -41,10 +41,12 @@ class NavigationController: UIViewController {
         sideMenuView.snp.updateConstraints {
             $0.leading.equalToSuperview()
         }
+        
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
             self.navigationController?.view.layoutIfNeeded()
             self.rightView.backgroundColor = UIColor(white: 0, alpha: 0.7)
         }, completion: nil)
+        
         rightView.isUserInteractionEnabled = true
     }
     
@@ -52,10 +54,12 @@ class NavigationController: UIViewController {
         sideMenuView.snp.updateConstraints {
             $0.leading.equalToSuperview().offset(-Padding.f285)
         }
+        
         UIView.animate(withDuration: 0.6) {
             self.navigationController?.view.layoutIfNeeded()
             self.rightView.backgroundColor = UIColor(white: 0, alpha: 0)
         }
+        
         rightView.isUserInteractionEnabled = false
     }
     
@@ -104,14 +108,16 @@ extension NavigationController: SideMenuViewDelegate {
     func goToCities() {
         let locationsViewController = LocationsViewController(viewModel: LocationsViewModel())
         let vc = UINavigationController(rootViewController: locationsViewController)
-        present(vc, animated: true)
+        dismissSideMenu()
+        self.present(vc, animated: true)
     }
     
     func goToVacationPlanning() {
         let viewModel = VacationsViewModel()
         let vacationViewController = VacationsViewController(viewModel: viewModel)
         let vc = UINavigationController(rootViewController: vacationViewController)
-        present(vc, animated: true)
+        dismissSideMenu()
+        self.present(vc, animated: true)
     }
     
     func logout() {

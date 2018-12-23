@@ -47,17 +47,13 @@ final class LocationsViewController: NavigationController {
         super.viewDidLoad()
         
         setupNavigationBar()
-//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-//        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back")
-//        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
         mapViewController.delegate = self
-//        sideMenuView.delegate = self
         viewModel.delegate = self
         
         setupTableView()
         setupUI()
-        setupButtons()
+        setupButton()
     }
     
     // MARK: - Private Functions
@@ -137,7 +133,7 @@ final class LocationsViewController: NavigationController {
         return viewModel.cities[index]
     }
 
-    private func setupButtons() {
+    private func setupButton() {
         let button = UIBarButtonItem(image: UIImage(named: "map"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(goToMap))
         navigationItem.rightBarButtonItem = button
     }
@@ -149,40 +145,15 @@ final class LocationsViewController: NavigationController {
         tableView.delegate = self
     }
     
-//    private func setupGestures() {
-//        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissSideMenu))
-//        leftSwipe.direction = .left
-//        sideMenuView.addGestureRecognizer(leftSwipe)
-//
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu))
-//        rightView.addGestureRecognizer(tap)
-//    }
-    
     private func setupUI() {
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-//        setupGestures()
-//        rightView.backgroundColor = UIColor(white: 0, alpha: 0)
         
         view.addSubview(tableView)
-//        navigationController?.view.addSubview(rightView)
-//        navigationController?.view.addSubview(sideMenuView)
         
         tableView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Padding.f20)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-        
-//        rightView.snp.makeConstraints {
-//            $0.top.leading.trailing.bottom.equalToSuperview()
-//        }
-//
-//        rightView.isUserInteractionEnabled = false
-//
-//        sideMenuView.snp.makeConstraints {
-//            $0.top.bottom.equalToSuperview()
-//            $0.leading.equalToSuperview().offset(-Padding.f285)
-//            $0.width.equalTo(view.frame.width * 0.75)
-//        }
     }
 }
 
@@ -201,7 +172,7 @@ extension LocationsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { _,_ in
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { _, _ in
             guard Reachability.isConnectedToNetwork() else {
                 self.presentAlert(message: "Cannot delete while not connected to internet!")
                 return
@@ -222,7 +193,6 @@ extension LocationsViewController: MapViewDelegate {
         viewModel.addCity(city)
         
         tableView.reloadData()
-//        dismissSideMenu()
     }
 }
 
@@ -246,35 +216,6 @@ extension LocationsViewController: UITableViewDelegate {
         return Height.h70
     }
 }
-
-// MARK: - SideMenuViewDelegate
-
-//extension LocationsViewController: SideMenuViewDelegate {
-//    func seeTutorial() {
-//        let tutorialVC = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-//        present(tutorialVC, animated: true)
-//    }
-//
-//    func openMap() {
-//        goToMap()
-//    }
-//
-//    func goToVacationPlanning() {
-//        let vacationViewController = VacationViewController()
-//        present(vacationViewController, animated: true)
-//    }
-//
-//    func logout() {
-//        do {
-//            try Auth.auth().signOut()
-//        } catch let logoutError {
-//            print(logoutError)
-//        }
-//
-//        let loginViewController = LoginViewController()
-//        present(loginViewController, animated: true)
-//    }
-//}
 
 // MARK: - CitiesDelegate
 

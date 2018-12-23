@@ -62,7 +62,13 @@ final class VacationsViewController: NavigationController {
     private func setupUI() {
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
+        setupButton()
         setupCollectionView()
+    }
+    
+    private func setupButton() {
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = button
     }
     
     private func setupCollectionView() {
@@ -80,6 +86,10 @@ final class VacationsViewController: NavigationController {
     private func presentVacation(at index: Int) {
         // TODO: - Implement Vacation Details Screen
         
+    }
+    
+    @objc private func addButtonTapped() {
+        print("add")
     }
 }
 
