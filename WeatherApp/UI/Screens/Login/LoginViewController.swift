@@ -145,6 +145,7 @@ final class LoginViewController: UIViewController {
         }
         else {
             presentAlert(message: "Login Failed!")
+            activityIndicator.stopAnimating()
         }
     }
     

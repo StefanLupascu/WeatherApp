@@ -51,7 +51,7 @@ final class VacationsViewController: NavigationController {
     
     private func setupNavigationBar() {
         let label = UILabel()
-        label.text = "Vacation"
+        label.text = "Vacations"
         label.textColor = .white
         label.shadowColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 22)
