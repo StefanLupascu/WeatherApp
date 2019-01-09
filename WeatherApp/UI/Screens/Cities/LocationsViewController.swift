@@ -102,10 +102,10 @@ final class LocationsViewController: NavigationController {
     }
     
     private func presentDetails(for city: City) {
-        guard Reachability.isConnectedToNetwork() else {
-            presentAlert(message: "No internet connection!")
-            return
-        }
+//        guard Reachability.isConnectedToNetwork() else {
+//            presentAlert(message: "No internet connection!")
+//            return
+//        }
         showActivityIndicator()
         
         dataManager.weatherDetailsFor(latitude: city.latitude, longitude: city.longitude) { [weak self](details, error) in
