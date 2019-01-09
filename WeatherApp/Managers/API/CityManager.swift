@@ -103,7 +103,7 @@ final class CityManager {
     
     private func didFetchCities(data: Data?, response: URLResponse?, error: Error?, completion: CityDataCompletion) {
         guard error == nil else {
-            print("failed request aici")
+            print("failed request")
             completion(nil, .failedRequest)
             return
         }
@@ -115,7 +115,7 @@ final class CityManager {
         }
         
         guard response.statusCode == 200 else {
-            print("failed request")
+            print("failed request from status code")
             completion(nil, .failedRequest)
             return
         }
@@ -140,18 +140,20 @@ final class CityManager {
                 return
             }
             
+            // May be one of the only try blocks in the app
+            // Same as the one from DataManager
             guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
-                print("invalid response aici")
+                print("invalid response")
                 return
             }
             
             guard let message = json?["message"] as? String else {
-                print("invalid response")
+                print("invalid response from message")
                 return
             }
             
             print(message)
             
-            }.resume()
+        }.resume()
     }
 }

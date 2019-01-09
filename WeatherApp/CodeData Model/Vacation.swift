@@ -14,8 +14,7 @@ struct Vacation {
     // MARK: - Properties
     
     var destinations = [Destination]()
-    
-    private let name: String
+    let name: String
     
     // MARK: - Init
     

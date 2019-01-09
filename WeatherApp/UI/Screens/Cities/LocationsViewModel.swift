@@ -57,6 +57,7 @@ final class LocationsViewModel {
     
     // MARK: - Private functions
     
+    // Getting the city data from the local database
     private func getCities() -> [City] {
         let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
         do {
