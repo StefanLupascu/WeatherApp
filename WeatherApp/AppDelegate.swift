@@ -29,13 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(true, forKey: "demo")
         }
         else {
-//            window?.rootViewController = LoginViewController()
+            window?.rootViewController = LoginViewController()
 //            let viewModel = CityViewModel()
-            let viewModel = LocationsViewModel()
+//            let viewModel = LocationsViewModel()
 //            window?.rootViewController = UINavigationController(rootViewController: LocationsViewController(viewModel: viewModel))
 //            window?.rootViewController = UINavigationController(rootViewController: VacationViewController())
             
-            window?.rootViewController = UINavigationController(rootViewController: LocationsViewController(viewModel: viewModel))
+//            window?.rootViewController = UINavigationController(rootViewController: LocationsViewController(viewModel: viewModel))
         }
         
         return true

@@ -17,6 +17,8 @@
 		A11DDA8D21C7D56100FEC9F5 /* Vacation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DDA8C21C7D56100FEC9F5 /* Vacation.swift */; };
 		A11DDA9021C7D7E800FEC9F5 /* VacationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DDA8F21C7D7E800FEC9F5 /* VacationsCollectionViewCell.swift */; };
 		A1264C6E20FEA93F00EDF417 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1264C6C20FEA93F00EDF417 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A12D147421F4EB550002AA52 /* PlanificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D147321F4EB550002AA52 /* PlanificationViewController.swift */; };
+		A12D147621F4F2F70002AA52 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D147521F4F2F70002AA52 /* Destination.swift */; };
 		A14225EE21691ADD007578C7 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14225ED21691ADD007578C7 /* InformationViewController.swift */; };
 		A1566E3B21522BD9001FB76C /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1566E3A21522BD9001FB76C /* SnapKit.framework */; };
 		A1566E3E21523ABE001FB76C /* Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1566E3D21523ABE001FB76C /* Height.swift */; };
@@ -96,6 +98,8 @@
 		A11DDA8C21C7D56100FEC9F5 /* Vacation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vacation.swift; sourceTree = "<group>"; };
 		A11DDA8F21C7D7E800FEC9F5 /* VacationsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A1264C6C20FEA93F00EDF417 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		A12D147321F4EB550002AA52 /* PlanificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanificationViewController.swift; sourceTree = "<group>"; };
+		A12D147521F4F2F70002AA52 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		A14225ED21691ADD007578C7 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		A1566E3A21522BD9001FB76C /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		A1566E3D21523ABE001FB76C /* Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Height.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 		A11DDA8521C1731100FEC9F5 /* Vacations */ = {
 			isa = PBXGroup;
 			children = (
+				A12D147221F4EB360002AA52 /* Vacation Planification */,
 				A11DDA8E21C7D7D400FEC9F5 /* Cell */,
 				A11DDA8621C1732D00FEC9F5 /* VacationsViewController.swift */,
 				A11DDA8A21C7D51B00FEC9F5 /* VacationsViewModel.swift */,
@@ -190,6 +195,14 @@
 				A11DDA8F21C7D7E800FEC9F5 /* VacationsCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		A12D147221F4EB360002AA52 /* Vacation Planification */ = {
+			isa = PBXGroup;
+			children = (
+				A12D147321F4EB550002AA52 /* PlanificationViewController.swift */,
+			);
+			path = "Vacation Planification";
 			sourceTree = "<group>";
 		};
 		A1566E3F21523C59001FB76C /* Resources */ = {
@@ -327,6 +340,7 @@
 				F8C31D6220EA484C008F3125 /* Detail+CoreDataClass.swift */,
 				F8C31D6320EA484C008F3125 /* Detail+CoreDataProperties.swift */,
 				A11DDA8C21C7D56100FEC9F5 /* Vacation.swift */,
+				A12D147521F4F2F70002AA52 /* Destination.swift */,
 			);
 			path = "CodeData Model";
 			sourceTree = "<group>";
@@ -611,9 +625,11 @@
 				F8C31D5F20EA1EBF008F3125 /* City+CoreDataProperties.swift in Sources */,
 				A107A7672150D7DA0095D588 /* SideMenuView.swift in Sources */,
 				F8C31D5920EA08FD008F3125 /* Padding.swift in Sources */,
+				A12D147421F4EB550002AA52 /* PlanificationViewController.swift in Sources */,
 				A1D117D321906B3100415121 /* SummaryView.swift in Sources */,
 				F8C31D5B20EA1765008F3125 /* PersistenceService.swift in Sources */,
 				A11DDA8D21C7D56100FEC9F5 /* Vacation.swift in Sources */,
+				A12D147621F4F2F70002AA52 /* Destination.swift in Sources */,
 				A11DDA8B21C7D51B00FEC9F5 /* VacationsViewModel.swift in Sources */,
 				F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */,
 				A1F661812177702C00151E14 /* HumidityView.swift in Sources */,

@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias Destination = (City, NSDate)
-
 struct Vacation {
     // MARK: - Properties
     

@@ -12,9 +12,6 @@ import SnapKit
 final class VacationsCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     
-//    var destinations = [Destination]()
-//    var viewModel = VacationViewModel()
-    
     let titleLabel = UILabel()
     let dateLabel = UILabel()
     
@@ -34,6 +31,7 @@ final class VacationsCollectionViewCell: UICollectionViewCell {
     
     private func setupUI() {
         backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        layer.cornerRadius = 15
         
         setupTitleLabel()
         setupDateLabel()

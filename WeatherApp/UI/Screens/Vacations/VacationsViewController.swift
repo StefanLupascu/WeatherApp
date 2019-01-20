@@ -89,7 +89,8 @@ final class VacationsViewController: NavigationController {
     }
     
     @objc private func addButtonTapped() {
-        print("add")
+        let planificationViewController = PlanificationViewController()
+        navigationController?.pushViewController(planificationViewController, animated: true)
     }
 }
 
@@ -105,14 +106,16 @@ extension VacationsViewController: UICollectionViewDelegate {
 
 extension VacationsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return viewModel.vacations.count
-        return 10
+        return viewModel.vacations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? VacationsCollectionViewCell else {
             return UICollectionViewCell()
         }
+        
+        cell.titleLabel.text = viewModel.vacations[indexPath.item].name
+        cell.dateLabel.text = viewModel.vacations[indexPath.item].destinations[0].date
         
         return cell
     }
@@ -122,6 +125,6 @@ extension VacationsViewController: UICollectionViewDataSource {
 
 extension VacationsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: Height.h100)
+        return CGSize(width: view.bounds.width - Padding.f40, height: Height.h100)
     }
 }
