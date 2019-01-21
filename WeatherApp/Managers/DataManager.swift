@@ -59,7 +59,6 @@ struct DataManager {
     }
     
     private func process(data: Data, completion: WeatherDataCompletion) {
-        // try? - returns an optional that can be unwrapped if successful or catches the error by returning nil; however the error is discarded
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as?  [String: AnyObject] else {
             completion(nil, .invalidResponse)
             return
