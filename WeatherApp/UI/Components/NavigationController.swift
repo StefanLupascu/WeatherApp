@@ -112,10 +112,10 @@ extension NavigationController: SideMenuViewDelegate {
         self.present(vc, animated: true)
     }
     
-    func goToVacationPlanning() {
-        let viewModel = VacationsViewModel()
-        let vacationViewController = VacationsViewController(viewModel: viewModel)
-        let vc = UINavigationController(rootViewController: vacationViewController)
+    func goToPredictions() {
+        let viewModel = LocationsViewModel()
+        let predictionsViewController = PredictionsViewController(viewModel: viewModel)
+        let vc = UINavigationController(rootViewController: predictionsViewController)
         dismissSideMenu()
         self.present(vc, animated: true)
     }

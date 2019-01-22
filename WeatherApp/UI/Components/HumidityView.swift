@@ -118,7 +118,7 @@ final class HumidityView: UICollectionViewCell {
         layer.addSublayer(loadingCircle)
         
         humidityLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(75)
+            $0.top.equalToSuperview().offset(Padding.f75)
             $0.centerX.equalToSuperview()
         }
         

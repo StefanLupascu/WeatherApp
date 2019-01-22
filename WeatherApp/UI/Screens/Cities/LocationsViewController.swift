@@ -14,7 +14,6 @@ final class LocationsViewController: NavigationController {
     // MARK: Properties
     
     private var viewModel: LocationsViewModel
-//    private var viewModel: CityViewModel
     private let cellId = "cityCellId"
     
     private let tableView = UITableView()
@@ -23,12 +22,6 @@ final class LocationsViewController: NavigationController {
     private let activityIndicator = UIActivityIndicatorView()
     
     // MARK: - Init
-    
-//    init(viewModel: CityViewModel) {
-//        self.viewModel = viewModel
-//
-//        super.init(nibName: nil, bundle: nil)
-//    }
     
     init(viewModel: LocationsViewModel) {
         self.viewModel = viewModel
@@ -102,10 +95,6 @@ final class LocationsViewController: NavigationController {
     }
     
     private func presentDetails(for city: City) {
-//        guard Reachability.isConnectedToNetwork() else {
-//            presentAlert(message: "No internet connection!")
-//            return
-//        }
         showActivityIndicator()
         
         dataManager.weatherDetailsFor(latitude: city.latitude, longitude: city.longitude) { [weak self](details, error) in
@@ -113,8 +102,6 @@ final class LocationsViewController: NavigationController {
                 return
             }
             let updatedCity = strongSelf.update(city: city, with: details)
-//            let detailsViewController = DetailsViewController(city: updatedCity)
-//            detailsViewController.delegate = self
             let detailsViewController = InformationViewController(city: updatedCity)
             detailsViewController.delegate = self
             strongSelf.navigationController?.pushViewController(detailsViewController, animated: true)

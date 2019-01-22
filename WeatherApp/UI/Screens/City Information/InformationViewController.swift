@@ -14,7 +14,6 @@ final class InformationViewController: UIViewController {
     
     private let temperatureCellId = "temperatureCellId"
     private let humidityCellId = "humidityCellId"
-    private let pressureCellId = "pressureCellId"
     private let summaryCellId = "summaryCellId"
     private let notesCellId = "notesCellId"
     private let city: City
@@ -85,7 +84,6 @@ final class InformationViewController: UIViewController {
     private func setupCollectionView() {
         collectionView.register(TemperatureView.self, forCellWithReuseIdentifier: temperatureCellId)
         collectionView.register(HumidityView.self, forCellWithReuseIdentifier: humidityCellId)
-        collectionView.register(PressureView.self, forCellWithReuseIdentifier: pressureCellId)
         collectionView.register(NotesView.self, forCellWithReuseIdentifier: notesCellId)
         collectionView.register(SummaryView.self, forCellWithReuseIdentifier: summaryCellId)
         collectionView.dataSource = self
@@ -147,7 +145,7 @@ final class InformationViewController: UIViewController {
 
 extension InformationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -172,24 +170,18 @@ extension InformationViewController: UICollectionViewDataSource {
             return cell
             
         case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: pressureCellId, for: indexPath) as! PressureView
-            guard let pressure = city.details?.pressure else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: summaryCellId, for: indexPath) as! SummaryView
+            guard let pressure = city.details?.pressure,
+                    let summary = city.details?.summary else {
                 return UICollectionViewCell()
             }
+
             cell.pressure = pressure
+            cell.summary = summary
             
             return cell
             
         case 3:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: summaryCellId, for: indexPath) as! SummaryView
-            guard let summary = city.details?.summary else {
-                return UICollectionViewCell()
-            }
-            cell.summary = summary
-            
-            return cell
-        
-        case 4:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: notesCellId, for: indexPath) as! NotesView
             cell.notesTextView.text = city.note
             cell.notesTextView.delegate = self

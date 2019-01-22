@@ -12,7 +12,7 @@ import SnapKit
 protocol SideMenuViewDelegate {
     func seeTutorial()
     func goToCities()
-    func goToVacationPlanning()
+    func goToPredictions()
     func logout()
 }
 
@@ -51,8 +51,8 @@ final class SideMenuView: UIView {
         delegate?.goToCities()
     }
     
-    @objc private func goToVacationPlanning() {
-        delegate?.goToVacationPlanning()
+    @objc private func goToPredictions() {
+        delegate?.goToPredictions()
     }
     
     @objc private func logout() {
@@ -78,8 +78,8 @@ final class SideMenuView: UIView {
         
         vacationButton.layer.cornerRadius = 10
         vacationButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        vacationButton.setTitle("Vacation", for: .normal)
-        vacationButton.addTarget(self, action: #selector(goToVacationPlanning), for: .touchUpInside)
+        vacationButton.setTitle("Predictions", for: .normal)
+        vacationButton.addTarget(self, action: #selector(goToPredictions), for: .touchUpInside)
         
         logoutButton.layer.cornerRadius = 10
         logoutButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)

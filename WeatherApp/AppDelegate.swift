@@ -29,13 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(true, forKey: "demo")
         }
         else {
-            window?.rootViewController = LoginViewController()
-//            let viewModel = CityViewModel()
-//            let viewModel = LocationsViewModel()
-//            window?.rootViewController = UINavigationController(rootViewController: LocationsViewController(viewModel: viewModel))
-//            window?.rootViewController = UINavigationController(rootViewController: VacationViewController())
+            guard let _ = Auth.auth().currentUser else {
+                window?.rootViewController = LoginViewController()
+                return false
+            }
             
-//            window?.rootViewController = UINavigationController(rootViewController: LocationsViewController(viewModel: viewModel))
+            let viewModel = LocationsViewModel()
+            let locationsViewController = LocationsViewController(viewModel: viewModel)
+            window?.rootViewController = UINavigationController(rootViewController: locationsViewController)
         }
         
         return true
