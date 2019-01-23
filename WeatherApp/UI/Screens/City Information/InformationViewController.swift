@@ -79,6 +79,8 @@ final class InformationViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 22)
         
         navigationItem.titleView = label
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back")
     }
     
     private func setupCollectionView() {
@@ -178,6 +180,7 @@ extension InformationViewController: UICollectionViewDataSource {
 
             cell.pressure = pressure
             cell.summary = summary
+            cell.delegate = self
             
             return cell
             
@@ -206,5 +209,19 @@ extension InformationViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         city.note = textView.text
         delegate?.didUpdateNote(city: city)
+    }
+}
+
+// MARK: - PointsOfInterestViewDelegate
+
+extension InformationViewController: PointsOfInterestViewDelegate {
+    func showPointsOfInterest() {
+        guard let cityName = city.name else {
+            return
+        }
+        
+        let viewModel = VenuesViewModel(cityName: cityName)
+        let venuesViewController = VenuesViewController(viewModel: viewModel)
+        navigationController?.pushViewController(venuesViewController, animated: true)
     }
 }

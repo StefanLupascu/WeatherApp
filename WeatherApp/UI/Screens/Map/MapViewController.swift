@@ -54,7 +54,7 @@ class MapViewController: UIViewController {
         let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done(sender:)))
         button.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont(name: "Helvetica Neue",size: Padding.f20)!,
-            NSAttributedString.Key.foregroundColor: UIColor.blue,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
             ], for: .normal)
         navigationItem.rightBarButtonItem = button
     }
@@ -124,19 +124,16 @@ class MapViewController: UIViewController {
     // MARK: - Setting up actions
     
     @objc func done(sender: UIButton) {
-//        showActivityIndicator()
-        
         guard let cityAnnotation = mapView.map.annotations.first else {
             return
         }
         
-        guard Reachability.isConnectedToNetwork() else {
-            //            showAlert(message: "Cannot get city location if not connected to internet!")
-            let city = City(name: "Custom name \(cityAnnotation.coordinate.latitude)", latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude, note: "")
-            delegate?.didRecieveNewWeatherData(city: city)
-            self.navigationController?.popViewController(animated: true)
-            return
-        }
+//        guard Reachability.isConnectedToNetwork() else {
+//            let city = City(name: "Custom name \(cityAnnotation.coordinate.latitude)", latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude, note: "")
+//            delegate?.didRecieveNewWeatherData(city: city)
+//            self.navigationController?.popViewController(animated: true)
+//            return
+//        }
         
         showActivityIndicator()
 

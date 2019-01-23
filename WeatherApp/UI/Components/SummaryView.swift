@@ -9,8 +9,14 @@
 import UIKit
 import SnapKit
 
+protocol PointsOfInterestViewDelegate: class {
+    func showPointsOfInterest()
+}
+
 final class SummaryView: UICollectionViewCell {
     // MARK: - Properties
+    
+    weak var delegate: PointsOfInterestViewDelegate?
     
     var pressure: Double = 0 {
         didSet {
@@ -129,8 +135,7 @@ final class SummaryView: UICollectionViewCell {
         }
     }
     
-    // TODO: - WIP
     @objc private func buttonTapped() {
-        print("points of interest")
+        delegate?.showPointsOfInterest()
     }
 }

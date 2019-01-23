@@ -11,17 +11,15 @@
 		A107A7672150D7DA0095D588 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A107A7662150D7DA0095D588 /* SideMenuView.swift */; };
 		A10901A7215A873600002903 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10901A6215A873600002903 /* LoginViewController.swift */; };
 		A11A4FF7216771FB00F20E9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11A4FF6216771FB00F20E9C /* GoogleService-Info.plist */; };
-		A11DDA8721C1732D00FEC9F5 /* VacationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DDA8621C1732D00FEC9F5 /* VacationsViewController.swift */; };
 		A11DDA8921C1779700FEC9F5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DDA8821C1779700FEC9F5 /* NavigationController.swift */; };
-		A11DDA8B21C7D51B00FEC9F5 /* VacationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DDA8A21C7D51B00FEC9F5 /* VacationsViewModel.swift */; };
-		A11DDA8D21C7D56100FEC9F5 /* Vacation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DDA8C21C7D56100FEC9F5 /* Vacation.swift */; };
-		A11DDA9021C7D7E800FEC9F5 /* VacationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11DDA8F21C7D7E800FEC9F5 /* VacationsCollectionViewCell.swift */; };
 		A1264C6E20FEA93F00EDF417 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1264C6C20FEA93F00EDF417 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A12D147421F4EB550002AA52 /* PlanificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D147321F4EB550002AA52 /* PlanificationViewController.swift */; };
-		A12D147621F4F2F70002AA52 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D147521F4F2F70002AA52 /* Destination.swift */; };
 		A12D147921F70E7A0002AA52 /* PredictionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D147821F70E7A0002AA52 /* PredictionsViewController.swift */; };
 		A12D147C21F70FD90002AA52 /* PredictionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D147B21F70FD90002AA52 /* PredictionsCollectionViewCell.swift */; };
 		A12D147F21F7138D0002AA52 /* PredictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D147E21F7138D0002AA52 /* PredictionViewController.swift */; };
+		A12D148321F85C070002AA52 /* VenueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D148221F85C070002AA52 /* VenueManager.swift */; };
+		A12D148621F85DFB0002AA52 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D148521F85DFB0002AA52 /* Venue.swift */; };
+		A12D148821F860FC0002AA52 /* VenuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D148721F860FC0002AA52 /* VenuesViewModel.swift */; };
+		A12D148A21F864100002AA52 /* VenuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D148921F864100002AA52 /* VenuesViewController.swift */; };
 		A14225EE21691ADD007578C7 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14225ED21691ADD007578C7 /* InformationViewController.swift */; };
 		A1566E3B21522BD9001FB76C /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1566E3A21522BD9001FB76C /* SnapKit.framework */; };
 		A1566E3E21523ABE001FB76C /* Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1566E3D21523ABE001FB76C /* Height.swift */; };
@@ -94,17 +92,15 @@
 		A107A7662150D7DA0095D588 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		A10901A6215A873600002903 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A11A4FF6216771FB00F20E9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A11DDA8621C1732D00FEC9F5 /* VacationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationsViewController.swift; sourceTree = "<group>"; };
 		A11DDA8821C1779700FEC9F5 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		A11DDA8A21C7D51B00FEC9F5 /* VacationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationsViewModel.swift; sourceTree = "<group>"; };
-		A11DDA8C21C7D56100FEC9F5 /* Vacation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vacation.swift; sourceTree = "<group>"; };
-		A11DDA8F21C7D7E800FEC9F5 /* VacationsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A1264C6C20FEA93F00EDF417 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
-		A12D147321F4EB550002AA52 /* PlanificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanificationViewController.swift; sourceTree = "<group>"; };
-		A12D147521F4F2F70002AA52 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		A12D147821F70E7A0002AA52 /* PredictionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsViewController.swift; sourceTree = "<group>"; };
 		A12D147B21F70FD90002AA52 /* PredictionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A12D147E21F7138D0002AA52 /* PredictionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionViewController.swift; sourceTree = "<group>"; };
+		A12D148221F85C070002AA52 /* VenueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueManager.swift; sourceTree = "<group>"; };
+		A12D148521F85DFB0002AA52 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		A12D148721F860FC0002AA52 /* VenuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesViewModel.swift; sourceTree = "<group>"; };
+		A12D148921F864100002AA52 /* VenuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesViewController.swift; sourceTree = "<group>"; };
 		A14225ED21691ADD007578C7 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		A1566E3A21522BD9001FB76C /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		A1566E3D21523ABE001FB76C /* Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Height.swift; sourceTree = "<group>"; };
@@ -182,33 +178,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		A11DDA8521C1731100FEC9F5 /* Vacations */ = {
-			isa = PBXGroup;
-			children = (
-				A12D147221F4EB360002AA52 /* Vacation Planification */,
-				A11DDA8E21C7D7D400FEC9F5 /* Cell */,
-				A11DDA8621C1732D00FEC9F5 /* VacationsViewController.swift */,
-				A11DDA8A21C7D51B00FEC9F5 /* VacationsViewModel.swift */,
-			);
-			path = Vacations;
-			sourceTree = "<group>";
-		};
-		A11DDA8E21C7D7D400FEC9F5 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				A11DDA8F21C7D7E800FEC9F5 /* VacationsCollectionViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		A12D147221F4EB360002AA52 /* Vacation Planification */ = {
-			isa = PBXGroup;
-			children = (
-				A12D147321F4EB550002AA52 /* PlanificationViewController.swift */,
-			);
-			path = "Vacation Planification";
-			sourceTree = "<group>";
-		};
 		A12D147721F70E380002AA52 /* Predictions */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,10 +199,17 @@
 		A12D147D21F713090002AA52 /* Trash */ = {
 			isa = PBXGroup;
 			children = (
-				A11DDA8521C1731100FEC9F5 /* Vacations */,
 				A1F72AA121A9B9C200B06E06 /* API */,
 			);
 			path = Trash;
+			sourceTree = "<group>";
+		};
+		A12D148421F85DE00002AA52 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A12D148521F85DFB0002AA52 /* Venue.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A1566E3F21523C59001FB76C /* Resources */ = {
@@ -292,6 +268,8 @@
 			isa = PBXGroup;
 			children = (
 				F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */,
+				A12D148721F860FC0002AA52 /* VenuesViewModel.swift */,
+				A12D148921F864100002AA52 /* VenuesViewController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -336,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				F8A30E8E20E2250C002203D4 /* DataManager.swift */,
+				A12D148221F85C070002AA52 /* VenueManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -368,8 +347,6 @@
 				F8C31D5D20EA1EBF008F3125 /* City+CoreDataProperties.swift */,
 				F8C31D6220EA484C008F3125 /* Detail+CoreDataClass.swift */,
 				F8C31D6320EA484C008F3125 /* Detail+CoreDataProperties.swift */,
-				A11DDA8C21C7D56100FEC9F5 /* Vacation.swift */,
-				A12D147521F4F2F70002AA52 /* Destination.swift */,
 			);
 			path = "CodeData Model";
 			sourceTree = "<group>";
@@ -413,6 +390,7 @@
 		F8C7784320DCE81300DBC495 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				A12D148421F85DE00002AA52 /* Model */,
 				F8C7784420DCE81300DBC495 /* AppDelegate.swift */,
 				F8C31D6020EA3967008F3125 /* CodeData Model */,
 				F8C7785E20DD14FA00DBC495 /* Controller */,
@@ -633,7 +611,6 @@
 				A1566E3E21523ABE001FB76C /* Height.swift in Sources */,
 				A12D147C21F70FD90002AA52 /* PredictionsCollectionViewCell.swift in Sources */,
 				F8C31D6420EA484C008F3125 /* Detail+CoreDataClass.swift in Sources */,
-				A11DDA9021C7D7E800FEC9F5 /* VacationsCollectionViewCell.swift in Sources */,
 				F8C31D5E20EA1EBF008F3125 /* City+CoreDataClass.swift in Sources */,
 				A12D147F21F7138D0002AA52 /* PredictionViewController.swift in Sources */,
 				F8FFE47B20E0D1E0006D9E1A /* MapViewController.swift in Sources */,
@@ -654,25 +631,24 @@
 				F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */,
 				A1F72A9821A8C06200B06E06 /* UIViewController+Extensions.swift in Sources */,
 				A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */,
+				A12D148321F85C070002AA52 /* VenueManager.swift in Sources */,
 				F8C31D5F20EA1EBF008F3125 /* City+CoreDataProperties.swift in Sources */,
 				A107A7672150D7DA0095D588 /* SideMenuView.swift in Sources */,
 				F8C31D5920EA08FD008F3125 /* Padding.swift in Sources */,
-				A12D147421F4EB550002AA52 /* PlanificationViewController.swift in Sources */,
 				A1D117D321906B3100415121 /* SummaryView.swift in Sources */,
 				F8C31D5B20EA1765008F3125 /* PersistenceService.swift in Sources */,
-				A11DDA8D21C7D56100FEC9F5 /* Vacation.swift in Sources */,
-				A12D147621F4F2F70002AA52 /* Destination.swift in Sources */,
-				A11DDA8B21C7D51B00FEC9F5 /* VacationsViewModel.swift in Sources */,
+				A12D148821F860FC0002AA52 /* VenuesViewModel.swift in Sources */,
 				F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */,
+				A12D148621F85DFB0002AA52 /* Venue.swift in Sources */,
 				A1F661812177702C00151E14 /* HumidityView.swift in Sources */,
 				F8AFA78420F34A020050293E /* DetailsDemoViewController.swift in Sources */,
 				A14225EE21691ADD007578C7 /* InformationViewController.swift in Sources */,
 				A1D117D121905F9B00415121 /* NotesView.swift in Sources */,
 				F8C7786720DD281C00DBC495 /* CityCell.swift in Sources */,
-				A11DDA8721C1732D00FEC9F5 /* VacationsViewController.swift in Sources */,
 				F8AFA78020F348B80050293E /* DemoPageViewController.swift in Sources */,
 				F8AFA78B20F35F510050293E /* DetailsDemoView.swift in Sources */,
 				F8AFA78620F34A0F0050293E /* MapDemoViewController.swift in Sources */,
+				A12D148A21F864100002AA52 /* VenuesViewController.swift in Sources */,
 				F8C7785A20DCEEB000DBC495 /* LocationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -867,7 +843,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4MY25V2WDX;
+				DEVELOPMENT_TEAM = BSU69XA3A9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -878,7 +854,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.p3.WeatherApp.stefann;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WeatherApp.stefan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -893,7 +869,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4MY25V2WDX;
+				DEVELOPMENT_TEAM = BSU69XA3A9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -904,7 +880,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.p3.WeatherApp.stefann;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WeatherApp.stefan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
