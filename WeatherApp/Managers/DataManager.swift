@@ -18,6 +18,7 @@ struct DataManager {
     // MARK: - Properties
     
     typealias WeatherDataCompletion = (Detail?, DataManagerError?) -> Void
+    typealias TemperatureDataCompletion = (Data?, DataManagerError?) -> Void
     
     private var baseURL: String {
         return "https://api.forecast.io/forecast/b575743a969d064f18d37a4249f3fd4f/"
@@ -37,7 +38,40 @@ struct DataManager {
         }.resume()
     }
     
+    func getTemperature(for city: City, date: TimeInterval, completion: @escaping TemperatureDataCompletion) {
+        let timestamp = Int(date)
+        
+        let url = URL(string: "\(baseURL)\(city.latitude),\(city.longitude),\(timestamp)")!
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            self.didFetchTemperature(data: data, response: response, error: error) { (data, error) in
+                DispatchQueue.main.async {
+                    completion(data, error)
+                }
+            }
+        }.resume()
+    }
+    
     // MARK: - Private Functions
+    
+    private func didFetchTemperature(data: Data?, response: URLResponse?, error: Error?, completion: @escaping TemperatureDataCompletion) {
+        guard error == nil else {
+            completion(nil, .failedRequest)
+            return
+        }
+        
+        guard let data = data, let response = response as? HTTPURLResponse else {
+            completion(nil, .unknown)
+            return
+        }
+        
+        guard response.statusCode == 200 else {
+            completion(nil, .failedRequest)
+            return
+        }
+        
+        completion(data, nil)
+    }
     
     private func didFetchWeatherData(data: Data?, response: URLResponse?, error: Error?, completion: WeatherDataCompletion) {
         guard error == nil else {
@@ -83,6 +117,7 @@ struct DataManager {
         details.humidity = humidity
         details.pressure = pressure
         details.summary = summary
+        
         completion(details, nil)
     }
 }

@@ -12,6 +12,13 @@ import SnapKit
 final class PredictionViewController: UIViewController {
     // MARK: - Properties
     
+    private var temperatures = [Int]() {
+        didSet {
+            if temperatures.count == 5 {
+                setPrediction()
+            }
+        }
+    }
     private var temperature = 0 {
         didSet {
             forecastLabel.text = "Temperature:\n \(String(describing: temperature)) ºC"
@@ -19,11 +26,13 @@ final class PredictionViewController: UIViewController {
         }
     }
     
+    private let manager = DataManager()
     private let city: City
     private let titleLabel = UILabel()
     private let picker = UIDatePicker()
     private let predictButton = UIButton()
     private let forecastLabel = UILabel()
+    private let activityIndicator = UIActivityIndicatorView()
     
     // MARK: - Base class overrides
     
@@ -46,6 +55,18 @@ final class PredictionViewController: UIViewController {
     }
     
     // MARK: - Private Functions
+    
+    private func setPrediction() {
+        var temp = 0
+        
+        temperatures.forEach {
+            temp = temp + $0
+        }
+        
+        activityIndicator.stopAnimating()
+        temperature = temp / 5
+        temperatures.removeAll()
+    }
     
     private func setupUI() {
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
@@ -127,8 +148,64 @@ final class PredictionViewController: UIViewController {
         }
     }
     
+    private func showActivityIndicator() {
+        activityIndicator.frame = view.frame
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
+        
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    
     @objc private func predictButtonTapped() {
-        temperature = 20
-        print("forecast")
+        showActivityIndicator()
+        
+        let date = NSDate()
+        let calendar = NSCalendar.current
+        let currentYear = calendar.component(.year, from: date as Date)
+        let year = calendar.component(.year, from: picker.date)
+        let month = calendar.component(.month, from: picker.date)
+        let day = calendar.component(.day, from: picker.date)
+        
+        var years = [currentYear - 4, currentYear - 3, currentYear - 2, currentYear - 1]
+        
+        if year > currentYear {
+            years.append(currentYear)
+        } else {
+            years.append(currentYear - 5)
+        }
+        
+        years.forEach { year in
+            let date = calendar.date(from: DateComponents(year: year, month: month, day: day))
+            guard let timestamp = date?.timeIntervalSince1970 else {
+                return
+            }
+            
+            manager.getTemperature(for: city, date: timestamp) { (data, error) in
+                guard let data = data else {
+                    return
+                }
+                
+                self.format(data: data)
+            }
+        }
+        
+        print(currentYear)
+    }
+    
+    private func format(data: Data) {
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as?  [String: AnyObject] else {
+            return
+        }
+        
+        guard let currently = json?["currently"] as? [String: AnyObject],
+                let temperature = currently["temperature"] as? Double else {
+            return
+        }
+        
+        print(temperature)
+        let temperatureInCelsius = (temperature - 32) * 5 / 9
+        temperatures.append(Int(temperatureInCelsius))
     }
 }
