@@ -72,7 +72,7 @@ final class VenuesViewController: UIViewController {
         
         if !isMapSet {
             isMapSet = true
-            mapView.setRegion(MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000), animated: true)
+            mapView.setRegion(MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 4000, longitudinalMeters: 4000), animated: true)
             return
         }
         

@@ -153,7 +153,7 @@ final class LoginViewController: UIViewController {
     
     @objc private func keyboardWillAppear(_ notification: NSNotification) {
         userTextfield.snp.updateConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f220 - keyboardHeight / 2 )
+            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f180 - keyboardHeight / 2 )
         }
         
         UIView.animate(withDuration: 0.5) {
