@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-//import FirebaseAuth
 
 final class LocationsViewController: NavigationController {
     // MARK: Properties
@@ -40,6 +39,7 @@ final class LocationsViewController: NavigationController {
         super.viewDidLoad()
         
         setupNavigationBar()
+        showActivityIndicator()
         
         mapViewController.delegate = self
         viewModel.delegate = self
@@ -160,10 +160,6 @@ extension LocationsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { _, _ in
-            guard Reachability.isConnectedToNetwork() else {
-                self.presentAlert(message: "Cannot delete while not connected to internet!")
-                return
-            }
             self.delete(deleteIndex: indexPath)
         }
         
@@ -204,18 +200,6 @@ extension LocationsViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - CitiesDelegate
-
-extension LocationsViewController: CitiesDelegate {
-    func cityListChanged() {
-        tableView.reloadData()
-    }
-    
-    func didNotAdd() {
-        presentAlert(message: "Cannot add the same city twice!")
-    }
-}
-
 // MARK: - LocationsDelegate
 
 extension LocationsViewController: LocationsDelegate {
@@ -225,5 +209,10 @@ extension LocationsViewController: LocationsDelegate {
         } else {
             presentAlert(message: "Cannot add the same city twice!")
         }
+    }
+    
+    func didFetchCities() {
+        tableView.reloadData()
+        activityIndicator.stopAnimating()
     }
 }

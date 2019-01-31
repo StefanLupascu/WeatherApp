@@ -11,16 +11,16 @@ import Foundation
 import CoreData
 
 
-extension Detail {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Detail> {
-        return NSFetchRequest<Detail>(entityName: "Detail")
-    }
-
-    @NSManaged public var temperature: Double
-    @NSManaged public var humidity: Double
-    @NSManaged public var pressure: Double
-    @NSManaged public var summary: String?
-    @NSManaged public var city: City?
-
-}
+//extension Detail {
+//
+//    @nonobjc public class func fetchRequest() -> NSFetchRequest<Detail> {
+//        return NSFetchRequest<Detail>(entityName: "Detail")
+//    }
+//
+//    @NSManaged public var temperature: Double
+//    @NSManaged public var humidity: Double
+//    @NSManaged public var pressure: Double
+//    @NSManaged public var summary: String?
+//    @NSManaged public var city: City?
+//
+//}

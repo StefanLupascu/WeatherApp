@@ -32,6 +32,8 @@ final class PredictionsViewController: NavigationController {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
+        
+        viewModel.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -115,5 +117,17 @@ extension PredictionsViewController: UICollectionViewDataSource {
 extension PredictionsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.bounds.width - Padding.f40, height: Height.h100)
+    }
+}
+
+// MARK: - LocationsDelegate
+
+extension PredictionsViewController: LocationsDelegate {
+    func didAddCity(ok: Bool) {
+        print("nothing")
+    }
+    
+    func didFetchCities() {
+        collectionView.reloadData()
     }
 }

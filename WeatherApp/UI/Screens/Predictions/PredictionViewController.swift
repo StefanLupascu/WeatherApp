@@ -158,15 +158,30 @@ final class PredictionViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
-    @objc private func predictButtonTapped() {
-        showActivityIndicator()
+    private func presentAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
         
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func predictButtonTapped() {
         let date = NSDate()
         let calendar = NSCalendar.current
         let currentYear = calendar.component(.year, from: date as Date)
         let year = calendar.component(.year, from: picker.date)
         let month = calendar.component(.month, from: picker.date)
         let day = calendar.component(.day, from: picker.date)
+        let pickedDate = calendar.date(from: DateComponents(year: year, month: month, day: day))
+        
+        guard pickedDate! > date as Date else {
+            presentAlert(message: "You must choose a future date!")
+            return
+        }
+        
+        showActivityIndicator()
         
         var years = [currentYear - 4, currentYear - 3, currentYear - 2, currentYear - 1]
         
@@ -182,7 +197,7 @@ final class PredictionViewController: UIViewController {
                 return
             }
             
-            manager.getTemperature(for: city, date: timestamp) { (data, error) in
+            manager.getTemperature(for: city, timestamp: timestamp) { (data, error) in
                 guard let data = data else {
                     return
                 }
@@ -190,8 +205,6 @@ final class PredictionViewController: UIViewController {
                 self.format(data: data)
             }
         }
-        
-        print(currentYear)
     }
     
     private func format(data: Data) {
@@ -204,7 +217,6 @@ final class PredictionViewController: UIViewController {
             return
         }
         
-        print(temperature)
         let temperatureInCelsius = (temperature - 32) * 5 / 9
         temperatures.append(Int(temperatureInCelsius))
     }

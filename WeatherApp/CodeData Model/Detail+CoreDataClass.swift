@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Detail)
-public class Detail: NSManagedObject {
-
-}
+//@objc(Detail)
+//public class Detail: NSManagedObject {
+//
+//}

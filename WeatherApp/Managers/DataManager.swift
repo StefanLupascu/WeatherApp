@@ -38,10 +38,10 @@ struct DataManager {
         }.resume()
     }
     
-    func getTemperature(for city: City, date: TimeInterval, completion: @escaping TemperatureDataCompletion) {
-        let timestamp = Int(date)
+    func getTemperature(for city: City, timestamp: TimeInterval, completion: @escaping TemperatureDataCompletion) {
+        let date = Int(timestamp)
         
-        let url = URL(string: "\(baseURL)\(city.latitude),\(city.longitude),\(timestamp)")!
+        let url = URL(string: "\(baseURL)\(city.latitude),\(city.longitude),\(date)")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             self.didFetchTemperature(data: data, response: response, error: error) { (data, error) in
@@ -112,11 +112,13 @@ struct DataManager {
                 return
         }
         
-        let details = Detail(context: PersistenceService.context)
-        details.temperature = temperature
-        details.humidity = humidity
-        details.pressure = pressure
-        details.summary = summary
+//        let details = Detail(context: PersistenceService.context)
+//        details.temperature = temperature
+//        details.humidity = humidity
+//        details.pressure = pressure
+//        details.summary = summary
+        
+        let details = Detail(temperature: temperature, humidity: humidity, pressure: pressure, summary: summary)
         
         completion(details, nil)
     }

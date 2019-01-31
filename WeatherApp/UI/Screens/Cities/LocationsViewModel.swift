@@ -7,9 +7,11 @@
 //
 
 import CoreData
+import Firebase
 
 protocol LocationsDelegate: class {
     func didAddCity(ok: Bool)
+    func didFetchCities()
 }
 
 final class LocationsViewModel {
@@ -18,12 +20,22 @@ final class LocationsViewModel {
     var cities = [City]()
     var delegate: LocationsDelegate?
     
+    private var uid: String {
+        guard let user = Auth.auth().currentUser else {
+            fatalError("No user logged in!")
+        }
+        
+        return user.uid
+    }
     private let cityManager = CityManager()
+    private var ref: DatabaseReference {
+        return Database.database().reference()
+    }
     
     // MARK: - Init
     
     init() {
-        cities = getCities()
+        getLocations()
     }
     
     // MARK: - Functions
@@ -35,15 +47,31 @@ final class LocationsViewModel {
             self.delegate?.didAddCity(ok: false)
             return
         }
+        
         cities.append(city)
-        PersistenceService.saveContext()
+        addToDatabase(city)
+        
         self.delegate?.didAddCity(ok: true)
     }
     
+    private func addToDatabase(_ city: City) {
+        var postData = [String: AnyObject]()
+        
+        postData["name"] = city.name as AnyObject
+        postData["latitude"] = city.latitude as AnyObject
+        postData["longitude"] = city.longitude as AnyObject
+        postData["note"] = city.note as AnyObject
+        
+        ref.child("\(uid)/cities").childByAutoId().setValue(postData)
+    }
+    
     func removeCity(at index: Int) {
-        PersistenceService.context.delete(cities[index])
+        let city = cities[index]
+        guard let id = city.id else {
+            return
+        }
+        ref.child("\(uid)/cities/\(String(describing: id))").removeValue()
         cities.remove(at: index)
-        PersistenceService.saveContext()
     }
     
     func updateCity(city: City) {
@@ -52,22 +80,36 @@ final class LocationsViewModel {
                 cities[index].note = city.note
             }
         }
-        PersistenceService.saveContext()
+        guard let id = city.id else {
+            return
+        }
+        ref.child("\(uid)/cities/\(String(describing: id))/note").setValue(city.note)
     }
     
     // MARK: - Private functions
     
-    // Getting the city data from the local database
-    private func getCities() -> [City] {
-        let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
-        do {
-            let cities = try PersistenceService.context.fetch(fetchRequest)
-            return cities
-        } catch {
-            print("Error \(error)")
+    private func getLocations() {
+        ref.child("\(uid)/cities").observeSingleEvent(of: .value) { (snapshot) in
+            guard let cityList = snapshot.value as? [String: AnyObject] else {
+                return
+            }
+            
+            cityList.forEach { cityInfo in
+                let id = cityInfo.key
+                let name = cityInfo.value["name"] as! String
+                let latitude = cityInfo.value["latitude"] as! Double
+                let longitude = cityInfo.value["longitude"] as! Double
+                let note = cityInfo.value["note"] as! String
+                
+                let city = City(id: id, name: name, latitude: latitude, longitude: longitude, note: note)
+                
+                self.cities.append(city)
+            }
+            
+            DispatchQueue.main.async {
+                self.delegate?.didFetchCities()
+            }
         }
-        
-        return []
     }
     
     private func findCity(city: City) -> Bool {

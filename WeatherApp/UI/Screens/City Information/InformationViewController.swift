@@ -16,7 +16,7 @@ final class InformationViewController: UIViewController {
     private let humidityCellId = "humidityCellId"
     private let summaryCellId = "summaryCellId"
     private let notesCellId = "notesCellId"
-    private let city: City
+    private var city: City
     private let containerView = UIView()
     private let titleLabel = UILabel()
     private let temperatureView = TemperatureView()
@@ -215,12 +215,8 @@ extension InformationViewController: UITextViewDelegate {
 // MARK: - PointsOfInterestViewDelegate
 
 extension InformationViewController: PointsOfInterestViewDelegate {
-    func showPointsOfInterest() {
-        guard let cityName = city.name else {
-            return
-        }
-        
-        let viewModel = VenuesViewModel(cityName: cityName)
+    func showPointsOfInterest() {        
+        let viewModel = VenuesViewModel(cityName: city.name)
         let venuesViewController = VenuesViewController(viewModel: viewModel)
         navigationController?.pushViewController(venuesViewController, animated: true)
     }

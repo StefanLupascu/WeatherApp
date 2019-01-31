@@ -52,14 +52,10 @@ final class CityManager {
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         
-        guard let name = city.name,
-                let notes = city.note else {
-                return
-        }
         let latitude = city.latitude
         let longitude = city.longitude
         
-        let postParameters = "name=\(name)&latitude=\(latitude)&longitude=\(longitude)&notes=\(notes)"
+        let postParameters = "name=\(city.name)&latitude=\(latitude)&longitude=\(longitude)&notes=\(city.note)"
         request.httpBody = postParameters.data(using: .utf8)
         
         processRequest(request: request)
@@ -71,12 +67,7 @@ final class CityManager {
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         
-        guard let name = city.name,
-                let note = city.note else {
-            return
-        }
-        
-        let updateParameters = "name=\(name)&notes=\(note)"
+        let updateParameters = "name=\(city.name)&notes=\(city.note)"
         request.httpBody = updateParameters.data(using: .utf8)
         
         processRequest(request: request)
@@ -88,12 +79,7 @@ final class CityManager {
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         
-        
-        guard let name = city.name else {
-            return
-        }
-        
-        let deleteParameters = "name=\(name)"
+        let deleteParameters = "name=\(city.name)"
         request.httpBody = deleteParameters.data(using: .utf8)
         
         processRequest(request: request)
@@ -140,8 +126,6 @@ final class CityManager {
                 return
             }
             
-            // May be one of the only try blocks in the app
-            // Same as the one from DataManager
             guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
                 print("invalid response")
                 return

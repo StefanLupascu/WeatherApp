@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>490346056161-upbdmp4195ckpp0tlti44erm6gt5jjte.apps.googleusercontent.com</string>
+	<string>43619810984-jptk0us0cvnt0r3bpcb3vvnnicicjfcj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.490346056161-upbdmp4195ckpp0tlti44erm6gt5jjte</string>
+	<string>com.googleusercontent.apps.43619810984-jptk0us0cvnt0r3bpcb3vvnnicicjfcj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA1QnKtoF1HfgdmTr1RX08GdaWAMqaY5zI</string>
+	<string>AIzaSyDhya2moPYcTpXSf4cnH4FWcQkohk5wUkI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>490346056161</string>
+	<string>43619810984</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.p3.WeatherApp.stefanl</string>
+	<string>com.WeatherApp.stefan</string>
 	<key>PROJECT_ID</key>
-	<string>weatherapp-1538724681128</string>
+	<string>iosweather-a0650</string>
 	<key>STORAGE_BUCKET</key>
-	<string>weatherapp-1538724681128.appspot.com</string>
+	<string>iosweather-a0650.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:490346056161:ios:fcb41e29e39fcb01</string>
+	<string>1:43619810984:ios:0d4cdd21ab3666f1</string>
 	<key>DATABASE_URL</key>
-	<string>https://weatherapp-1538724681128.firebaseio.com</string>
+	<string>https://iosweather-a0650.firebaseio.com</string>
 </dict>
 </plist>

@@ -11,24 +11,26 @@ import Foundation
 import CoreData
 
 
-extension City {
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<City> {
-        return NSFetchRequest<City>(entityName: "City")
-    }
-
-    @NSManaged public var name: String?
-    @NSManaged public var latitude: Double
-    @NSManaged public var longitude: Double
-    @NSManaged public var note: String?
-    @NSManaged var details: Detail?
-    
-    convenience init(name: String, latitude: Double, longitude: Double, note: String) {
-        self.init(context: PersistenceService.context)
-        
-        self.name = name
-        self.latitude = latitude
-        self.longitude = longitude
-        self.note = note
-    }
-}
+//extension City {
+//
+//    @nonobjc public class func fetchRequest() -> NSFetchRequest<City> {
+//        return NSFetchRequest<City>(entityName: "City")
+//    }
+//
+//    @NSManaged public var id: String?
+//    @NSManaged public var name: String?
+//    @NSManaged public var latitude: Double
+//    @NSManaged public var longitude: Double
+//    @NSManaged public var note: String?
+//    @NSManaged var details: Detail?
+//    
+//    convenience init(id: String? = nil, name: String, latitude: Double, longitude: Double, note: String) {
+//        self.init(context: PersistenceService.context)
+//        
+//        self.id = id
+//        self.name = name
+//        self.latitude = latitude
+//        self.longitude = longitude
+//        self.note = note
+//    }
+//}
