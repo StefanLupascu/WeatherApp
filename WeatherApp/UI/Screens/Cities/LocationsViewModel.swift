@@ -89,6 +89,8 @@ final class LocationsViewModel {
     // MARK: - Private functions
     
     private func getLocations() {
+        cities = []
+        
         ref.child("\(uid)/cities").observeSingleEvent(of: .value) { (snapshot) in
             guard let cityList = snapshot.value as? [String: AnyObject] else {
                 return
