@@ -9,6 +9,8 @@
 import Foundation
 
 struct Venue {
+    // MARK: - Properties
+    
     let name: String
     let latitude: Double
     let longitude: Double
