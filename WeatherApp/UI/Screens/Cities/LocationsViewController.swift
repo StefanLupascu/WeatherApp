@@ -215,4 +215,8 @@ extension LocationsViewController: LocationsDelegate {
         tableView.reloadData()
         activityIndicator.stopAnimating()
     }
+    
+    func didNotGetCities() {
+        activityIndicator.stopAnimating()
+    }
 }

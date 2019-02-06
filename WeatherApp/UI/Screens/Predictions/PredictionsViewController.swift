@@ -130,4 +130,8 @@ extension PredictionsViewController: LocationsDelegate {
     func didFetchCities() {
         collectionView.reloadData()
     }
+    
+    func didNotGetCities() {
+        print("nothing")
+    }
 }

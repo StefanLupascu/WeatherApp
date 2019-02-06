@@ -12,6 +12,7 @@ import Firebase
 protocol LocationsDelegate: class {
     func didAddCity(ok: Bool)
     func didFetchCities()
+    func didNotGetCities()
 }
 
 final class LocationsViewModel {
@@ -97,6 +98,7 @@ final class LocationsViewModel {
         
         ref.child("\(uid)/cities").observeSingleEvent(of: .value) { (snapshot) in
             guard let cityList = snapshot.value as? [String: AnyObject] else {
+                self.delegate?.didNotGetCities()
                 return
             }
             

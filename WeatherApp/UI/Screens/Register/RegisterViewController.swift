@@ -62,7 +62,7 @@ final class RegisterViewController: UIViewController {
     }
     
     private func setupUserTextfield() {
-        userTextfield.placeholder = "Username"
+        userTextfield.placeholder = "yourname@gmail.com"
         userTextfield.backgroundColor = .white
         userTextfield.layer.borderColor = UIColor.black.cgColor
         userTextfield.textAlignment = .center
@@ -155,9 +155,33 @@ final class RegisterViewController: UIViewController {
     }
     
     @objc private func registerButtonTapped() {
-        print("register")
+        guard let username = userTextfield.text,
+                let password = passwordTextfield.text,
+                let name = nameTextfield.text else {
+                return
+        }
         
+        guard username != "",
+                password != "",
+                name != "" else {
+                presentAlert(message: "All fields must be completed!")
+                return
+        }
         
+        Auth.auth().createUser(withEmail: username, password: password) { (authResult, error) in
+            guard error == nil else {
+                self.presentAlert(message: "Register Error")
+                return
+            }
+            
+            guard let user = authResult?.user else {
+                return
+            }
+            let userId = user.uid
+            
+            Database.database().reference().child("\(userId)/name").setValue(name)
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     @objc private func cancelButtonTapped() {
