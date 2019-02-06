@@ -37,7 +37,7 @@ class LocationsDemoView: UIView {
     }
     
     private func setupLabel() {
-        infoLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+        infoLabel.font = UIFont.systemFont(ofSize: Padding.p20)
         infoLabel.backgroundColor = .clear
         infoLabel.textColor = .black
         infoLabel.numberOfLines = 0
@@ -49,14 +49,14 @@ class LocationsDemoView: UIView {
         addSubview(imageView)
 
         infoLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f50)
+            $0.top.equalToSuperview().offset(Padding.p50)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h100)
             $0.width.equalTo(Height.h300)
         }
         
         imageView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-Padding.f40)
+            $0.bottom.equalToSuperview().offset(-Padding.p40)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h400)
             $0.width.equalTo(Height.h220)

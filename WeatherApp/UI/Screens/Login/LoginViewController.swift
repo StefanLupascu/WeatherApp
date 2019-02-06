@@ -121,12 +121,12 @@ final class LoginViewController: UIViewController {
         view.addSubview(registerButton)
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.f20)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.p20)
             $0.centerX.equalToSuperview()
         }
         
         userTextfield.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f200)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.p200)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
             $0.leading.equalToSuperview().offset(50)
@@ -134,7 +134,7 @@ final class LoginViewController: UIViewController {
         }
         
         passwordTextfield.snp.makeConstraints {
-            $0.top.equalTo(userTextfield.snp.bottom).offset(Padding.f5)
+            $0.top.equalTo(userTextfield.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
             $0.leading.equalToSuperview().offset(50)
@@ -142,14 +142,14 @@ final class LoginViewController: UIViewController {
         }
         
         loginButton.snp.makeConstraints {
-            $0.top.equalTo(passwordTextfield.snp.bottom).offset(Padding.f20)
+            $0.top.equalTo(passwordTextfield.snp.bottom).offset(Padding.p20)
             $0.height.equalTo(Height.h50)
             $0.leading.equalToSuperview().offset(50)
             $0.trailing.equalToSuperview().offset(-50)
         }
         
         registerButton.snp.makeConstraints {
-            $0.top.equalTo(loginButton.snp.bottom).offset(Padding.f5)
+            $0.top.equalTo(loginButton.snp.bottom).offset(Padding.p5)
             $0.height.equalTo(Height.h50)
             $0.leading.equalToSuperview().offset(50)
             $0.trailing.equalToSuperview().offset(-50)
@@ -174,7 +174,7 @@ final class LoginViewController: UIViewController {
     
     @objc private func keyboardWillAppear(_ notification: NSNotification) {
         userTextfield.snp.updateConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f180 - keyboardHeight / 2 )
+            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.p180 - keyboardHeight / 2 )
         }
         
         UIView.animate(withDuration: 0.5) {
@@ -184,7 +184,7 @@ final class LoginViewController: UIViewController {
     
     @objc private func keyboardWillDisappear(_ notification: NSNotification) {
         userTextfield.snp.updateConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f200)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.p200)
         }
         
         UIView.animate(withDuration: 0.5) {

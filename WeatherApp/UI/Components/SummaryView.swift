@@ -69,7 +69,7 @@ final class SummaryView: UICollectionViewCell {
         
         addSubview(pressureTitleLabel)
         pressureTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f75)
+            $0.top.equalToSuperview().offset(Padding.p75)
             $0.centerX.equalToSuperview()
         }
     }
@@ -81,7 +81,7 @@ final class SummaryView: UICollectionViewCell {
         
         addSubview(pressureLabel)
         pressureLabel.snp.makeConstraints {
-            $0.top.equalTo(pressureTitleLabel.snp.bottom).offset(Padding.f30)
+            $0.top.equalTo(pressureTitleLabel.snp.bottom).offset(Padding.p30)
             $0.centerX.equalToSuperview()
         }
     }
@@ -94,7 +94,7 @@ final class SummaryView: UICollectionViewCell {
         
         addSubview(summaryTitleLabel)
         summaryTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(pressureLabel.snp.bottom).offset(Padding.f50)
+            $0.top.equalTo(pressureLabel.snp.bottom).offset(Padding.p50)
             $0.centerX.equalToSuperview()
         }
     }
@@ -107,9 +107,9 @@ final class SummaryView: UICollectionViewCell {
         
         addSubview(summaryLabel)
         summaryLabel.snp.makeConstraints {
-            $0.top.equalTo(summaryTitleLabel.snp.bottom).offset(Padding.f30)
-            $0.leading.equalToSuperview().offset(Padding.f20)
-            $0.trailing.equalToSuperview().offset(-Padding.f20)
+            $0.top.equalTo(summaryTitleLabel.snp.bottom).offset(Padding.p30)
+            $0.leading.equalToSuperview().offset(Padding.p20)
+            $0.trailing.equalToSuperview().offset(-Padding.p20)
         }
     }
     
@@ -124,9 +124,9 @@ final class SummaryView: UICollectionViewCell {
         
         addSubview(pointsOfInterestButton)
         pointsOfInterestButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-Padding.f40)
-            $0.leading.equalToSuperview().offset(Padding.f30)
-            $0.trailing.equalToSuperview().offset(-Padding.f30)
+            $0.bottom.equalToSuperview().offset(-Padding.p40)
+            $0.leading.equalToSuperview().offset(Padding.p30)
+            $0.trailing.equalToSuperview().offset(-Padding.p30)
             $0.height.equalTo(Height.h50)
         }
     }

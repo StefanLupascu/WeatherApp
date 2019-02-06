@@ -50,16 +50,16 @@ final class CityView: UIView {
         notesTextView.adjustsFontForContentSizeCategory = true
         notesTextView.isSelectable = true
         notesTextView.isEditable = true
-        notesTextView.layer.cornerRadius = Padding.f10
-        notesTextView.font = UIFont.systemFont(ofSize: Padding.f20)
+        notesTextView.layer.cornerRadius = Padding.p10
+        notesTextView.font = UIFont.systemFont(ofSize: Padding.p20)
     }
     
     private func setupLabels() {
-        nameLabel.font = UIFont.boldSystemFont(ofSize: Padding.f25)
-        temperatureLabel.font = UIFont.systemFont(ofSize: Padding.f20)
-        humidityLabel.font = UIFont.systemFont(ofSize: Padding.f20)
-        pressureLabel.font = UIFont.systemFont(ofSize: Padding.f20)
-        summaryLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: Padding.p25)
+        temperatureLabel.font = UIFont.systemFont(ofSize: Padding.p20)
+        humidityLabel.font = UIFont.systemFont(ofSize: Padding.p20)
+        pressureLabel.font = UIFont.systemFont(ofSize: Padding.p20)
+        summaryLabel.font = UIFont.systemFont(ofSize: Padding.p20)
     }
     
     private func setupViews() {
@@ -81,44 +81,44 @@ final class CityView: UIView {
         }
 
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(scrollView).offset(Padding.f20)
-            $0.leading.trailing.equalToSuperview().offset(Padding.f20)
+            $0.top.equalTo(scrollView).offset(Padding.p20)
+            $0.leading.trailing.equalToSuperview().offset(Padding.p20)
         }
         
         //temperatureLabel setup
         temperatureLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(Padding.f20)
-            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(Padding.p20)
+            $0.leading.equalToSuperview().offset(Padding.p20)
         }
         
         //city image setup
         cityImageView.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.top).offset(Padding.f20)
-            $0.leading.equalTo(temperatureLabel.snp.trailing).offset(Padding.f20)
+            $0.top.equalTo(nameLabel.snp.top).offset(Padding.p20)
+            $0.leading.equalTo(temperatureLabel.snp.trailing).offset(Padding.p20)
         }
         
         //humidityLabel setup
         humidityLabel.snp.makeConstraints {
-            $0.top.equalTo(temperatureLabel.snp.bottom).offset(Padding.f20)
-            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.top.equalTo(temperatureLabel.snp.bottom).offset(Padding.p20)
+            $0.leading.equalToSuperview().offset(Padding.p20)
         }
         
         //pressureLabel setup
         pressureLabel.snp.makeConstraints {
-            $0.top.equalTo(humidityLabel.snp.bottom).offset(Padding.f20)
-            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.top.equalTo(humidityLabel.snp.bottom).offset(Padding.p20)
+            $0.leading.equalToSuperview().offset(Padding.p20)
         }
         
         //summaryLabel setup
         summaryLabel.snp.makeConstraints {
-            $0.top.equalTo(pressureLabel.snp.bottom).offset(Padding.f20)
-            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.top.equalTo(pressureLabel.snp.bottom).offset(Padding.p20)
+            $0.leading.equalToSuperview().offset(Padding.p20)
         }
         
         //notesTextView setup
         notesTextView.snp.makeConstraints {
-            $0.top.equalTo(summaryLabel.snp.bottom).offset(Padding.f20)
-            $0.leading.equalToSuperview().offset(Padding.f20)
+            $0.top.equalTo(summaryLabel.snp.bottom).offset(Padding.p20)
+            $0.leading.equalToSuperview().offset(Padding.p20)
             $0.width.equalTo(Height.h335)
             $0.height.equalTo(Height.h300)
         }

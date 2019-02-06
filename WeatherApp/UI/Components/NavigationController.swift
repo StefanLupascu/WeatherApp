@@ -51,7 +51,7 @@ class NavigationController: UIViewController {
     
     @objc private func dismissSideMenu() {
         sideMenuView.snp.updateConstraints {
-            $0.leading.equalToSuperview().offset(-Padding.f285)
+            $0.leading.equalToSuperview().offset(-view.frame.width * 0.75)
         }
         
         UIView.animate(withDuration: 0.6) {

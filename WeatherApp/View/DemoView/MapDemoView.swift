@@ -49,7 +49,7 @@ class MapDemoView: UIView {
     }
     
     private func setupTextview() {
-        infoLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+        infoLabel.font = UIFont.systemFont(ofSize: Padding.p20)
         infoLabel.backgroundColor = .clear
         infoLabel.textColor = .black
         infoLabel.numberOfLines = 0
@@ -69,7 +69,7 @@ class MapDemoView: UIView {
         addSubview(imageView)
         
         startButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f40)
+            $0.top.equalToSuperview().offset(Padding.p40)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(Height.h200)
         }
@@ -82,7 +82,7 @@ class MapDemoView: UIView {
         }
         
         imageView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-Padding.f40)
+            $0.bottom.equalToSuperview().offset(-Padding.p40)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h400)
             $0.width.equalTo(Height.h220)

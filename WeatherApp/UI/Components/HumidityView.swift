@@ -41,8 +41,8 @@ final class HumidityView: UICollectionViewCell {
     // MARK: - Private Functions
     
     private func draw() {
-        let loadingPath = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2), radius: bounds.width / 3 - Padding.f20, startAngle: -.pi / 2, endAngle: CGFloat(humidity) * 2 * .pi - .pi / 2, clockwise: true)
-        let trackingPath = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2), radius: bounds.width / 3 - Padding.f20, startAngle: CGFloat(humidity) * 2 * .pi - .pi / 2, endAngle: 2 * .pi - .pi / 2, clockwise: true)
+        let loadingPath = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2), radius: bounds.width / 3 - Padding.p20, startAngle: -.pi / 2, endAngle: CGFloat(humidity) * 2 * .pi - .pi / 2, clockwise: true)
+        let trackingPath = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2), radius: bounds.width / 3 - Padding.p20, startAngle: CGFloat(humidity) * 2 * .pi - .pi / 2, endAngle: 2 * .pi - .pi / 2, clockwise: true)
         
         loadingCircle = createCircle(color: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
         trackingCircle = createCircle(color: .gray)
@@ -82,7 +82,7 @@ final class HumidityView: UICollectionViewCell {
         
         addSubview(humidityLabel)
         humidityLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f75)
+            $0.top.equalToSuperview().offset(Padding.p75)
             $0.centerX.equalToSuperview()
         }
     }

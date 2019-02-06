@@ -97,7 +97,7 @@ final class PredictionViewController: UIViewController {
         
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.f30)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.p30)
             $0.centerX.equalToSuperview()
         }
     }
@@ -108,9 +108,9 @@ final class PredictionViewController: UIViewController {
         
         view.addSubview(picker)
         picker.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.f30)
-            $0.leading.equalToSuperview().offset(Padding.f30)
-            $0.trailing.equalToSuperview().offset(-Padding.f30)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.p30)
+            $0.leading.equalToSuperview().offset(Padding.p30)
+            $0.trailing.equalToSuperview().offset(-Padding.p30)
         }
     }
     
@@ -125,9 +125,9 @@ final class PredictionViewController: UIViewController {
         
         view.addSubview(predictButton)
         predictButton.snp.makeConstraints {
-            $0.top.equalTo(picker.snp.bottom).offset(Padding.f30)
-            $0.leading.equalToSuperview().offset(Padding.f30)
-            $0.trailing.equalToSuperview().offset(-Padding.f30)
+            $0.top.equalTo(picker.snp.bottom).offset(Padding.p30)
+            $0.leading.equalToSuperview().offset(Padding.p30)
+            $0.trailing.equalToSuperview().offset(-Padding.p30)
             $0.height.equalTo(Height.h70)
         }
     }
@@ -143,7 +143,7 @@ final class PredictionViewController: UIViewController {
         
         view.addSubview(forecastLabel)
         forecastLabel.snp.makeConstraints {
-            $0.top.equalTo(predictButton.snp.bottom).offset(Padding.f90)
+            $0.top.equalTo(predictButton.snp.bottom).offset(Padding.p90)
             $0.centerX.equalToSuperview()
         }
     }

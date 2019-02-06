@@ -35,15 +35,15 @@ final class CityCell: UITableViewCell {
     }
     
     private func setupLabel() {
-        nameLabel.font = UIFont.systemFont(ofSize: Padding.f25)
+        nameLabel.font = UIFont.systemFont(ofSize: Padding.p25)
         nameLabel.textColor = .white
         nameLabel.shadowColor = .black
         
         addSubview(nameLabel)
         nameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f10)
-            $0.leading.equalToSuperview().offset(Padding.f30)
-            $0.bottom.equalToSuperview().offset(-Padding.f10)
+            $0.top.equalToSuperview().offset(Padding.p10)
+            $0.leading.equalToSuperview().offset(Padding.p30)
+            $0.bottom.equalToSuperview().offset(-Padding.p10)
         }
     }
 }

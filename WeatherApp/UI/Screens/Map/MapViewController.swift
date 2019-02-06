@@ -29,8 +29,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationBar()
-        setupUI()
-        setupGesture()        
     }
     
     // MARK: - Private Functions
@@ -53,7 +51,7 @@ class MapViewController: UIViewController {
     private func setupButton() {
         let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done(sender:)))
         button.setTitleTextAttributes([
-            NSAttributedString.Key.font: UIFont(name: "Helvetica Neue",size: Padding.f20)!,
+            NSAttributedString.Key.font: UIFont(name: "Helvetica Neue",size: Padding.p20)!,
             NSAttributedString.Key.foregroundColor: UIColor.white,
             ], for: .normal)
         navigationItem.rightBarButtonItem = button
@@ -63,6 +61,7 @@ class MapViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
         setupMapView()
+        setupGesture()
     }
     
     private func setupMapView() {

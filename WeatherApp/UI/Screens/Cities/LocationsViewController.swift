@@ -138,7 +138,7 @@ final class LocationsViewController: NavigationController {
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f20)
+            $0.top.equalToSuperview().offset(Padding.p20)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

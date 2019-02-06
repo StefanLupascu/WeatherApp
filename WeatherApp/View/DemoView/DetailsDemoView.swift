@@ -38,7 +38,7 @@ class DetailsDemoView: UIView {
     
     private func setupTextview() {
         infoLabel.textColor = .black
-        infoLabel.font = UIFont.systemFont(ofSize: Padding.f20)
+        infoLabel.font = UIFont.systemFont(ofSize: Padding.p20)
         infoLabel.backgroundColor = .clear
         infoLabel.numberOfLines = 0
         infoLabel.text = "In the details screen you can check details about the weather of the selected location. You can also write a note about it."
@@ -49,14 +49,14 @@ class DetailsDemoView: UIView {
         addSubview(imageView)
         
         infoLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f50)
+            $0.top.equalToSuperview().offset(Padding.p50)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
             $0.width.equalTo(Height.h300)
         }
         
         imageView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-Padding.f40)
+            $0.bottom.equalToSuperview().offset(-Padding.p40)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h400)
             $0.width.equalTo(Height.h220)

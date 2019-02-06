@@ -129,16 +129,16 @@ final class InformationViewController: UIViewController {
         containerView.addSubview(collectionView)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.f20)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.p20)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(200)
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.f30)
-            $0.leading.equalToSuperview().offset(Padding.f10)
-            $0.trailing.equalToSuperview().offset(-Padding.f10)
-            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-Padding.f10)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.p30)
+            $0.leading.equalToSuperview().offset(Padding.p10)
+            $0.trailing.equalToSuperview().offset(-Padding.p10)
+            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-Padding.p10)
         }
     }
 }

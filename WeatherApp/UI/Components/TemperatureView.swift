@@ -61,7 +61,7 @@ final class TemperatureView: UICollectionViewCell {
         
         addSubview(temperatureLabel)
         temperatureLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(75)
+            $0.top.equalToSuperview().offset(Padding.p75)
             $0.centerX.equalToSuperview()
         }
     }
@@ -74,8 +74,8 @@ final class TemperatureView: UICollectionViewCell {
         backgroundBarView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
-            $0.width.equalTo(300)
-            $0.height.equalTo(40)
+            $0.width.equalTo(Height.h300)
+            $0.height.equalTo(Height.h40)
         }
     }
     

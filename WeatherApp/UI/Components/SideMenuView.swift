@@ -77,7 +77,7 @@ final class SideMenuView: UIView {
         
         addSubview(userLabel)
         userLabel.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(Padding.f20)
+            $0.top.equalTo(safeAreaLayoutGuide).offset(Padding.p20)
             $0.centerX.equalToSuperview()
         }
     }
@@ -89,7 +89,7 @@ final class SideMenuView: UIView {
         
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(userLabel.snp.bottom).offset(Padding.f20)
+            $0.top.equalTo(userLabel.snp.bottom).offset(Padding.p20)
             $0.centerX.equalToSuperview()
         }
     }
@@ -103,7 +103,7 @@ final class SideMenuView: UIView {
         
         addSubview(tutorialButton)
         tutorialButton.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.f40)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.p40)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
@@ -119,7 +119,7 @@ final class SideMenuView: UIView {
         
         addSubview(citiesButton)
         citiesButton.snp.makeConstraints {
-            $0.top.equalTo(tutorialButton.snp.bottom).offset(Padding.f5)
+            $0.top.equalTo(tutorialButton.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
@@ -135,7 +135,7 @@ final class SideMenuView: UIView {
         
         addSubview(predictionsButton)
         predictionsButton.snp.makeConstraints {
-            $0.top.equalTo(citiesButton.snp.bottom).offset(Padding.f5)
+            $0.top.equalTo(citiesButton.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
@@ -151,7 +151,7 @@ final class SideMenuView: UIView {
         
         addSubview(logoutButton)
         logoutButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-Padding.f75)
+            $0.bottom.equalToSuperview().offset(-Padding.p75)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)

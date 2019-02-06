@@ -74,8 +74,8 @@ final class PredictionsViewController: NavigationController {
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().offset(Padding.f20)
-            $0.bottom.trailing.equalToSuperview().offset(-Padding.f20)
+            $0.top.leading.equalToSuperview().offset(Padding.p20)
+            $0.bottom.trailing.equalToSuperview().offset(-Padding.p20)
         }
     }
     
@@ -116,7 +116,7 @@ extension PredictionsViewController: UICollectionViewDataSource {
 
 extension PredictionsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width - Padding.f40, height: Height.h100)
+        return CGSize(width: view.bounds.width - Padding.p40, height: Height.h100)
     }
 }
 

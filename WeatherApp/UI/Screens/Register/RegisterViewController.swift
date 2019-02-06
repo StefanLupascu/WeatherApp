@@ -56,7 +56,7 @@ final class RegisterViewController: UIViewController {
         
         view.addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.f20)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.p20)
             $0.centerX.equalToSuperview()
         }
     }
@@ -70,7 +70,7 @@ final class RegisterViewController: UIViewController {
         
         view.addSubview(userTextfield)
         userTextfield.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f200)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.p200)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
             $0.leading.equalToSuperview().offset(50)
@@ -88,7 +88,7 @@ final class RegisterViewController: UIViewController {
         
         view.addSubview(passwordTextfield)
         passwordTextfield.snp.makeConstraints {
-            $0.top.equalTo(userTextfield.snp.bottom).offset(Padding.f5)
+            $0.top.equalTo(userTextfield.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
             $0.leading.equalToSuperview().offset(50)
@@ -105,7 +105,7 @@ final class RegisterViewController: UIViewController {
         
         view.addSubview(nameTextfield)
         nameTextfield.snp.makeConstraints {
-            $0.top.equalTo(passwordTextfield.snp.bottom).offset(Padding.f5)
+            $0.top.equalTo(passwordTextfield.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
             $0.leading.equalToSuperview().offset(50)
@@ -121,7 +121,7 @@ final class RegisterViewController: UIViewController {
         
         view.addSubview(registerButton)
         registerButton.snp.makeConstraints {
-            $0.top.equalTo(nameTextfield.snp.bottom).offset(Padding.f20)
+            $0.top.equalTo(nameTextfield.snp.bottom).offset(Padding.p20)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
             $0.leading.equalToSuperview().offset(50)
@@ -137,7 +137,7 @@ final class RegisterViewController: UIViewController {
         
         view.addSubview(cancelButton)
         cancelButton.snp.makeConstraints {
-            $0.top.equalTo(registerButton.snp.bottom).offset(Padding.f5)
+            $0.top.equalTo(registerButton.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
             $0.leading.equalToSuperview().offset(50)
@@ -192,7 +192,7 @@ final class RegisterViewController: UIViewController {
     
     @objc private func keyboardWillAppear(_ notification: NSNotification) {
         userTextfield.snp.updateConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f5)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.p5)
         }
         
         UIView.animate(withDuration: 0.5) {
@@ -202,7 +202,7 @@ final class RegisterViewController: UIViewController {
     
     @objc private func keyboardWillDisappear(_ notification: NSNotification) {
         userTextfield.snp.updateConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f200)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.p200)
         }
         
         UIView.animate(withDuration: 0.5) {
