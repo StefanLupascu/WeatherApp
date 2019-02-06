@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import Firebase
 
 @UIApplicationMain
@@ -23,21 +22,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
 
-        if !UserDefaults.standard.bool(forKey: "demo") {
-            let demoViewController = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-            window?.rootViewController = demoViewController
-            UserDefaults.standard.set(true, forKey: "demo")
+//        if !UserDefaults.standard.bool(forKey: "demo") {
+//            let demoViewController = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+//            window?.rootViewController = demoViewController
+//            UserDefaults.standard.set(true, forKey: "demo")
+//        }
+//        else {
+//            guard let _ = Auth.auth().currentUser else {
+//                window?.rootViewController = LoginViewController()
+//                return false
+//            }
+//
+//            let viewModel = LocationsViewModel()
+//            let locationsViewController = LocationsViewController(viewModel: viewModel)
+//            window?.rootViewController = UINavigationController(rootViewController: locationsViewController)
+//        }
+        
+        guard let _ = Auth.auth().currentUser else {
+            window?.rootViewController = LoginViewController()
+            return false
         }
-        else {
-            guard let _ = Auth.auth().currentUser else {
-                window?.rootViewController = LoginViewController()
-                return false
-            }
-            
-            let viewModel = LocationsViewModel()
-            let locationsViewController = LocationsViewController(viewModel: viewModel)
-            window?.rootViewController = UINavigationController(rootViewController: locationsViewController)
-        }
+        
+        let viewModel = LocationsViewModel()
+        let locationsViewController = LocationsViewController(viewModel: viewModel)
+        window?.rootViewController = UINavigationController(rootViewController: locationsViewController)
         
         return true
     }
@@ -63,7 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        PersistenceService.saveContext()
     }
 }
 

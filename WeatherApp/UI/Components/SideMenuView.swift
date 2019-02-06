@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
 protocol SideMenuViewDelegate {
     func seeTutorial()
@@ -21,6 +22,7 @@ final class SideMenuView: UIView {
     
     var delegate: SideMenuViewDelegate?
     
+    let userLabel = UILabel()
     private let titleLabel = UILabel()
     private let tutorialButton = UIButton()
     private let logoutButton = UIButton()
@@ -60,9 +62,13 @@ final class SideMenuView: UIView {
     }
     
     private func setupLabels() {
+        userLabel.textColor = .white
+        userLabel.text = "username"
+        userLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        
         titleLabel.textColor = .white
         titleLabel.text = "Options"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
     }
     
     private func setupButtons() {
@@ -90,14 +96,20 @@ final class SideMenuView: UIView {
     private func setupUI() {
         backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         
+        addSubview(userLabel)
         addSubview(titleLabel)
         addSubview(tutorialButton)
         addSubview(citiesButton)
         addSubview(vacationButton)
         addSubview(logoutButton)
         
+        userLabel.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide).offset(Padding.f20)
+            $0.centerX.equalToSuperview()
+        }
+        
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f75)
+            $0.top.equalTo(userLabel.snp.bottom).offset(Padding.f20)
             $0.centerX.equalToSuperview()
         }
         

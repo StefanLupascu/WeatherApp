@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import FirebaseAuth
+import Firebase
 
 class NavigationController: UIViewController {
     // MARK: - Properties
@@ -27,10 +27,12 @@ class NavigationController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.barStyle = .black
         
         sideMenuView.delegate = self
         
         setupButton()
+        setupUser()
         setupUI()
         setupGestures()
     }
@@ -68,6 +70,20 @@ class NavigationController: UIViewController {
         navigationItem.leftBarButtonItem = menuButton
     }
     
+    private func setupUser() {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        Database.database().reference().child("\(userId)/name").observeSingleEvent(of: .value) { (snapshot) in
+            guard let username = snapshot.value as? String else {
+                return
+            }
+            
+            self.sideMenuView.userLabel.text = username
+        }
+    }
+    
     private func setupUI() {
         rightView.backgroundColor = UIColor(white: 0, alpha: 0)
         
@@ -82,7 +98,7 @@ class NavigationController: UIViewController {
         
         sideMenuView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(-Padding.f285)
+            $0.leading.equalToSuperview().offset(-view.frame.width * 0.75)
             $0.width.equalTo(view.frame.width * 0.75)
         }
     }
