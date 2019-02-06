@@ -22,8 +22,7 @@ final class MapView: UIView {
         super.init(frame: frame)
         backgroundColor = .lightGray
         
-        map.setRegion(MKCoordinateRegion.init(center: location, latitudinalMeters: 900000, longitudinalMeters: 900000), animated: true)
-        setupViews()
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,9 +31,10 @@ final class MapView: UIView {
     
     // MARK: - Private Functions
     
-    private func setupViews() {
+    private func setupUI() {
+        map.setRegion(MKCoordinateRegion.init(center: location, latitudinalMeters: 900000, longitudinalMeters: 900000), animated: true)
+        
         addSubview(map)
-
         map.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
         }

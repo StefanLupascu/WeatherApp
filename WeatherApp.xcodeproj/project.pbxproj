@@ -26,7 +26,6 @@
 		A1674FF720E028170093B713 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF620E028170093B713 /* CityView.swift */; };
 		A195BEBC220AE46300502F55 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A195BEBB220AE46300502F55 /* RegisterViewController.swift */; };
 		A1B39B2C21B29EDF00618F77 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B39B2B21B29EDF00618F77 /* LocationsViewModel.swift */; };
-		A1B8630A215B640600688A53 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B86309215B640600688A53 /* User.swift */; };
 		A1C4F18B2201B66A005E3082 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C4F18A2201B66A005E3082 /* GoogleService-Info.plist */; };
 		A1C4F18D2201C919005E3082 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C4F18C2201C919005E3082 /* City.swift */; };
 		A1C4F18F2201C998005E3082 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C4F18E2201C998005E3082 /* Detail.swift */; };
@@ -47,7 +46,6 @@
 		F8AFA78B20F35F510050293E /* DetailsDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA78A20F35F510050293E /* DetailsDemoView.swift */; };
 		F8AFA78D20F35F620050293E /* MapDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA78C20F35F620050293E /* MapDemoView.swift */; };
 		F8C31D5920EA08FD008F3125 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C31D5820EA08FD008F3125 /* Padding.swift */; };
-		F8C31D5B20EA1765008F3125 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C31D5A20EA1765008F3125 /* PersistenceService.swift */; };
 		F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784420DCE81300DBC495 /* AppDelegate.swift */; };
 		F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F8C7784B20DCE81300DBC495 /* WeatherApp.xcdatamodeld */; };
 		F8C7784F20DCE81600DBC495 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8C7784E20DCE81600DBC495 /* Assets.xcassets */; };
@@ -105,7 +103,6 @@
 		A1674FF620E028170093B713 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		A195BEBB220AE46300502F55 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A1B39B2B21B29EDF00618F77 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
-		A1B86309215B640600688A53 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A1C4F18A2201B66A005E3082 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1C4F18C2201C919005E3082 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		A1C4F18E2201C998005E3082 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
@@ -129,7 +126,6 @@
 		F8AFA78A20F35F510050293E /* DetailsDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDemoView.swift; sourceTree = "<group>"; };
 		F8AFA78C20F35F620050293E /* MapDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDemoView.swift; sourceTree = "<group>"; };
 		F8C31D5820EA08FD008F3125 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
-		F8C31D5A20EA1765008F3125 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		F8C7784120DCE81300DBC495 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8C7784420DCE81300DBC495 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8C7784C20DCE81300DBC495 /* WeatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherApp.xcdatamodel; sourceTree = "<group>"; };
@@ -272,9 +268,10 @@
 		A1F72A9D21A99F4000B06E06 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				F8FFE47C20E0D266006D9E1A /* MapView.swift */,
 				F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */,
-				A12D148721F860FC0002AA52 /* VenuesViewModel.swift */,
 				A12D148921F864100002AA52 /* VenuesViewController.swift */,
+				A12D148721F860FC0002AA52 /* VenuesViewModel.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -349,11 +346,9 @@
 		F8C31D6120EA3988008F3125 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				F8C31D5A20EA1765008F3125 /* PersistenceService.swift */,
 				F8C31D5820EA08FD008F3125 /* Padding.swift */,
 				F8FFE48120E0F0C8006D9E1A /* PinAnnotation.swift */,
 				A1566E3D21523ABE001FB76C /* Height.swift */,
-				A1B86309215B640600688A53 /* User.swift */,
 				A1F72A9721A8C06200B06E06 /* UIViewController+Extensions.swift */,
 				A1F72AA421A9C58500B06E06 /* Reachability.swift */,
 			);
@@ -414,7 +409,6 @@
 			isa = PBXGroup;
 			children = (
 				F8AFA78720F34F0A0050293E /* DemoView */,
-				F8FFE47C20E0D266006D9E1A /* MapView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -613,7 +607,6 @@
 				F8FFE47D20E0D266006D9E1A /* MapView.swift in Sources */,
 				F8AFA78220F349EA0050293E /* LocationsDemoViewController.swift in Sources */,
 				A12D147921F70E7A0002AA52 /* PredictionsViewController.swift in Sources */,
-				A1B8630A215B640600688A53 /* User.swift in Sources */,
 				F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */,
 				A1674FF720E028170093B713 /* CityView.swift in Sources */,
 				F8AFA78D20F35F620050293E /* MapDemoView.swift in Sources */,
@@ -628,7 +621,6 @@
 				A107A7672150D7DA0095D588 /* SideMenuView.swift in Sources */,
 				F8C31D5920EA08FD008F3125 /* Padding.swift in Sources */,
 				A1D117D321906B3100415121 /* SummaryView.swift in Sources */,
-				F8C31D5B20EA1765008F3125 /* PersistenceService.swift in Sources */,
 				A12D148821F860FC0002AA52 /* VenuesViewModel.swift in Sources */,
 				F8C7784520DCE81300DBC495 /* AppDelegate.swift in Sources */,
 				A12D148621F85DFB0002AA52 /* Venue.swift in Sources */,
