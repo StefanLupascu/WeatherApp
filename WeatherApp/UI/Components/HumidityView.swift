@@ -35,30 +35,10 @@ final class HumidityView: UICollectionViewCell {
     override public func layoutSubviews() {
         super.layoutSubviews()
 
-        draw()
-        setupGesture()
-        setupLabels()
         setupUI()
-        animate()
     }
     
     // MARK: - Private Functions
-    
-    private func setupLabels() {
-        humidityLabel.textAlignment = .center
-        humidityLabel.textColor = .white
-        humidityLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        humidityLabel.text = "Humidity"
-        
-        percentageLabel.textAlignment = .center
-        percentageLabel.textColor = .white
-        percentageLabel.font = UIFont.boldSystemFont(ofSize: 24)
-    }
-    
-    private func setupGesture() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(animate))
-        addGestureRecognizer(tap)
-    }
     
     private func draw() {
         let loadingPath = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2), radius: bounds.width / 3 - Padding.f20, startAngle: -.pi / 2, endAngle: CGFloat(humidity) * 2 * .pi - .pi / 2, clockwise: true)
@@ -80,9 +60,47 @@ final class HumidityView: UICollectionViewCell {
         return circle
     }
     
-    @objc private func animate() {
-        animateLoadingCircle()
-        animateTrackingCircle()
+    private func setupUI() {
+        backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        
+        draw()
+        setupGesture()
+        setupHumidityLabel()
+        setupPercentegeLabel()
+        
+        layer.addSublayer(trackingCircle)
+        layer.addSublayer(loadingCircle)
+        
+        animate()
+    }
+    
+    private func setupHumidityLabel() {
+        humidityLabel.textAlignment = .center
+        humidityLabel.textColor = .white
+        humidityLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        humidityLabel.text = "Humidity"
+        
+        addSubview(humidityLabel)
+        humidityLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Padding.f75)
+            $0.centerX.equalToSuperview()
+        }
+    }
+    
+    private func setupPercentegeLabel() {
+        percentageLabel.textAlignment = .center
+        percentageLabel.textColor = .white
+        percentageLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        
+        addSubview(percentageLabel)
+        percentageLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+        }
+    }
+    
+    private func setupGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(animate))
+        addGestureRecognizer(tap)
     }
     
     private func animateLoadingCircle() {
@@ -108,22 +126,8 @@ final class HumidityView: UICollectionViewCell {
         trackingCircle.add(trackingAnimation, forKey: Animation.tracking)
     }
     
-    private func setupUI() {
-        backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
-        
-        addSubview(humidityLabel)
-        addSubview(percentageLabel)
-
-        layer.addSublayer(trackingCircle)
-        layer.addSublayer(loadingCircle)
-        
-        humidityLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f75)
-            $0.centerX.equalToSuperview()
-        }
-        
-        percentageLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
-        }
+    @objc private func animate() {
+        animateLoadingCircle()
+        animateTrackingCircle()
     }
 }

@@ -21,8 +21,6 @@ final class NotesView: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: CGRect())
         
-        setupTitleLabel()
-        setupTextview()
         setupUI()
     }
     
@@ -37,6 +35,12 @@ final class NotesView: UICollectionViewCell {
         titleLabel.textAlignment = .center
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: Padding.f25)
+        
+        addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Padding.f5)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     private func setupTextview() {
@@ -49,24 +53,20 @@ final class NotesView: UICollectionViewCell {
         notesTextView.textColor = .white
         notesTextView.layer.borderColor = UIColor.white.cgColor
         notesTextView.layer.borderWidth = 1
-    }
-    
-    private func setupUI() {
-        backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         
-        addSubview(titleLabel)
         addSubview(notesTextView)
-        
-        titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f5)
-            $0.centerX.equalToSuperview()
-        }
-        
         notesTextView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.f10)
             $0.leading.equalToSuperview().offset(Padding.f15)
             $0.trailing.equalToSuperview().offset(-Padding.f15)
             $0.bottom.equalToSuperview().offset(-Padding.f15)
         }
+    }
+    
+    private func setupUI() {
+        backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        
+        setupTitleLabel()
+        setupTextview()
     }
 }
