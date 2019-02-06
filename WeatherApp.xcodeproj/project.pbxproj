@@ -24,6 +24,7 @@
 		A1566E3E21523ABE001FB76C /* Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1566E3D21523ABE001FB76C /* Height.swift */; };
 		A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF420E010190093B713 /* DetailsViewController.swift */; };
 		A1674FF720E028170093B713 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1674FF620E028170093B713 /* CityView.swift */; };
+		A195BEBC220AE46300502F55 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A195BEBB220AE46300502F55 /* RegisterViewController.swift */; };
 		A1B39B2C21B29EDF00618F77 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B39B2B21B29EDF00618F77 /* LocationsViewModel.swift */; };
 		A1B8630A215B640600688A53 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B86309215B640600688A53 /* User.swift */; };
 		A1C4F18B2201B66A005E3082 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C4F18A2201B66A005E3082 /* GoogleService-Info.plist */; };
@@ -107,6 +108,7 @@
 		A1566E3D21523ABE001FB76C /* Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Height.swift; sourceTree = "<group>"; };
 		A1674FF420E010190093B713 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A1674FF620E028170093B713 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
+		A195BEBB220AE46300502F55 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A1B39B2B21B29EDF00618F77 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
 		A1B86309215B640600688A53 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A1C4F18A2201B66A005E3082 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -228,6 +230,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		A195BEBA220AE44F00502F55 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				A195BEBB220AE46300502F55 /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		A1F37F4121E68D5B00DE5B08 /* WeatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +309,7 @@
 		A1F72AA021A99F9400B06E06 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				A195BEBA220AE44F00502F55 /* Register */,
 				A12D147721F70E380002AA52 /* Predictions */,
 				A1F72A9C21A99F3300B06E06 /* Cities */,
 				A1F72A9D21A99F4000B06E06 /* Map */,
@@ -638,6 +649,7 @@
 				F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */,
 				A1F72A9821A8C06200B06E06 /* UIViewController+Extensions.swift in Sources */,
 				A1674FF520E010190093B713 /* DetailsViewController.swift in Sources */,
+				A195BEBC220AE46300502F55 /* RegisterViewController.swift in Sources */,
 				A1C4F18F2201C998005E3082 /* Detail.swift in Sources */,
 				A12D148321F85C070002AA52 /* VenueManager.swift in Sources */,
 				F8C31D5F20EA1EBF008F3125 /* City+CoreDataProperties.swift in Sources */,

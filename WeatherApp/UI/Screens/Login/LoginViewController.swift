@@ -19,6 +19,7 @@ final class LoginViewController: UIViewController {
     private let userTextfield = UITextField()
     private let passwordTextfield = UITextField()
     private let loginButton = UIButton()
+    private let registerButton = UIButton()
     private let activityIndicator = UIActivityIndicatorView()
     
     // MARK: - Base class overrides
@@ -67,6 +68,11 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    @objc private func registerButtonTapped() {
+        let registerViewController = RegisterViewController()
+        present(registerViewController, animated: false)
+    }
+    
     private func showActivityIndicator() {
         activityIndicator.frame = view.frame
         activityIndicator.center = view.center
@@ -97,6 +103,11 @@ final class LoginViewController: UIViewController {
         loginButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
         loginButton.layer.cornerRadius = 10
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        
+        registerButton.setTitle("Register", for: .normal)
+        registerButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        registerButton.layer.cornerRadius = 10
+        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }
     
     private func setupUI() {
@@ -107,9 +118,10 @@ final class LoginViewController: UIViewController {
         view.addSubview(userTextfield)
         view.addSubview(passwordTextfield)
         view.addSubview(loginButton)
+        view.addSubview(registerButton)
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.f75)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.f20)
             $0.centerX.equalToSuperview()
         }
         
@@ -117,21 +129,30 @@ final class LoginViewController: UIViewController {
             $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.f200)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.width.equalTo(Height.h300)
+            $0.leading.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-50)
         }
         
         passwordTextfield.snp.makeConstraints {
             $0.top.equalTo(userTextfield.snp.bottom).offset(Padding.f5)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.width.equalTo(Height.h300)
+            $0.leading.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-50)
         }
         
         loginButton.snp.makeConstraints {
             $0.top.equalTo(passwordTextfield.snp.bottom).offset(Padding.f20)
-            $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.width.equalTo(Height.h300)
+            $0.leading.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-50)
+        }
+        
+        registerButton.snp.makeConstraints {
+            $0.top.equalTo(loginButton.snp.bottom).offset(Padding.f5)
+            $0.height.equalTo(Height.h50)
+            $0.leading.equalToSuperview().offset(50)
+            $0.trailing.equalToSuperview().offset(-50)
         }
     }
     

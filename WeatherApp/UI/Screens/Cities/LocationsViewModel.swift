@@ -63,6 +63,7 @@ final class LocationsViewModel {
         postData["note"] = city.note as AnyObject
         
         ref.child("\(uid)/cities").childByAutoId().setValue(postData)
+        getLocations()
     }
     
     func removeCity(at index: Int) {
@@ -80,10 +81,13 @@ final class LocationsViewModel {
                 cities[index].note = city.note
             }
         }
+        
         guard let id = city.id else {
             return
         }
-        ref.child("\(uid)/cities/\(String(describing: id))/note").setValue(city.note)
+        
+        let updates = ["\(uid)/cities/\(String(describing: id))/note": city.note]
+        ref.updateChildValues(updates)
     }
     
     // MARK: - Private functions

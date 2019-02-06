@@ -89,13 +89,6 @@ class MapViewController: UIViewController {
                 return
             }
             
-            guard let countryName = placeMark.country else {
-                completion(nil, .failedRequest)
-                return
-            }
-            
-            print(countryName)
-            
             DispatchQueue.main.async {
                 completion(locationName, nil)
             }
@@ -127,13 +120,6 @@ class MapViewController: UIViewController {
         guard let cityAnnotation = mapView.map.annotations.first else {
             return
         }
-        
-//        guard Reachability.isConnectedToNetwork() else {
-//            let city = City(name: "Custom name \(cityAnnotation.coordinate.latitude)", latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude, note: "")
-//            delegate?.didRecieveNewWeatherData(city: city)
-//            self.navigationController?.popViewController(animated: true)
-//            return
-//        }
         
         showActivityIndicator()
 
