@@ -19,9 +19,6 @@ final class CityCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        nameLabel.font = UIFont.systemFont(ofSize: Padding.f25)
-        nameLabel.textColor = .white
-        nameLabel.shadowColor = .black
         setupUI()
     }
     
@@ -33,8 +30,16 @@ final class CityCell: UITableViewCell {
     
     private func setupUI() {
         backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        addSubview(nameLabel)
         
+        setupLabel()
+    }
+    
+    private func setupLabel() {
+        nameLabel.font = UIFont.systemFont(ofSize: Padding.f25)
+        nameLabel.textColor = .white
+        nameLabel.shadowColor = .black
+        
+        addSubview(nameLabel)
         nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Padding.f10)
             $0.leading.equalToSuperview().offset(Padding.f30)

@@ -1,10 +1,10 @@
-////
-////  LocationsViewController.swift
-////  WeatherApp
-////
-////  Created by Stefan on 22/06/2018.
-////  Copyright © 2018 Stefan. All rights reserved.
-////
+//
+//  LocationsViewController.swift
+//  WeatherApp
+//
+//  Created by Stefan on 22/06/2018.
+//  Copyright © 2018 Stefan. All rights reserved.
+//
 
 import UIKit
 import CoreData
