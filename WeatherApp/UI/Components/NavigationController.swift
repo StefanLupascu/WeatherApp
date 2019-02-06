@@ -31,10 +31,7 @@ class NavigationController: UIViewController {
         
         sideMenuView.delegate = self
         
-        setupButton()
-        setupUser()
         setupUI()
-        setupGestures()
     }
     
     // MARK: - Private Functions
@@ -85,17 +82,25 @@ class NavigationController: UIViewController {
     }
     
     private func setupUI() {
+        setupButton()
+        setupUser()
+        setupRightView()
+        setupSideMenuView()
+        setupGestures()
+    }
+    
+    private func setupRightView() {
         rightView.backgroundColor = UIColor(white: 0, alpha: 0)
+        rightView.isUserInteractionEnabled = false
         
         navigationController?.view.addSubview(rightView)
-        navigationController?.view.addSubview(sideMenuView)
-        
         rightView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
-        
-        rightView.isUserInteractionEnabled = false
-        
+    }
+    
+    private func setupSideMenuView() {
+        navigationController?.view.addSubview(sideMenuView)
         sideMenuView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.leading.equalToSuperview().offset(-view.frame.width * 0.75)

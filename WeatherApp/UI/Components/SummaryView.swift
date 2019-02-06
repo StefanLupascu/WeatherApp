@@ -62,59 +62,55 @@ final class SummaryView: UICollectionViewCell {
     }
     
     private func setupPressureTitleLabel() {
-        addSubview(pressureTitleLabel)
-        
-        pressureTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.f75)
-            $0.centerX.equalToSuperview()
-        }
-        
         pressureTitleLabel.textAlignment = .center
         pressureTitleLabel.textColor = .white
         pressureTitleLabel.font = UIFont.boldSystemFont(ofSize: 24)
         pressureTitleLabel.text = "Pressure: "
+        
+        addSubview(pressureTitleLabel)
+        pressureTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Padding.f75)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     private func setupPressureLabel() {
-        addSubview(pressureLabel)
+        pressureLabel.textAlignment = .center
+        pressureLabel.textColor = .white
+        pressureLabel.font = UIFont.systemFont(ofSize: 20)
         
+        addSubview(pressureLabel)
         pressureLabel.snp.makeConstraints {
             $0.top.equalTo(pressureTitleLabel.snp.bottom).offset(Padding.f30)
             $0.centerX.equalToSuperview()
         }
-        
-        pressureLabel.textAlignment = .center
-        pressureLabel.textColor = .white
-        pressureLabel.font = UIFont.systemFont(ofSize: 20)
     }
     
     private func setupSummaryTitleLabel() {
-        addSubview(summaryTitleLabel)
-        
-        summaryTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(pressureLabel.snp.bottom).offset(Padding.f50)
-            $0.centerX.equalToSuperview()
-        }
-        
         summaryTitleLabel.textAlignment = .center
         summaryTitleLabel.textColor = .white
         summaryTitleLabel.font = UIFont.boldSystemFont(ofSize: 24)
         summaryTitleLabel.text = "Summary: "
+        
+        addSubview(summaryTitleLabel)
+        summaryTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(pressureLabel.snp.bottom).offset(Padding.f50)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     private func setupSummaryLabel() {
-        addSubview(summaryLabel)
+        summaryLabel.textAlignment = .center
+        summaryLabel.textColor = .white
+        summaryLabel.font = UIFont.systemFont(ofSize: 20)
+        summaryLabel.numberOfLines = 0
         
+        addSubview(summaryLabel)
         summaryLabel.snp.makeConstraints {
             $0.top.equalTo(summaryTitleLabel.snp.bottom).offset(Padding.f30)
             $0.leading.equalToSuperview().offset(Padding.f20)
             $0.trailing.equalToSuperview().offset(-Padding.f20)
         }
-        
-        summaryLabel.textAlignment = .center
-        summaryLabel.textColor = .white
-        summaryLabel.font = UIFont.systemFont(ofSize: 20)
-        summaryLabel.numberOfLines = 0
     }
     
     private func setupPointsOfInterestButton() {
