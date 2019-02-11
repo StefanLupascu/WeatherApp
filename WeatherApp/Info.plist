@@ -47,5 +47,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This app would like to access your camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow this app to access your location</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow this app to access your location</string>
 </dict>
 </plist>

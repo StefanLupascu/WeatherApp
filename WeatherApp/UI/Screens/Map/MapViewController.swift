@@ -14,13 +14,11 @@ protocol MapViewDelegate: class {
 }
 
 class MapViewController: UIViewController {
-
-    typealias CityNameCompletion = (String?, DataManagerError?) -> Void
-    
     // MARK: - Properties
     
     var delegate: MapViewDelegate?
     private let mapView = MapView()
+    private let manager = LocationManager()
     private let activityIndicator = UIActivityIndicatorView()
     
     // MARK: - Base class overrides
@@ -29,6 +27,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationBar()
+        setupUI()
     }
     
     // MARK: - Private Functions
@@ -71,29 +70,6 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func getCityAt(latitude: Double, longitude: Double, completion: @escaping CityNameCompletion){
-        let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: latitude, longitude: longitude)
-        
-        geoCoder.reverseGeocodeLocation(location) {
-            (placemarks, error) in
-            
-            let placeArray = placemarks as [CLPlacemark]?
-            
-            var placeMark: CLPlacemark!
-            placeMark = placeArray?[0]
-            
-            guard let locationName = placeMark.locality else {
-                completion(nil, .failedRequest)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                completion(locationName, nil)
-            }
-        }
-    }
-    
     private func showActivityIndicator() {
         activityIndicator.frame = view.frame
         activityIndicator.center = view.center
@@ -122,7 +98,7 @@ class MapViewController: UIViewController {
         
         showActivityIndicator()
 
-        getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude) { [weak self] (cityName, error) in
+        manager.getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude) { [weak self] (cityName, countryName, error) in
             
             guard cityName != nil else {
                 self?.activityIndicator.stopAnimating()

@@ -17,6 +17,7 @@ struct City: Equatable {
     
     let id: String?
     let name: String
+    let country: String?
     let latitude: Double
     let longitude: Double
     var note: String
@@ -24,11 +25,12 @@ struct City: Equatable {
     
     // MARK: - Init
     
-    init(id: String? = nil, name: String, latitude: Double, longitude: Double, note: String) {
+    init(id: String? = nil, name: String, latitude: Double, longitude: Double, note: String, country: String? = nil) {
         self.id = id
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
         self.note = note
+        self.country = country
     }
 }
