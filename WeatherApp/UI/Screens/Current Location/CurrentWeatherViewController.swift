@@ -179,8 +179,6 @@ extension CurrentWeatherViewController: CLLocationManagerDelegate {
             
             let city = City(name: cityName, latitude: latitude, longitude: longitude, note: "", country: countryName)
             self.currentCity = city
-            
-            print("\(countryName), \(cityName)")
         }
     }
 }
