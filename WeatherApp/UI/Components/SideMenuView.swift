@@ -8,10 +8,8 @@
 
 import UIKit
 import SnapKit
-import Firebase
 
 protocol SideMenuViewDelegate {
-    func seeTutorial()
     func goToCities()
     func goToPredictions()
     func goToCurrentLocation()
@@ -25,7 +23,6 @@ final class SideMenuView: UIView {
     
     let userLabel = UILabel()
     private let titleLabel = UILabel()
-    private let tutorialButton = UIButton()
     private let logoutButton = UIButton()
     private let citiesButton = UIButton()
     private let predictionsButton = UIButton()
@@ -44,10 +41,6 @@ final class SideMenuView: UIView {
     }
     
     // MARK: - Private Functions
-    
-    @objc private func seeTutorial() {
-        delegate?.seeTutorial()
-    }
     
     @objc private func goToCities() {
         delegate?.goToCities()
@@ -70,7 +63,6 @@ final class SideMenuView: UIView {
         
         setupUserLabel()
         setupTitleLabel()
-        setupTutorialButton()
         setupCitiesButton()
         setupPredictionsButton()
         setupCurrentWeatherButton()
@@ -101,22 +93,6 @@ final class SideMenuView: UIView {
         }
     }
     
-    private func setupTutorialButton() {
-        tutorialButton.layer.cornerRadius = 10
-        tutorialButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        tutorialButton.setTitle("See Tutorial", for: .normal)
-        tutorialButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        tutorialButton.addTarget(self, action: #selector(seeTutorial), for: .touchUpInside)
-        
-        addSubview(tutorialButton)
-        tutorialButton.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.p40)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(Height.h250)
-            $0.height.equalTo(Height.h50)
-        }
-    }
-    
     private func setupCitiesButton() {
         citiesButton.layer.cornerRadius = 10
         citiesButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
@@ -126,7 +102,7 @@ final class SideMenuView: UIView {
         
         addSubview(citiesButton)
         citiesButton.snp.makeConstraints {
-            $0.top.equalTo(tutorialButton.snp.bottom).offset(Padding.p5)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.p40)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)

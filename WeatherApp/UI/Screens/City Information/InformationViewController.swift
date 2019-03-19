@@ -12,16 +12,16 @@ import SnapKit
 final class InformationViewController: UIViewController {
     // MARK: - Properties
     
+    var delegate: DetailsViewDelegate?
+    
+    private var city: City
+    
     private let temperatureCellId = "temperatureCellId"
     private let humidityCellId = "humidityCellId"
     private let summaryCellId = "summaryCellId"
     private let notesCellId = "notesCellId"
-    private var city: City
     private let containerView = UIView()
     private let titleLabel = UILabel()
-    private let temperatureView = TemperatureView()
-    
-    weak var delegate: DetailsViewDelegate?
     
     private let collectionView: UICollectionView = {
        let layout = UICollectionViewFlowLayout()
@@ -57,7 +57,6 @@ final class InformationViewController: UIViewController {
 
         setupNavigationBar()
         setupCollectionView()
-        setupViews()
         setupLabel()
         setupGesture()
         setupUI()
@@ -92,15 +91,6 @@ final class InformationViewController: UIViewController {
         collectionView.delegate = self
     }
     
-    private func setupViews() {
-        temperatureView.layer.cornerRadius = 20
-        guard let temperature = city.details?.temperature else {
-            return
-        }
-        let temperatureInCelsius = (temperature - 32) * 5 / 9
-        temperatureView.temperature = temperatureInCelsius
-    }
-    
     private func setupLabel() {
         titleLabel.text = city.name
         titleLabel.backgroundColor = .clear
@@ -131,7 +121,7 @@ final class InformationViewController: UIViewController {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.p20)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(200)
+            $0.width.equalTo(Height.h200)
         }
         
         collectionView.snp.makeConstraints {

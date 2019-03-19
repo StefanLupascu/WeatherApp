@@ -25,8 +25,13 @@ struct LocationManager {
             
             let placeArray = placemarks as [CLPlacemark]?
             
-            var placeMark: CLPlacemark!
-            placeMark = placeArray?[0]
+//            var placeMark: CLPlacemark!
+//            placeMark = placeArray?[0]
+            
+            guard let placeMark = placeArray?[0] else {
+                completion(nil, nil, .unknown)
+                return
+            }
             
             guard let countryName = placeMark.country else {
                 completion(nil, nil, .failedRequest)
