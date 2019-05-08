@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 
-//final class TemperatureView: UIView {
 final class TemperatureView: UICollectionViewCell {
     // MARK: - Properties
     

@@ -142,8 +142,6 @@ extension NavigationController: SideMenuViewDelegate {
     }
     
     func goToCurrentLocation() {
-        // TODO: - Try adding ARKit current weather functionality
-        
         let currentWeatherViewController = CurrentWeatherViewController()
         present(currentWeatherViewController, animated: true)
     }

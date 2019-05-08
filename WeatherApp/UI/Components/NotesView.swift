@@ -12,9 +12,9 @@ import SnapKit
 final class NotesView: UICollectionViewCell {
     // MARK: - Properties
     
-    private let titleLabel = UILabel()
-    
     let notesTextView = UITextView()
+    
+    private let titleLabel = UILabel()
     
     // MARK: - Init
     

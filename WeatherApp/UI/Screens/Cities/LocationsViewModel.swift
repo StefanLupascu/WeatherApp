@@ -6,7 +6,7 @@
 //  Copyright © 2018 Stefan. All rights reserved.
 //
 
-import CoreData
+//import CoreData
 import Firebase
 
 protocol LocationsDelegate: class {
