@@ -18,7 +18,8 @@ final class LocationsViewModel {
     // MARK: - Properties
     
     var cities = [City]()
-    var delegate: LocationsDelegate?
+    
+    weak var delegate: LocationsDelegate?
     
     private var uid: String {
         guard let user = Auth.auth().currentUser else {
