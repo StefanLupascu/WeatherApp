@@ -2,7 +2,7 @@
   "Mac" : [
     {
       "name" : "SnapKit",
-      "hash" : "a5da20d9b130dccf521999b6360796aa0ed303827c0a49597a19d62f9ea43b9e"
+      "hash" : "f592a700d0c2a91cfce1d954bf22e35502d7af7bf21dfede066fcd2a0eea7efb"
     }
   ],
   "watchOS" : [
@@ -11,14 +11,14 @@
   "tvOS" : [
     {
       "name" : "SnapKit",
-      "hash" : "eb3a317753608bb90dc1e6075d8440e0c2dc24b5e5a7425f86e78ef62c0665e6"
+      "hash" : "12bd54e3aff6734495678fa49f9d8bbc265657e76695fd0bebe0803a95d7e200"
     }
   ],
-  "commitish" : "4.0.1",
+  "commitish" : "4.2.0",
   "iOS" : [
     {
       "name" : "SnapKit",
-      "hash" : "f2932ebaae6615ee4c36f772f551d4c3c70eb9f1396c1972e3e28733d789932f"
+      "hash" : "c1ee5304ff01f2b809d4630af872a3d43fa1cc11d6735783bb7e67ccbe330bae"
     }
   ]
 }
