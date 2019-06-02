@@ -111,7 +111,7 @@ final class LocationsViewController: NavigationController {
     }
     
     @discardableResult private func update(city: City, with details: Detail) -> City {
-        guard let index = viewModel.cities.index(of: city) else {
+        guard let index = viewModel.cities.firstIndex(of: city) else {
             fatalError("Sanity check")
         }
         

@@ -208,7 +208,7 @@ final class PredictionViewController: UIViewController {
     }
     
     private func format(data: Data) {
-        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as?  [String: AnyObject] else {
+        guard let json = ((try? JSONSerialization.jsonObject(with: data, options: []) as?  [String: AnyObject]) as [String : AnyObject]??) else {
             return
         }
         

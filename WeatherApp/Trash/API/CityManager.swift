@@ -126,7 +126,7 @@ final class CityManager {
                 return
             }
             
-            guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
+            guard let json = ((try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]) as [String : AnyObject]??) else {
                 print("invalid response")
                 return
             }

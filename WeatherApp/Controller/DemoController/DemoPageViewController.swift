@@ -55,7 +55,7 @@ extension DemoPageViewController: UIPageViewControllerDataSource {
     // MARK: - Page View Handling
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.index(of: viewController) else {
+        guard let currentIndex = pages.firstIndex(of: viewController) else {
             return nil
         }
         guard currentIndex < pages.count - 1 else {
@@ -67,7 +67,7 @@ extension DemoPageViewController: UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.index(of: viewController) else {
+        guard let currentIndex = pages.firstIndex(of: viewController) else {
             return nil
         }
         guard currentIndex > 0 else {
@@ -83,7 +83,7 @@ extension DemoPageViewController: UIPageViewControllerDataSource {
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         guard let firstViewController = pages.first,
-            let firstViewControllerIndex = pages.index(of: firstViewController) else {
+            let firstViewControllerIndex = pages.firstIndex(of: firstViewController) else {
                 return 0
         }
         
