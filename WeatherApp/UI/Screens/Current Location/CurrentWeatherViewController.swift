@@ -63,6 +63,7 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
         }
         
         let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .vertical
         sceneView.session.run(configuration)
     }
     
