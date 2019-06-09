@@ -27,6 +27,10 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    private var isLabelDisplayed = false
+    private var planeGeometry: SCNPlane!
+    private var anchors = [ARAnchor]()
+    
     private var labelText = ""
     private let manager = LocationManager()
     private let locationManager = CLLocationManager()
@@ -42,7 +46,6 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
         getCurrentLocation()
         setupSceneView()
         setupBackButton()
-        setupGesture()
     }
     
     // MARK: - Private Functions
@@ -63,7 +66,7 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
         }
         
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .vertical
+        configuration.planeDetection = .horizontal
         sceneView.session.run(configuration)
     }
     
@@ -79,11 +82,6 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.p20)
             $0.leading.equalToSuperview().offset(Padding.p10)
         }
-    }
-    
-    private func setupGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
-        sceneView.addGestureRecognizer(tapGesture)
     }
     
     private func setLabelText() {
@@ -137,24 +135,81 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
         present(alert, animated: true, completion: nil)
     }
     
-    @objc private func tap() {
-        let text = SCNText(string: labelText, extrusionDepth: 2)
+    @objc private func goBack() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isLabelDisplayed else { return }
         
+        let touch = touches.first
+        let location = touch?.location(in: sceneView)
+        
+        let hitResults = sceneView.hitTest(location!, types: .featurePoint)
+        
+        if let hitResult = hitResults.first {
+            let transform = hitResult.worldTransform
+            let position = SCNVector3(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+            
+            let node = createNode(for: position)
+            
+            isLabelDisplayed = true
+            sceneView.scene.rootNode.addChildNode(node)
+        }
+    }
+    
+    private func createNode(for location: SCNVector3) -> SCNNode {
+        let node = SCNNode()
+        node.position = location
+        node.scale = SCNVector3(0.01, 0.01, 0.01)
+        let text = SCNText(string: labelText, extrusionDepth: 2)
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.white
         text.materials = [material]
-        
-        let node = SCNNode()
-        node.position = SCNVector3(0, 0.02, -1)
-        node.scale = SCNVector3(0.01, 0.01, 0.01)
         node.geometry = text
         
-        sceneView.scene.rootNode.addChildNode(node)
-        sceneView.autoenablesDefaultLighting = true
+        return node
+    }
+
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        var node: SCNNode?
+        
+        if let planeAnchor = anchor as? ARPlaneAnchor {
+            node = SCNNode()
+            planeGeometry = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
+            planeGeometry.firstMaterial?.diffuse.contents = UIColor.white.withAlphaComponent(0.5)
+            
+            let planeNode = SCNNode(geometry: planeGeometry)
+            planeNode.position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
+            planeNode.transform = SCNMatrix4MakeRotation(-.pi / 2, 1, 0, 0)
+            updateMaterial()
+            
+            node?.addChildNode(planeNode)
+            anchors.append(planeAnchor)
+        }
+        
+        return node
     }
     
-    @objc private func goBack() {
-        dismiss(animated: true, completion: nil)
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        
+        if anchors.contains(planeAnchor) {
+            if node.childNodes.count > 0 {
+                let planeNode = node.childNodes.first!
+                planeNode.position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
+                
+                guard let plane = planeNode.geometry as? SCNPlane else { return }
+                plane.width = CGFloat(planeAnchor.extent.x)
+                plane.height = CGFloat(planeAnchor.extent.z)
+                updateMaterial()
+            }
+        }
+    }
+    
+    private func updateMaterial() {
+        guard let material = planeGeometry.materials.first else { return }
+        material.diffuse.contentsTransform = SCNMatrix4MakeScale(Float(planeGeometry.width), Float(planeGeometry.height), 1)
     }
 }
 
