@@ -193,7 +193,7 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        
+                
         if anchors.contains(planeAnchor) {
             if node.childNodes.count > 0 {
                 let planeNode = node.childNodes.first!
