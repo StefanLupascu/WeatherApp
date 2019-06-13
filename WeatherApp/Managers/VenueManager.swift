@@ -37,8 +37,9 @@ struct VenueManager {
     
     // MARK: - Functions
     
-    func getVenues(cityName: String, completion: @escaping VenueDataCompletion) {
-        let url = URL(string: "https://api.foursquare.com/v2/venues/explore?near=\(cityName)&sortByDistance=1&limit=10&client_id=\(clientId)&client_secret=\(clientSecret)&v=\(date)")!
+    func getVenues(city: City, completion: @escaping VenueDataCompletion) {
+        let url = URL(string: "https://api.foursquare.com/v2/venues/explore?ll=\(city.latitude),\(city.longitude)&sortByDistance=1&limit=10&client_id=\(clientId)&client_secret=\(clientSecret)&v=\(date)")!
+        
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         

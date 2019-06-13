@@ -23,14 +23,14 @@ final class VenuesViewModel {
     
     // MARK: - Init
     
-    init(cityName: String) {
-        getVenues(cityName: cityName)
+    init(city: City) {
+        getVenues(city: city)
     }
     
     // MARK: - Private Functions
     
-    private func getVenues(cityName: String) {
-        manager.getVenues(cityName: cityName) { data, error in
+    private func getVenues(city: City) {
+        manager.getVenues(city: city) { data, error in
             guard let data = data else {
                 return
             }
@@ -44,7 +44,7 @@ final class VenuesViewModel {
     
     private func format(data: Data) {
         guard let json = ((try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]) as [String : AnyObject]??) else {
-            print("invalid response aici")
+            print("invalid response")
             return
         }
     

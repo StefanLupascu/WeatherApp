@@ -206,7 +206,7 @@ extension InformationViewController: UITextViewDelegate {
 
 extension InformationViewController: PointsOfInterestViewDelegate {
     func showPointsOfInterest() {        
-        let viewModel = VenuesViewModel(cityName: city.name)
+        let viewModel = VenuesViewModel(city: city)
         let venuesViewController = VenuesViewController(viewModel: viewModel)
         navigationController?.pushViewController(venuesViewController, animated: true)
     }

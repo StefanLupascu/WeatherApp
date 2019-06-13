@@ -149,7 +149,7 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
         
         if let hitResult = hitResults.first {
             let transform = hitResult.worldTransform
-            let position = SCNVector3(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+            let position = SCNVector3(transform.columns.3.x, transform.columns.3.y + 0.15, transform.columns.3.z)
             
             let node = createNode(for: position)
             
@@ -172,6 +172,8 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
     }
 
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        guard !isLabelDisplayed else { return nil }
+        
         var node: SCNNode?
         
         if let planeAnchor = anchor as? ARPlaneAnchor {
@@ -192,6 +194,8 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        guard !isLabelDisplayed else { return }
+        
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         
         if anchors.contains(planeAnchor) {

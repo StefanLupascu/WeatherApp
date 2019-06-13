@@ -841,7 +841,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31D85B613EE4AE729E1AFE67 /* Pods-WeatherApp.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BSU69XA3A9;
@@ -867,7 +867,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA69AD1A53B8A0A55587FC3E /* Pods-WeatherApp.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BSU69XA3A9;
