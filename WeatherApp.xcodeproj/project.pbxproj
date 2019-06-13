@@ -195,19 +195,21 @@
 		A12D147D21F713090002AA52 /* Trash */ = {
 			isa = PBXGroup;
 			children = (
+				F8C7785F20DD150000DBC495 /* View */,
+				F8C7785E20DD14FA00DBC495 /* Controller */,
 				A1F72AA121A9B9C200B06E06 /* API */,
 			);
 			path = Trash;
 			sourceTree = "<group>";
 		};
-		A12D148421F85DE00002AA52 /* Model */ = {
+		A12D148421F85DE00002AA52 /* DTOs */ = {
 			isa = PBXGroup;
 			children = (
 				A12D148521F85DFB0002AA52 /* Venue.swift */,
 				A1C4F18C2201C919005E3082 /* City.swift */,
 				A1C4F18E2201C998005E3082 /* Detail.swift */,
 			);
-			path = Model;
+			path = DTOs;
 			sourceTree = "<group>";
 		};
 		A1566E3F21523C59001FB76C /* Resources */ = {
@@ -226,6 +228,15 @@
 				A195BEBB220AE46300502F55 /* RegisterViewController.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		A1B5122E22B278F200EBA063 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				A12D148421F85DE00002AA52 /* DTOs */,
+				F8A30E8D20E224F1002203D4 /* Managers */,
+			);
+			path = Business;
 			sourceTree = "<group>";
 		};
 		A1EC1584220ECB8700C9A0CE /* Current Location */ = {
@@ -395,16 +406,13 @@
 			isa = PBXGroup;
 			children = (
 				F8C7784420DCE81300DBC495 /* AppDelegate.swift */,
-				F8C7785E20DD14FA00DBC495 /* Controller */,
+				A1B5122E22B278F200EBA063 /* Business */,
 				A1C4F18A2201B66A005E3082 /* GoogleService-Info.plist */,
 				F8C7785320DCE81600DBC495 /* Info.plist */,
-				F8A30E8D20E224F1002203D4 /* Managers */,
-				A12D148421F85DE00002AA52 /* Model */,
 				A1566E3F21523C59001FB76C /* Resources */,
 				A12D147D21F713090002AA52 /* Trash */,
 				A1F72A9921A99E8E00B06E06 /* UI */,
 				F8C31D6120EA3988008F3125 /* Utils */,
-				F8C7785F20DD150000DBC495 /* View */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";

@@ -93,26 +93,13 @@ struct DataManager {
     }
     
     private func process(data: Data, completion: WeatherDataCompletion) {
-        guard let json = ((try? JSONSerialization.jsonObject(with: data, options: []) as?  [String: AnyObject]) as [String : AnyObject]??) else {
+        guard let response = try? JSONSerialization.jsonObject(with: data, options: []),
+            let json = response as? [String: AnyObject] else {
             completion(nil, .invalidResponse)
             return
         }
         
-        guard let currently = json?["currently"] as? [String: AnyObject],
-            let temperature = currently["temperature"] as? Double,
-            let humidity = currently["humidity"] as? Double,
-            let pressure = currently["pressure"] as? Double else {
-                completion(nil, .invalidResponse)
-                return
-        }
-        
-        guard let hourly = json?["hourly"] as? [String: AnyObject],
-            let summary = hourly["summary"] as? String else {
-                completion(nil, .invalidResponse)
-                return
-        }
-        
-        let details = Detail(temperature: temperature, humidity: humidity, pressure: pressure, summary: summary)
+        let details = Detail(json: json)
         
         completion(details, nil)
     }
