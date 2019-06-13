@@ -28,7 +28,7 @@ final class LocationsViewModel {
         
         return user.uid
     }
-    private let cityManager = CityManager()
+
     private var ref: DatabaseReference {
         return Database.database().reference()
     }

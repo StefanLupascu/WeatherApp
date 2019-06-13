@@ -121,11 +121,6 @@ class NavigationController: UIViewController {
 // MARK: - SideMenuViewDelegate
 
 extension NavigationController: SideMenuViewDelegate {
-    func seeTutorial() {
-        let tutorialVC = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        present(tutorialVC, animated: true)
-    }
-    
     func goToCities() {
         let locationsViewController = LocationsViewController(viewModel: LocationsViewModel())
         let vc = UINavigationController(rootViewController: locationsViewController)
