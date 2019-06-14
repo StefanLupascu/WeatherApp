@@ -131,6 +131,7 @@ final class TemperatureView: UICollectionViewCell {
         trackingView.snp.updateConstraints {
             $0.trailing.equalTo(backgroundBarView.snp.leading).offset(offset)
         }
+        
         UIView.animate(withDuration: 1.2) {
             self.trackingView.layoutIfNeeded()
         }

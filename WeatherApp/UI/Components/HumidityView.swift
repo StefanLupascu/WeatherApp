@@ -9,10 +9,20 @@
 import UIKit
 import SnapKit
 
-struct Animation {
+enum Animation {
     static let strokeEnd = "strokeEnd"
-    static let tracking = "tracking"
-    static let loading = "loading"
+
+    case tracking
+    case loading
+    
+    var type: String {
+        switch self {
+        case .loading:
+            return "loading"
+        case .tracking:
+            return "tracking"
+        }
+    }
 }
 
 final class HumidityView: UICollectionViewCell {
@@ -103,31 +113,29 @@ final class HumidityView: UICollectionViewCell {
         addGestureRecognizer(tap)
     }
     
-    private func animateLoadingCircle() {
-        loadingCircle.strokeEnd = 0
-        let basicAnimation = CABasicAnimation(keyPath: Animation.strokeEnd)
-        basicAnimation.toValue = 1
-        basicAnimation.duration = CFTimeInterval(humidity)
-        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
-        basicAnimation.isRemovedOnCompletion = false
+    private func animateCircle(_ circle: CAShapeLayer, for key: Animation) {
+        circle.strokeEnd = 0
         
-        loadingCircle.add(basicAnimation, forKey: Animation.loading)
-    }
-    
-    private func animateTrackingCircle() {
-        trackingCircle.strokeEnd = 0
-        let trackingAnimation = CABasicAnimation(keyPath: Animation.strokeEnd)
-        trackingAnimation.toValue = 1
-        trackingAnimation.duration = CFTimeInterval(1 - humidity)
-        trackingAnimation.fillMode = CAMediaTimingFillMode.forwards
-        trackingAnimation.isRemovedOnCompletion = false
-        trackingAnimation.beginTime = CACurrentMediaTime() + CFTimeInterval(humidity) + 0.05
+        let animation = CABasicAnimation(keyPath: Animation.strokeEnd)
+        animation.toValue = 1
         
-        trackingCircle.add(trackingAnimation, forKey: Animation.tracking)
+        switch key {
+        case .loading:
+            animation.duration = CFTimeInterval(humidity)
+        case .tracking:
+            animation.duration = CFTimeInterval(1 - humidity)
+            animation.beginTime = CACurrentMediaTime() + CFTimeInterval(1 - humidity)
+        }
+        
+        animation.duration = CFTimeInterval(1 - humidity)
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.isRemovedOnCompletion = false
+        
+        circle.add(animation, forKey: key.type)
     }
     
     @objc private func animate() {
-        animateLoadingCircle()
-        animateTrackingCircle()
+        animateCircle(loadingCircle, for: .loading)
+        animateCircle(trackingCircle, for: .tracking)
     }
 }

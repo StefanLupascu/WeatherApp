@@ -221,7 +221,7 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
 
 extension CurrentWeatherViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
         let latitude = locValue.latitude
         let longitude = locValue.longitude
         

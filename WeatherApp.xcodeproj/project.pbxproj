@@ -25,6 +25,7 @@
 		A195BEBC220AE46300502F55 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A195BEBB220AE46300502F55 /* RegisterViewController.swift */; };
 		A1B39B2C21B29EDF00618F77 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B39B2B21B29EDF00618F77 /* LocationsViewModel.swift */; };
 		A1B5123022B280B100EBA063 /* DetailsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B5122F22B280B100EBA063 /* DetailsViewDelegate.swift */; };
+		A1B5123222B2851900EBA063 /* ManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B5123122B2851800EBA063 /* ManagerError.swift */; };
 		A1C4F18B2201B66A005E3082 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C4F18A2201B66A005E3082 /* GoogleService-Info.plist */; };
 		A1C4F18D2201C919005E3082 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C4F18C2201C919005E3082 /* City.swift */; };
 		A1C4F18F2201C998005E3082 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C4F18E2201C998005E3082 /* Detail.swift */; };
@@ -46,7 +47,6 @@
 		F8C7785A20DCEEB000DBC495 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */; };
 		F8C7786720DD281C00DBC495 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7786620DD281C00DBC495 /* CityCell.swift */; };
 		F8FFE47B20E0D1E0006D9E1A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */; };
-		F8FFE47D20E0D266006D9E1A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE47C20E0D266006D9E1A /* MapView.swift */; };
 		F8FFE48020E0E22B006D9E1A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FFE47F20E0E22B006D9E1A /* MapKit.framework */; };
 		F8FFE48220E0F0C8006D9E1A /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFE48120E0F0C8006D9E1A /* PinAnnotation.swift */; };
 /* End PBXBuildFile section */
@@ -95,6 +95,7 @@
 		A195BEBB220AE46300502F55 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A1B39B2B21B29EDF00618F77 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
 		A1B5122F22B280B100EBA063 /* DetailsViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewDelegate.swift; sourceTree = "<group>"; };
+		A1B5123122B2851800EBA063 /* ManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerError.swift; sourceTree = "<group>"; };
 		A1C4F18A2201B66A005E3082 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1C4F18C2201C919005E3082 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		A1C4F18E2201C998005E3082 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		F8C7785920DCEEB000DBC495 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		F8C7786620DD281C00DBC495 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		F8FFE47C20E0D266006D9E1A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F8FFE47F20E0E22B006D9E1A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F8FFE48120E0F0C8006D9E1A /* PinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,12 +231,12 @@
 		A1F66179217711B100151E14 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A1F6617A217711C000151E14 /* TemperatureView.swift */,
 				A1F661802177702C00151E14 /* HumidityView.swift */,
-				A1D117D021905F9B00415121 /* NotesView.swift */,
-				A1D117D221906B3100415121 /* SummaryView.swift */,
 				A11DDA8821C1779700FEC9F5 /* NavigationController.swift */,
+				A1D117D021905F9B00415121 /* NotesView.swift */,
 				A107A7662150D7DA0095D588 /* SideMenuView.swift */,
+				A1D117D221906B3100415121 /* SummaryView.swift */,
+				A1F6617A217711C000151E14 /* TemperatureView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -263,7 +263,6 @@
 		A1F72A9D21A99F4000B06E06 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				F8FFE47C20E0D266006D9E1A /* MapView.swift */,
 				F8FFE47A20E0D1E0006D9E1A /* MapViewController.swift */,
 				A12D148921F864100002AA52 /* VenuesViewController.swift */,
 				A12D148721F860FC0002AA52 /* VenuesViewModel.swift */,
@@ -308,6 +307,7 @@
 				F8A30E8E20E2250C002203D4 /* DataManager.swift */,
 				A12D148221F85C070002AA52 /* VenueManager.swift */,
 				A1EC1587220ECFCA00C9A0CE /* LocationManager.swift */,
+				A1B5123122B2851800EBA063 /* ManagerError.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -549,12 +549,12 @@
 				A1566E3E21523ABE001FB76C /* Height.swift in Sources */,
 				A1C4F18D2201C919005E3082 /* City.swift in Sources */,
 				A12D147C21F70FD90002AA52 /* PredictionsCollectionViewCell.swift in Sources */,
+				A1B5123222B2851900EBA063 /* ManagerError.swift in Sources */,
 				A12D147F21F7138D0002AA52 /* PredictionViewController.swift in Sources */,
 				F8FFE47B20E0D1E0006D9E1A /* MapViewController.swift in Sources */,
 				A1B39B2C21B29EDF00618F77 /* LocationsViewModel.swift in Sources */,
 				A1F6617B217711C000151E14 /* TemperatureView.swift in Sources */,
 				F8A30E8F20E2250C002203D4 /* DataManager.swift in Sources */,
-				F8FFE47D20E0D266006D9E1A /* MapView.swift in Sources */,
 				A12D147921F70E7A0002AA52 /* PredictionsViewController.swift in Sources */,
 				F8C7784D20DCE81300DBC495 /* WeatherApp.xcdatamodeld in Sources */,
 				A1EC1586220ECB9E00C9A0CE /* CurrentWeatherViewController.swift in Sources */,

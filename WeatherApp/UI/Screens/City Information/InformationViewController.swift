@@ -98,7 +98,7 @@ final class InformationViewController: UIViewController {
         titleLabel.shadowColor = .black
         titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.textAlignment = .center
-        titleLabel.layer.cornerRadius = 5
+        titleLabel.layer.cornerRadius = Height.h5
     }
     
     private func setupGesture() {
@@ -198,7 +198,7 @@ extension InformationViewController: UICollectionViewDelegateFlowLayout {
 extension InformationViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         city.note = textView.text
-        delegate?.didUpdateNote(city: city)
+        delegate?.didUpdateNote(for: city)
     }
 }
 

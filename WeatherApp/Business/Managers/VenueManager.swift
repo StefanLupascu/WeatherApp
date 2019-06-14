@@ -8,16 +8,10 @@
 
 import Foundation
 
-enum VenueManagerError: Error {
-    case unknown
-    case failedRequest
-    case invalidResponse
-}
-
 struct VenueManager {
     // MARK: - Properties
     
-    typealias VenueDataCompletion = (Data?, VenueManagerError?) -> Void
+    typealias VenueDataCompletion = (Data?, ManagerError?) -> Void
     
     var baseURL: String {
         return "https://api.foursquare.com/v2/venues/explore"
@@ -63,7 +57,7 @@ struct VenueManager {
             }
 
             guard response.statusCode == 200 else {
-                print("failed request aici")
+                print("failed request")
                 completion(nil, .failedRequest)
                 return
             }

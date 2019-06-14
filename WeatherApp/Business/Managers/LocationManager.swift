@@ -12,7 +12,7 @@ import MapKit
 struct LocationManager {
     // MARK: - Properties
     
-    typealias CityNameCompletion = (String?, String?, DataManagerError?) -> Void
+    typealias CityNameCompletion = (String?, String?, ManagerError?) -> Void
     
     // MARK: - Functions
     

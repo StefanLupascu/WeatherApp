@@ -66,15 +66,15 @@ final class RegisterViewController: UIViewController {
         userTextfield.backgroundColor = .white
         userTextfield.layer.borderColor = UIColor.black.cgColor
         userTextfield.textAlignment = .center
-        userTextfield.layer.cornerRadius = 10
+        userTextfield.layer.cornerRadius = Height.h10
         
         view.addSubview(userTextfield)
         userTextfield.snp.makeConstraints {
             $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.p200)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.equalToSuperview().offset(Padding.p50)
+            $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
     }
     
@@ -84,15 +84,15 @@ final class RegisterViewController: UIViewController {
         passwordTextfield.isSecureTextEntry = true
         passwordTextfield.layer.borderColor = UIColor.black.cgColor
         passwordTextfield.textAlignment = .center
-        passwordTextfield.layer.cornerRadius = 10
+        passwordTextfield.layer.cornerRadius = Height.h10
         
         view.addSubview(passwordTextfield)
         passwordTextfield.snp.makeConstraints {
             $0.top.equalTo(userTextfield.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.equalToSuperview().offset(Padding.p50)
+            $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
     }
     
@@ -101,22 +101,22 @@ final class RegisterViewController: UIViewController {
         nameTextfield.backgroundColor = .white
         nameTextfield.layer.borderColor = UIColor.black.cgColor
         nameTextfield.textAlignment = .center
-        nameTextfield.layer.cornerRadius = 10
+        nameTextfield.layer.cornerRadius = Height.h10
         
         view.addSubview(nameTextfield)
         nameTextfield.snp.makeConstraints {
             $0.top.equalTo(passwordTextfield.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.equalToSuperview().offset(Padding.p50)
+            $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
     }
     
     private func setupRegisterButton() {
         registerButton.setTitle("Register", for: .normal)
         registerButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        registerButton.layer.cornerRadius = 10
+        registerButton.layer.cornerRadius = Height.h10
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
         view.addSubview(registerButton)
@@ -124,15 +124,15 @@ final class RegisterViewController: UIViewController {
             $0.top.equalTo(nameTextfield.snp.bottom).offset(Padding.p20)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.equalToSuperview().offset(Padding.p50)
+            $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
     }
     
     private func setupCancelButton() {
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        cancelButton.layer.cornerRadius = 10
+        cancelButton.layer.cornerRadius = Height.h10
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         
         view.addSubview(cancelButton)
@@ -140,8 +140,8 @@ final class RegisterViewController: UIViewController {
             $0.top.equalTo(registerButton.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.equalToSuperview().offset(Padding.p50)
+            $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
     }
     

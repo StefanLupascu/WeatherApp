@@ -8,17 +8,11 @@
 
 import Foundation
 
-enum DataManagerError: Error {
-    case unknown
-    case failedRequest
-    case invalidResponse
-}
-
 struct DataManager {
     // MARK: - Properties
     
-    typealias WeatherDataCompletion = (Detail?, DataManagerError?) -> Void
-    typealias TemperatureDataCompletion = (Data?, DataManagerError?) -> Void
+    typealias WeatherDataCompletion = (Detail?, ManagerError?) -> Void
+    typealias TemperatureDataCompletion = (Data?, ManagerError?) -> Void
     
     private var baseURL: String {
         return "https://api.forecast.io/forecast/b575743a969d064f18d37a4249f3fd4f/"
@@ -73,7 +67,7 @@ struct DataManager {
         completion(data, nil)
     }
     
-    private func didFetchWeatherData(data: Data?, response: URLResponse?, error: Error?, completion: WeatherDataCompletion) {
+    private func didFetchWeatherData(data: Data?, response: URLResponse?, error: Error?, completion: @escaping WeatherDataCompletion) {
         guard error == nil else {
             completion(nil, .failedRequest)
             return

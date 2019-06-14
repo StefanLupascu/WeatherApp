@@ -116,6 +116,17 @@ class NavigationController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu))
         rightView.addGestureRecognizer(tap)
     }
+    
+    // MARK: - Functions
+    
+    func presentAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - SideMenuViewDelegate

@@ -95,18 +95,18 @@ final class LoginViewController: UIViewController {
         passwordTextfield.backgroundColor = .white
         passwordTextfield.layer.borderColor = UIColor.black.cgColor
         passwordTextfield.textAlignment = .center
-        passwordTextfield.layer.cornerRadius = 10
+        passwordTextfield.layer.cornerRadius = Height.h10
     }
     
     private func setupButtons() {
         loginButton.setTitle("Login", for: .normal)
         loginButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        loginButton.layer.cornerRadius = 10
+        loginButton.layer.cornerRadius = Height.h10
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
         registerButton.setTitle("Register", for: .normal)
         registerButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        registerButton.layer.cornerRadius = 10
+        registerButton.layer.cornerRadius = Height.h10
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }
     
@@ -129,30 +129,30 @@ final class LoginViewController: UIViewController {
             $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.p200)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.equalToSuperview().offset(Padding.p50)
+            $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
         
         passwordTextfield.snp.makeConstraints {
             $0.top.equalTo(userTextfield.snp.bottom).offset(Padding.p5)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(Height.h50)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.equalToSuperview().offset(Padding.p50)
+            $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
         
         loginButton.snp.makeConstraints {
             $0.top.equalTo(passwordTextfield.snp.bottom).offset(Padding.p20)
             $0.height.equalTo(Height.h50)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.equalToSuperview().offset(Padding.p50)
+            $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
         
         registerButton.snp.makeConstraints {
             $0.top.equalTo(loginButton.snp.bottom).offset(Padding.p5)
             $0.height.equalTo(Height.h50)
-            $0.leading.equalToSuperview().offset(50)
-            $0.trailing.equalToSuperview().offset(-50)
+            $0.leading.equalToSuperview().offset(Padding.p50)
+            $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
     }
     

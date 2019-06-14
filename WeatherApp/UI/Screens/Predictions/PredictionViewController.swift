@@ -19,6 +19,7 @@ final class PredictionViewController: UIViewController {
             }
         }
     }
+    
     private var temperature = 0 {
         didSet {
             forecastLabel.text = "Temperature:\n \(String(describing: temperature)) ºC"

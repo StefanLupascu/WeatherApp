@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import CoreData
+import SnapKit
 
 final class LocationsViewController: NavigationController {
     // MARK: Properties
     
     private var viewModel: LocationsViewModel
-    private let cellId = "cityCellId"
     
+    private let cellId = "cityCellId"
     private let tableView = UITableView()
     private let mapViewController = MapViewController()
     private let dataManager = DataManager()
@@ -26,6 +26,8 @@ final class LocationsViewController: NavigationController {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.delegate = self
     }
 
     
@@ -38,15 +40,9 @@ final class LocationsViewController: NavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar()
-        showActivityIndicator()
-        
         mapViewController.delegate = self
-        viewModel.delegate = self
         
-        setupTableView()
         setupUI()
-        setupButton()
     }
     
     // MARK: - Private Functions
@@ -75,15 +71,6 @@ final class LocationsViewController: NavigationController {
         activityIndicator.startAnimating()
     }
     
-    private func presentAlert(message: String) {
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
     // MARK: - Delete
     
     private func delete(deleteIndex: IndexPath) {
@@ -97,16 +84,16 @@ final class LocationsViewController: NavigationController {
     private func presentDetails(for city: City) {
         showActivityIndicator()
         
-        dataManager.weatherDetailsFor(latitude: city.latitude, longitude: city.longitude) { [weak self](details, error) in
-            guard let strongSelf = self, let details = details else {
+        dataManager.weatherDetailsFor(latitude: city.latitude, longitude: city.longitude) { [weak self] (details, error) in
+            guard let self = self, let details = details else {
                 return
             }
-            let updatedCity = strongSelf.update(city: city, with: details)
+            let updatedCity = self.update(city: city, with: details)
             let detailsViewController = InformationViewController(city: updatedCity)
             detailsViewController.delegate = self
-            strongSelf.navigationController?.pushViewController(detailsViewController, animated: true)
+            self.navigationController?.pushViewController(detailsViewController, animated: true)
             
-            self?.activityIndicator.stopAnimating()
+            self.activityIndicator.stopAnimating()
         }
     }
     
@@ -126,6 +113,12 @@ final class LocationsViewController: NavigationController {
     }
     
     private func setupTableView() {
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Padding.p20)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
         tableView.backgroundColor = .clear
         tableView.register(CityCell.self, forCellReuseIdentifier: "cellId")
         tableView.dataSource = self
@@ -135,12 +128,10 @@ final class LocationsViewController: NavigationController {
     private func setupUI() {
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
-        view.addSubview(tableView)
-        
-        tableView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Padding.p20)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
+        setupNavigationBar()
+        showActivityIndicator()
+        setupButton()
+        setupTableView()
     }
 }
 
@@ -172,8 +163,8 @@ extension LocationsViewController: UITableViewDataSource {
 // MARK: - MapViewDelegate
 
 extension LocationsViewController: MapViewDelegate {
-    func didRecieveNewWeatherData(city: City) {
-        viewModel.addCity(city)
+    func didRecieveNewWeatherData(for city: City) {
+        viewModel.add(city)
         
         tableView.reloadData()
     }
@@ -182,8 +173,8 @@ extension LocationsViewController: MapViewDelegate {
 // MARK: - DetailsViewDelegate
 
 extension LocationsViewController: DetailsViewDelegate {
-    func didUpdateNote(city: City) {
-        viewModel.updateCity(city: city)
+    func didUpdateNote(for city: City) {
+        viewModel.update(city)
     }
 }
 
@@ -203,12 +194,12 @@ extension LocationsViewController: UITableViewDelegate {
 // MARK: - LocationsDelegate
 
 extension LocationsViewController: LocationsDelegate {
-    func didAddCity(ok: Bool) {
-        if ok {
-            tableView.reloadData()
-        } else {
-            presentAlert(message: "Cannot add the same city twice!")
-        }
+    func didAddCity() {
+        tableView.reloadData()
+    }
+    
+    func failedToAddCity() {
+        presentAlert(message: "Cannot add the same city twice!")
     }
     
     func didFetchCities() {

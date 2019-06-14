@@ -9,6 +9,8 @@
 import UIKit
 
 struct Height {
+    static let h5: CGFloat = 5
+    static let h10: CGFloat = 10
     static let h30: CGFloat = 30
     static let h40: CGFloat = 40
     static let h50: CGFloat = 50

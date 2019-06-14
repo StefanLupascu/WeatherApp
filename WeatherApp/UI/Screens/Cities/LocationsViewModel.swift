@@ -9,7 +9,8 @@
 import Firebase
 
 protocol LocationsDelegate: class {
-    func didAddCity(ok: Bool)
+    func didAddCity()
+    func failedToAddCity()
     func didFetchCities()
     func didNotGetCities()
 }
@@ -41,18 +42,18 @@ final class LocationsViewModel {
     
     // MARK: - Functions
     
-    func addCity(_ city: City) {
+    func add(_ city: City) {
         let shouldAdd = !findCity(city: city)
         
         guard shouldAdd else {
-            self.delegate?.didAddCity(ok: false)
+            self.delegate?.failedToAddCity()
             return
         }
         
         cities.append(city)
         addToDatabase(city)
         
-        self.delegate?.didAddCity(ok: true)
+        self.delegate?.didAddCity()
     }
     
     private func addToDatabase(_ city: City) {
@@ -76,7 +77,7 @@ final class LocationsViewModel {
         cities.remove(at: index)
     }
     
-    func updateCity(city: City) {
+    func update(_ city: City) {
         for index in 0 ..< cities.count {
             if cities[index].latitude == city.latitude && cities[index].longitude == city.longitude {
                 cities[index].note = city.note

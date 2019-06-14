@@ -21,22 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-
-//        if !UserDefaults.standard.bool(forKey: "demo") {
-//            let demoViewController = DemoPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-//            window?.rootViewController = demoViewController
-//            UserDefaults.standard.set(true, forKey: "demo")
-//        }
-//        else {
-//            guard let _ = Auth.auth().currentUser else {
-//                window?.rootViewController = LoginViewController()
-//                return false
-//            }
-//
-//            let viewModel = LocationsViewModel()
-//            let locationsViewController = LocationsViewController(viewModel: viewModel)
-//            window?.rootViewController = UINavigationController(rootViewController: locationsViewController)
-//        }
         
         guard let _ = Auth.auth().currentUser else {
             window?.rootViewController = LoginViewController()

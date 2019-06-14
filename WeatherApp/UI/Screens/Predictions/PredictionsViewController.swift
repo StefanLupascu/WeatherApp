@@ -123,15 +123,15 @@ extension PredictionsViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - LocationsDelegate
 
 extension PredictionsViewController: LocationsDelegate {
-    func didAddCity(ok: Bool) {
-        print("nothing")
-    }
+    func didAddCity() {}
+    
+    func failedToAddCity() {}
     
     func didFetchCities() {
         collectionView.reloadData()
     }
     
     func didNotGetCities() {
-        print("nothing")
+        presentAlert(message: "No cities found!")
     }
 }

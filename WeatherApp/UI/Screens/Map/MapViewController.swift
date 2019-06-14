@@ -10,14 +10,16 @@ import UIKit
 import MapKit
 
 protocol MapViewDelegate: class {
-    func didRecieveNewWeatherData(city: City)
+    func didRecieveNewWeatherData(for city: City)
 }
 
 class MapViewController: UIViewController {
     // MARK: - Properties
     
     var delegate: MapViewDelegate?
-    private let mapView = MapView()
+    var location = CLLocationCoordinate2DMake(44.83664488641497, 26.320432662963867)
+    
+    private let mapView = MKMapView()
     private let manager = LocationManager()
     private let activityIndicator = UIActivityIndicatorView()
     
@@ -43,8 +45,8 @@ class MapViewController: UIViewController {
     }
     
     private func setupGesture() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(addPin(sender:)))
-        mapView.addGestureRecognizer(gesture)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(addPin(sender:)))
+        mapView.addGestureRecognizer(tap)
     }
     
     private func setupButton() {
@@ -64,9 +66,11 @@ class MapViewController: UIViewController {
     }
     
     private func setupMapView() {
+        mapView.setRegion(MKCoordinateRegion.init(center: location, latitudinalMeters: 900000, longitudinalMeters: 900000), animated: true)
+        
         view.addSubview(mapView)
         mapView.snp.makeConstraints {
-            $0.top.leading.bottom.trailing.equalToSuperview()
+            $0.top.bottom.leading.trailing.equalToSuperview()
         }
     }
     
@@ -92,7 +96,7 @@ class MapViewController: UIViewController {
     // MARK: - Setting up actions
     
     @objc func done(sender: UIButton) {
-        guard let cityAnnotation = mapView.map.annotations.first else {
+        guard let cityAnnotation = mapView.annotations.first else {
             return
         }
         
@@ -100,9 +104,11 @@ class MapViewController: UIViewController {
 
         manager.getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude) { [weak self] (cityName, countryName, error) in
             
+            guard let self = self else { return }
+            
             guard cityName != nil else {
-                self?.activityIndicator.stopAnimating()
-                self?.showAlert(message: "No city found at this location")
+                self.activityIndicator.stopAnimating()
+                self.showAlert(message: "No city found at this location")
                 return
             }
             
@@ -112,24 +118,24 @@ class MapViewController: UIViewController {
             
             let city = City(name: name, latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude, note: "")
             
-            self?.delegate?.didRecieveNewWeatherData(city: city)
+            self.delegate?.didRecieveNewWeatherData(for: city)
             
-            self?.mapView.map.removeAnnotations((self?.mapView.map.annotations)!)
-            self?.navigationItem.rightBarButtonItem = nil
-            self?.navigationController?.popViewController(animated: true)
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.navigationItem.rightBarButtonItem = nil
+            self.navigationController?.popViewController(animated: true)
             
-            self?.activityIndicator.stopAnimating()
+            self.activityIndicator.stopAnimating()
         }
     }
     
     @objc func addPin(sender: UITapGestureRecognizer) {
-        let location = sender.location(in: mapView.map)
-        let locationCoordinates = mapView.map.convert(location, toCoordinateFrom: mapView.map)
+        let location = sender.location(in: mapView)
+        let locationCoordinates = mapView.convert(location, toCoordinateFrom: mapView)
         let annotation = MKPointAnnotation()
         annotation.coordinate = locationCoordinates
         
-        mapView.map.removeAnnotations(mapView.map.annotations)
-        mapView.map.addAnnotation(annotation)
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotation(annotation)
         
         setupButton()
     }

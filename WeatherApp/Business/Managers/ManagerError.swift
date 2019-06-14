@@ -1,5 +1,5 @@
 //
-//  DetailsViewDelegate.swift
+//  ManagerError.swift
 //  WeatherApp
 //
 //  Created by Stefan Lupascu on 13/06/2019.
@@ -8,6 +8,8 @@
 
 import Foundation
 
-protocol DetailsViewDelegate {
-    func didUpdateNote(for city: City)
+enum ManagerError: Error {
+    case unknown
+    case failedRequest
+    case invalidResponse
 }
