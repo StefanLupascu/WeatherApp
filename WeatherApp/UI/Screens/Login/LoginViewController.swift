@@ -22,7 +22,7 @@ final class LoginViewController: UIViewController {
     private let registerButton = UIButton()
     private let activityIndicator = UIActivityIndicatorView()
     
-    // MARK: - Base class overrides
+    // MARK: - Base Class Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()

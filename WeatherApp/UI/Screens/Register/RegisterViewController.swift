@@ -21,7 +21,7 @@ final class RegisterViewController: UIViewController {
     private let cancelButton = UIButton()
     private let activityIndicator = UIActivityIndicatorView()
     
-    // MARK: - Base class overrides
+    // MARK: - Base Class Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()

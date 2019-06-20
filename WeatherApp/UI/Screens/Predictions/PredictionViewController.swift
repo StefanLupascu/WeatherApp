@@ -35,7 +35,7 @@ final class PredictionViewController: UIViewController {
     private let forecastLabel = UILabel()
     private let activityIndicator = UIActivityIndicatorView()
     
-    // MARK: - Base class overrides
+    // MARK: - Base Class Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()

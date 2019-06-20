@@ -120,7 +120,7 @@ final class SummaryView: UICollectionViewCell {
         pointsOfInterestButton.layer.borderColor = UIColor.white.cgColor
         pointsOfInterestButton.layer.borderWidth = 2
         pointsOfInterestButton.setTitleColor(UIColor.white, for: .normal)
-        pointsOfInterestButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        pointsOfInterestButton.addTarget(self, action: #selector(pointsOfInterestButtonTapped), for: .touchUpInside)
         
         addSubview(pointsOfInterestButton)
         pointsOfInterestButton.snp.makeConstraints {
@@ -131,7 +131,7 @@ final class SummaryView: UICollectionViewCell {
         }
     }
     
-    @objc private func buttonTapped() {
+    @objc private func pointsOfInterestButtonTapped() {
         delegate?.showPointsOfInterest()
     }
 }

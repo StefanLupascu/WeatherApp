@@ -14,7 +14,6 @@ final class LocationsViewController: NavigationController {
     
     private var viewModel: LocationsViewModel
     
-    private let cellId = "cityCellId"
     private let tableView = UITableView()
     private let mapViewController = MapViewController()
     private let dataManager = DataManager()
@@ -35,7 +34,7 @@ final class LocationsViewController: NavigationController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Base class overrides
+    // MARK: - Base Class Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,7 +119,7 @@ final class LocationsViewController: NavigationController {
         }
         
         tableView.backgroundColor = .clear
-        tableView.register(CityCell.self, forCellReuseIdentifier: "cellId")
+        tableView.register(CityCell.self, forCellReuseIdentifier: CellId.cityCellId)
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -143,7 +142,8 @@ extension LocationsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cityCell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CityCell
+        let cityCell = tableView.dequeueReusableCell(withIdentifier: CellId.cityCellId, for: indexPath) as! CityCell
+        
         cityCell.nameLabel.text = viewModel.cities[indexPath.row].name
 
         return cityCell
@@ -165,7 +165,6 @@ extension LocationsViewController: UITableViewDataSource {
 extension LocationsViewController: MapViewDelegate {
     func didRecieveNewWeatherData(for city: City) {
         viewModel.add(city)
-        
         tableView.reloadData()
     }
 }

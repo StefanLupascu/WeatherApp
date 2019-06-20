@@ -23,7 +23,7 @@ class MapViewController: UIViewController {
     private let manager = LocationManager()
     private let activityIndicator = UIActivityIndicatorView()
     
-    // MARK: - Base class overrides
+    // MARK: - Base Class Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,16 +103,11 @@ class MapViewController: UIViewController {
         showActivityIndicator()
 
         manager.getCityAt(latitude: cityAnnotation.coordinate.latitude, longitude: cityAnnotation.coordinate.longitude) { [weak self] (cityName, countryName, error) in
-            
             guard let self = self else { return }
             
-            guard cityName != nil else {
+            guard let name = cityName else {
                 self.activityIndicator.stopAnimating()
                 self.showAlert(message: "No city found at this location")
-                return
-            }
-            
-            guard let name = cityName else {
                 return
             }
             

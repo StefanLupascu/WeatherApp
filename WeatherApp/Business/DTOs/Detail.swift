@@ -20,11 +20,8 @@ struct Detail {
         guard let currently = json["currently"] as? [String: AnyObject],
             let temperature = currently["temperature"] as? Double,
             let humidity = currently["humidity"] as? Double,
-            let pressure = currently["pressure"] as? Double else {
-                return nil
-        }
-        
-        guard let hourly = json["hourly"] as? [String: AnyObject],
+            let pressure = currently["pressure"] as? Double,
+            let hourly = json["hourly"] as? [String: AnyObject],
             let summary = hourly["summary"] as? String else {
                 return nil
         }

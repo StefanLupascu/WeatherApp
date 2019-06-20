@@ -14,7 +14,6 @@ final class PredictionsViewController: NavigationController {
     
     private let viewModel: LocationsViewModel
     
-    private let cellId = "cellId"
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -40,7 +39,7 @@ final class PredictionsViewController: NavigationController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Base class overrides
+    // MARK: - Base Class Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +69,7 @@ final class PredictionsViewController: NavigationController {
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(PredictionsCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(PredictionsCollectionViewCell.self, forCellWithReuseIdentifier: CellId.predictionsCellId)
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
@@ -102,7 +101,7 @@ extension PredictionsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? PredictionsCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.predictionsCellId, for: indexPath) as? PredictionsCollectionViewCell else {
             return UICollectionViewCell()
         }
         

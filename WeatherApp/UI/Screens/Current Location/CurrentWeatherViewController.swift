@@ -38,7 +38,7 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
     private let sceneView = ARSCNView()
     private let backButton = UIButton()
     
-    // MARK: - Base class overrides
+    // MARK: - Base Class Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,7 +149,7 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
         
         if let hitResult = hitResults.first {
             let transform = hitResult.worldTransform
-            let position = SCNVector3(transform.columns.3.x, transform.columns.3.y + 0.15, transform.columns.3.z)
+            let position = SCNVector3(transform.columns.3.x, transform.columns.3.y + 0.1, transform.columns.3.z)
             
             let node = createNode(for: position)
             

@@ -16,10 +16,10 @@ final class InformationViewController: UIViewController {
     
     private var city: City
     
-    private let temperatureCellId = "temperatureCellId"
-    private let humidityCellId = "humidityCellId"
-    private let summaryCellId = "summaryCellId"
-    private let notesCellId = "notesCellId"
+//    private let temperatureCellId = "temperatureCellId"
+//    private let humidityCellId = "humidityCellId"
+//    private let summaryCellId = "summaryCellId"
+//    private let notesCellId = "notesCellId"
     private let containerView = UIView()
     private let titleLabel = UILabel()
     
@@ -50,7 +50,7 @@ final class InformationViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Base class overrides
+    // MARK: - Base Class Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,10 +83,10 @@ final class InformationViewController: UIViewController {
     }
     
     private func setupCollectionView() {
-        collectionView.register(TemperatureView.self, forCellWithReuseIdentifier: temperatureCellId)
-        collectionView.register(HumidityView.self, forCellWithReuseIdentifier: humidityCellId)
-        collectionView.register(NotesView.self, forCellWithReuseIdentifier: notesCellId)
-        collectionView.register(SummaryView.self, forCellWithReuseIdentifier: summaryCellId)
+        collectionView.register(TemperatureView.self, forCellWithReuseIdentifier: CellId.temperatureCellId)
+        collectionView.register(HumidityView.self, forCellWithReuseIdentifier: CellId.humidityCellId)
+        collectionView.register(NotesView.self, forCellWithReuseIdentifier: CellId.notesCellId)
+        collectionView.register(SummaryView.self, forCellWithReuseIdentifier: CellId.summaryCellId)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -143,7 +143,7 @@ extension InformationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.item {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: temperatureCellId, for: indexPath) as! TemperatureView
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.temperatureCellId, for: indexPath) as! TemperatureView
             guard let temperature = city.details?.temperature else {
                 return UICollectionViewCell()
             }
@@ -153,7 +153,7 @@ extension InformationViewController: UICollectionViewDataSource {
             return cell
             
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: humidityCellId, for: indexPath) as! HumidityView
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.humidityCellId, for: indexPath) as! HumidityView
             guard let humidity = city.details?.humidity else {
                 return UICollectionViewCell()
             }
@@ -162,7 +162,7 @@ extension InformationViewController: UICollectionViewDataSource {
             return cell
             
         case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: summaryCellId, for: indexPath) as! SummaryView
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.summaryCellId, for: indexPath) as! SummaryView
             guard let pressure = city.details?.pressure,
                     let summary = city.details?.summary else {
                 return UICollectionViewCell()
@@ -175,7 +175,7 @@ extension InformationViewController: UICollectionViewDataSource {
             return cell
             
         case 3:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: notesCellId, for: indexPath) as! NotesView
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.notesCellId, for: indexPath) as! NotesView
             cell.notesTextView.text = city.note
             cell.notesTextView.delegate = self
             

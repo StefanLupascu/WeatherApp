@@ -30,7 +30,7 @@ final class PredictionsCollectionViewCell: UICollectionViewCell {
     
     private func setupUI() {
         backgroundColor = .gray
-        layer.cornerRadius = 15
+        layer.cornerRadius = Height.h15
         layer.borderColor = UIColor.white.cgColor
         layer.borderWidth = 2
         
