@@ -24,11 +24,11 @@ struct DataManager {
         let url = URL(string: "\(baseURL)\(latitude),\(longitude)")!
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            self.didFetchWeatherData(data: data, response: response, error: error, completion: { (details, error) in
+            self.didFetchWeatherData(data: data, response: response, error: error) { (details, error) in
                 DispatchQueue.main.async {
                     completion(details, error)
                 }
-            })
+            }
         }.resume()
     }
     

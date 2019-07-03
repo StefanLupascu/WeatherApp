@@ -52,23 +52,20 @@ final class TemperatureView: UICollectionViewCell {
     }
     
     private func setupTemperatureLabel() {
-        temperatureLabel.textAlignment = .center
-        temperatureLabel.textColor = .white
-        temperatureLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        temperatureLabel.numberOfLines = 0
-        temperatureLabel.text = "Temperature:\n\(Int(temperature))ºC"
-        
         addSubview(temperatureLabel)
         temperatureLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Padding.p75)
             $0.centerX.equalToSuperview()
         }
+        
+        temperatureLabel.textAlignment = .center
+        temperatureLabel.textColor = .white
+        temperatureLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        temperatureLabel.numberOfLines = 0
+        temperatureLabel.text = "Temperature:\n\(Int(temperature))ºC"
     }
     
     private func setupBackgroundBarView() {
-        backgroundBarView.backgroundColor = .gray
-        backgroundBarView.layer.cornerRadius = 15
-        
         addSubview(backgroundBarView)
         backgroundBarView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -76,53 +73,56 @@ final class TemperatureView: UICollectionViewCell {
             $0.width.equalTo(Height.h300)
             $0.height.equalTo(Height.h40)
         }
+        
+        backgroundBarView.backgroundColor = .gray
+        backgroundBarView.layer.cornerRadius = Height.h15
     }
     
     private func setupNegative40Label() {
-        negative40Label.textAlignment = .center
-        negative40Label.textColor = .white
-        negative40Label.text = "-40ºC"
-        
         addSubview(negative40Label)
         negative40Label.snp.makeConstraints {
             $0.bottom.equalTo(backgroundBarView.snp.top)
             $0.leading.equalTo(backgroundBarView.snp.leading)
         }
+        
+        negative40Label.textAlignment = .center
+        negative40Label.textColor = .white
+        negative40Label.text = "-40ºC"
     }
     
     private func setupZeroLabel() {
-        zeroLabel.textAlignment = .center
-        zeroLabel.textColor = .white
-        zeroLabel.text = "0ºC"
-        
         addSubview(zeroLabel)
         zeroLabel.snp.makeConstraints {
             $0.bottom.equalTo(backgroundBarView.snp.top)
             $0.centerX.equalToSuperview()
         }
+        
+        zeroLabel.textAlignment = .center
+        zeroLabel.textColor = .white
+        zeroLabel.text = "0ºC"
     }
     
     private func setupPositive40Label() {
-        positive40Label.textAlignment = .center
-        positive40Label.textColor = .white
-        positive40Label.text = "40ºC"
-        
         addSubview(positive40Label)
         positive40Label.snp.makeConstraints {
             $0.bottom.equalTo(backgroundBarView.snp.top)
             $0.trailing.equalTo(backgroundBarView.snp.trailing)
         }
+        
+        positive40Label.textAlignment = .center
+        positive40Label.textColor = .white
+        positive40Label.text = "40ºC"
     }
     
     private func setupTrackingView() {
-        trackingView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-        trackingView.layer.cornerRadius = 15
-        
         backgroundBarView.addSubview(trackingView)
         trackingView.snp.makeConstraints {
             $0.leading.height.equalToSuperview()
             $0.trailing.equalTo(backgroundBarView.snp.leading)
         }
+        
+        trackingView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        trackingView.layer.cornerRadius = Height.h15
     }
     
     private func animate(temperature: Double) {

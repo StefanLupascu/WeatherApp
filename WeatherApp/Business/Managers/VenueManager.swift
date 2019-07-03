@@ -26,7 +26,11 @@ struct VenueManager {
     }
     
     var date: String {
-        return "20190101"
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        
+        return formatter.string(from: date)
     }
     
     // MARK: - Functions

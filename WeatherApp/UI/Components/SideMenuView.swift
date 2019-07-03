@@ -70,36 +70,30 @@ final class SideMenuView: UIView {
     }
     
     private func setupUserLabel() {
-        userLabel.textColor = .white
-        userLabel.text = "username"
-        userLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        
         addSubview(userLabel)
         userLabel.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).offset(Padding.p20)
             $0.centerX.equalToSuperview()
         }
+        
+        userLabel.textColor = .white
+        userLabel.text = "username"
+        userLabel.font = UIFont.boldSystemFont(ofSize: 30)
     }
     
     private func setupTitleLabel() {
-        titleLabel.textColor = .white
-        titleLabel.text = "Options"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(userLabel.snp.bottom).offset(Padding.p20)
             $0.centerX.equalToSuperview()
         }
+        
+        titleLabel.textColor = .white
+        titleLabel.text = "Options"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
     }
     
     private func setupCitiesButton() {
-        citiesButton.layer.cornerRadius = 10
-        citiesButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        citiesButton.setTitle("Cities", for: .normal)
-        citiesButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        citiesButton.addTarget(self, action: #selector(goToCities), for: .touchUpInside)
-        
         addSubview(citiesButton)
         citiesButton.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.p40)
@@ -107,15 +101,15 @@ final class SideMenuView: UIView {
             $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
         }
+        
+        citiesButton.layer.cornerRadius = Height.h10
+        citiesButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        citiesButton.setTitle("Cities", for: .normal)
+        citiesButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        citiesButton.addTarget(self, action: #selector(goToCities), for: .touchUpInside)
     }
     
     private func setupPredictionsButton() {
-        predictionsButton.layer.cornerRadius = 10
-        predictionsButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        predictionsButton.setTitle("Predictions", for: .normal)
-        predictionsButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        predictionsButton.addTarget(self, action: #selector(goToPredictions), for: .touchUpInside)
-        
         addSubview(predictionsButton)
         predictionsButton.snp.makeConstraints {
             $0.top.equalTo(citiesButton.snp.bottom).offset(Padding.p5)
@@ -123,15 +117,15 @@ final class SideMenuView: UIView {
             $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
         }
+        
+        predictionsButton.layer.cornerRadius = Height.h10
+        predictionsButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        predictionsButton.setTitle("Predictions", for: .normal)
+        predictionsButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        predictionsButton.addTarget(self, action: #selector(goToPredictions), for: .touchUpInside)
     }
     
     private func setupCurrentWeatherButton() {
-        currentWeatherButton.layer.cornerRadius = 10
-        currentWeatherButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        currentWeatherButton.setTitle("Current Location", for: .normal)
-        currentWeatherButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        currentWeatherButton.addTarget(self, action: #selector(goToCurrentLocation), for: .touchUpInside)
-        
         addSubview(currentWeatherButton)
         currentWeatherButton.snp.makeConstraints {
             $0.top.equalTo(predictionsButton.snp.bottom).offset(Padding.p5)
@@ -139,15 +133,15 @@ final class SideMenuView: UIView {
             $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
         }
+        
+        currentWeatherButton.layer.cornerRadius = Height.h10
+        currentWeatherButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        currentWeatherButton.setTitle("Current Location", for: .normal)
+        currentWeatherButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        currentWeatherButton.addTarget(self, action: #selector(goToCurrentLocation), for: .touchUpInside)
     }
     
     private func setupLogoutButton() {
-        logoutButton.layer.cornerRadius = 10
-        logoutButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
-        
         addSubview(logoutButton)
         logoutButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-Padding.p75)
@@ -155,5 +149,11 @@ final class SideMenuView: UIView {
             $0.width.equalTo(Height.h250)
             $0.height.equalTo(Height.h50)
         }
+        
+        logoutButton.layer.cornerRadius = Height.h10
+        logoutButton.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
     }
 }

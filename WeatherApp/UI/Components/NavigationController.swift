@@ -36,30 +36,12 @@ class NavigationController: UIViewController {
     
     // MARK: - Private Functions
     
-    @objc private func menuButtonTapped() {
-        sideMenuView.snp.updateConstraints {
-            $0.leading.equalToSuperview()
-        }
-        
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
-            self.navigationController?.view.layoutIfNeeded()
-            self.rightView.backgroundColor = UIColor(white: 0, alpha: 0.7)
-        }, completion: nil)
-        
-        rightView.isUserInteractionEnabled = true
-    }
-    
-    @objc private func dismissSideMenu() {
-        sideMenuView.snp.updateConstraints {
-            $0.leading.equalToSuperview().offset(-view.frame.width * 0.75)
-        }
-        
-        UIView.animate(withDuration: 0.6) {
-            self.navigationController?.view.layoutIfNeeded()
-            self.rightView.backgroundColor = UIColor(white: 0, alpha: 0)
-        }
-        
-        rightView.isUserInteractionEnabled = false
+    private func setupUI() {
+        setupButton()
+        setupUser()
+        setupRightView()
+        setupSideMenuView()
+        setupGestures()
     }
     
     private func setupButton() {
@@ -79,14 +61,6 @@ class NavigationController: UIViewController {
             
             self.sideMenuView.userLabel.text = username
         }
-    }
-    
-    private func setupUI() {
-        setupButton()
-        setupUser()
-        setupRightView()
-        setupSideMenuView()
-        setupGestures()
     }
     
     private func setupRightView() {
@@ -115,6 +89,32 @@ class NavigationController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu))
         rightView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func menuButtonTapped() {
+        sideMenuView.snp.updateConstraints {
+            $0.leading.equalToSuperview()
+        }
+        
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: .curveEaseOut, animations: {
+            self.navigationController?.view.layoutIfNeeded()
+            self.rightView.backgroundColor = UIColor(white: 0, alpha: 0.7)
+        }, completion: nil)
+        
+        rightView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func dismissSideMenu() {
+        sideMenuView.snp.updateConstraints {
+            $0.leading.equalToSuperview().offset(-view.frame.width * 0.75)
+        }
+        
+        UIView.animate(withDuration: 0.6) {
+            self.navigationController?.view.layoutIfNeeded()
+            self.rightView.backgroundColor = UIColor(white: 0, alpha: 0)
+        }
+        
+        rightView.isUserInteractionEnabled = false
     }
     
     // MARK: - Functions
@@ -159,7 +159,8 @@ extension NavigationController: SideMenuViewDelegate {
             print(logoutError)
         }
         
-        let loginViewController = LoginViewController()
+        let viewModel = LoginViewModel()
+        let loginViewController = LoginViewController(viewModel: viewModel)
         present(loginViewController, animated: true)
     }
 }

@@ -35,14 +35,6 @@ final class PredictionViewController: UIViewController {
     private let forecastLabel = UILabel()
     private let activityIndicator = UIActivityIndicatorView()
     
-    // MARK: - Base Class Overrides
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
-    }
-    
     // MARK: - Init
     
     init(city: City) {
@@ -53,6 +45,14 @@ final class PredictionViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Base Class Overrides
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupUI()
     }
     
     // MARK: - Private Functions
@@ -90,40 +90,32 @@ final class PredictionViewController: UIViewController {
     }
     
     private func setupTitleLabel() {
-        titleLabel.textAlignment = .center
-        titleLabel.textColor = .white
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        titleLabel.shadowColor = .black
-        titleLabel.text = city.name
-        
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.p30)
             $0.centerX.equalToSuperview()
         }
+        
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        titleLabel.shadowColor = .black
+        titleLabel.text = city.name
     }
     
     private func setupDatePicker() {
-        picker.datePickerMode = .date
-        picker.setValue(UIColor.white, forKey: "textColor")
-        
         view.addSubview(picker)
         picker.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.p30)
             $0.leading.equalToSuperview().offset(Padding.p30)
             $0.trailing.equalToSuperview().offset(-Padding.p30)
         }
+        
+        picker.datePickerMode = .date
+        picker.setValue(UIColor.white, forKey: "textColor")
     }
     
     private func setupPredictButton() {
-        predictButton.backgroundColor = .gray
-        predictButton.layer.cornerRadius = 15
-        predictButton.setTitleShadowColor(.black, for: .normal)
-        predictButton.layer.borderWidth = 2
-        predictButton.layer.borderColor = UIColor.white.cgColor
-        predictButton.setTitle("Predict Temperature", for: .normal)
-        predictButton.addTarget(self, action: #selector(predictButtonTapped), for: .touchUpInside)
-        
         view.addSubview(predictButton)
         predictButton.snp.makeConstraints {
             $0.top.equalTo(picker.snp.bottom).offset(Padding.p30)
@@ -131,9 +123,23 @@ final class PredictionViewController: UIViewController {
             $0.trailing.equalToSuperview().offset(-Padding.p30)
             $0.height.equalTo(Height.h70)
         }
+        
+        predictButton.backgroundColor = .gray
+        predictButton.layer.cornerRadius = 15
+        predictButton.setTitleShadowColor(.black, for: .normal)
+        predictButton.layer.borderWidth = 2
+        predictButton.layer.borderColor = UIColor.white.cgColor
+        predictButton.setTitle("Predict Temperature", for: .normal)
+        predictButton.addTarget(self, action: #selector(predictButtonTapped), for: .touchUpInside)
     }
     
     private func setupForecastLabel() {
+        view.addSubview(forecastLabel)
+        forecastLabel.snp.makeConstraints {
+            $0.top.equalTo(predictButton.snp.bottom).offset(Padding.p90)
+            $0.centerX.equalToSuperview()
+        }
+        
         forecastLabel.textAlignment = .center
         forecastLabel.textColor = .white
         forecastLabel.shadowColor = .black
@@ -141,12 +147,6 @@ final class PredictionViewController: UIViewController {
         forecastLabel.numberOfLines = 0
         forecastLabel.text = "Temperature"
         forecastLabel.isHidden = true
-        
-        view.addSubview(forecastLabel)
-        forecastLabel.snp.makeConstraints {
-            $0.top.equalTo(predictButton.snp.bottom).offset(Padding.p90)
-            $0.centerX.equalToSuperview()
-        }
     }
     
     private func showActivityIndicator() {

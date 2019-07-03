@@ -1,5 +1,5 @@
 //
-//  DetailsViewDelegate.swift
+//  InformationViewDelegate.swift
 //  WeatherApp
 //
 //  Created by Stefan Lupascu on 13/06/2019.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol DetailsViewDelegate {
+protocol InformationViewDelegate {
     func didUpdateNote(for city: City)
 }

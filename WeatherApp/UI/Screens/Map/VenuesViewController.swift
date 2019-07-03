@@ -42,7 +42,6 @@ final class VenuesViewController: UIViewController {
     // MARK: - Private Functions
     
     private func setupUI() {
-        
         setupNavigationBar()
         setupMapView()
     }
@@ -58,8 +57,6 @@ final class VenuesViewController: UIViewController {
     }
     
     private func setupMapView() {
-        
-        
         view.addSubview(mapView)
         mapView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
@@ -82,7 +79,7 @@ final class VenuesViewController: UIViewController {
 
 // MARK: - VenuesViewModelDelegate
 
-extension VenuesViewController: VenuesViewModelDelegate {
+extension VenuesViewController: VenuesViewDelegate {
     func showVenues() {
         viewModel.venues.forEach { venue in
             createPin(for: venue)

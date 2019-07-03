@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import SnapKit
-import SceneKit
 import ARKit
 import CoreLocation
+import SceneKit
+import SnapKit
 
 final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
     // MARK: - Properties
@@ -51,7 +51,7 @@ final class CurrentWeatherViewController: UIViewController, ARSCNViewDelegate {
     // MARK: - Private Functions
     
     private func getCurrentLocation() {
-        locationManager.delegate = self;
+        locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -231,13 +231,7 @@ extension CurrentWeatherViewController: CLLocationManagerDelegate {
                     return
             }
             
-            guard let cityName = cityName else {
-                let city = City(name: "", latitude: latitude, longitude: longitude, note: "", country: countryName)
-                self.currentCity = city
-                return
-            }
-            
-            let city = City(name: cityName, latitude: latitude, longitude: longitude, note: "", country: countryName)
+            let city = City(name: cityName ?? "", latitude: latitude, longitude: longitude, note: "", country: countryName)
             self.currentCity = city
         }
     }

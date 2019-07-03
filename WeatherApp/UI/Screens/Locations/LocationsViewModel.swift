@@ -8,7 +8,7 @@
 
 import Firebase
 
-protocol LocationsDelegate: class {
+protocol LocationsDelegate {
     func didAddCity()
     func failedToAddCity()
     func didFetchCities()
@@ -20,7 +20,7 @@ final class LocationsViewModel {
     
     var cities = [City]()
     
-    weak var delegate: LocationsDelegate?
+    var delegate: LocationsDelegate?
     
     private var uid: String {
         guard let user = Auth.auth().currentUser else {
@@ -56,18 +56,6 @@ final class LocationsViewModel {
         self.delegate?.didAddCity()
     }
     
-    private func addToDatabase(_ city: City) {
-        var postData = [String: AnyObject]()
-        
-        postData["name"] = city.name as AnyObject
-        postData["latitude"] = city.latitude as AnyObject
-        postData["longitude"] = city.longitude as AnyObject
-        postData["note"] = city.note as AnyObject
-        
-        ref.child("\(uid)/cities").childByAutoId().setValue(postData)
-        getLocations()
-    }
-    
     func removeCity(at index: Int) {
         let city = cities[index]
         guard let id = city.id else {
@@ -93,6 +81,18 @@ final class LocationsViewModel {
     }
     
     // MARK: - Private functions
+    
+    private func addToDatabase(_ city: City) {
+        var postData = [String: AnyObject]()
+        
+        postData["name"] = city.name as AnyObject
+        postData["latitude"] = city.latitude as AnyObject
+        postData["longitude"] = city.longitude as AnyObject
+        postData["note"] = city.note as AnyObject
+        
+        ref.child("\(uid)/cities").childByAutoId().setValue(postData)
+        getLocations()
+    }
     
     private func getLocations() {
         cities = []

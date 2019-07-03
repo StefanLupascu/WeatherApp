@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         guard let _ = Auth.auth().currentUser else {
-            window?.rootViewController = LoginViewController()
+            let viewModel = LoginViewModel()
+            let loginViewController = LoginViewController(viewModel: viewModel)
+            window?.rootViewController = loginViewController
             return false
         }
         

@@ -16,7 +16,7 @@ struct LocationManager {
     
     // MARK: - Functions
     
-    func getCityAt(latitude: Double, longitude: Double, completion: @escaping CityNameCompletion){
+    func getCityAt(latitude: Double, longitude: Double, completion: @escaping CityNameCompletion) {
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: latitude, longitude: longitude)
         

@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol VenuesViewModelDelegate: class {
+protocol VenuesViewDelegate {
     func showVenues()
 }
 
 final class VenuesViewModel {
     // MARK: - Properties
     
-    weak var delegate: VenuesViewModelDelegate?
+    var delegate: VenuesViewDelegate?
     
     var venues = [Venue]()
     

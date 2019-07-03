@@ -12,14 +12,10 @@ import SnapKit
 final class InformationViewController: UIViewController {
     // MARK: - Properties
     
-    var delegate: DetailsViewDelegate?
+    var delegate: InformationViewDelegate?
     
-    private var city: City
+    private var viewModel: InformationViewModel
     
-//    private let temperatureCellId = "temperatureCellId"
-//    private let humidityCellId = "humidityCellId"
-//    private let summaryCellId = "summaryCellId"
-//    private let notesCellId = "notesCellId"
     private let containerView = UIView()
     private let titleLabel = UILabel()
     
@@ -32,7 +28,7 @@ final class InformationViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
         collectionView.isPagingEnabled = true
-        collectionView.layer.cornerRadius = 15
+        collectionView.layer.cornerRadius = Height.h15
         collectionView.bounces = false
         
         return collectionView
@@ -40,8 +36,8 @@ final class InformationViewController: UIViewController {
     
     // MARK: - Init
     
-    init(city: City) {
-        self.city = city
+    init(viewModel: InformationViewModel) {
+        self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -56,8 +52,6 @@ final class InformationViewController: UIViewController {
         super.viewDidLoad()
 
         setupNavigationBar()
-        setupCollectionView()
-        setupLabel()
         setupGesture()
         setupUI()
     }
@@ -82,25 +76,6 @@ final class InformationViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back")
     }
     
-    private func setupCollectionView() {
-        collectionView.register(TemperatureView.self, forCellWithReuseIdentifier: CellId.temperatureCellId)
-        collectionView.register(HumidityView.self, forCellWithReuseIdentifier: CellId.humidityCellId)
-        collectionView.register(NotesView.self, forCellWithReuseIdentifier: CellId.notesCellId)
-        collectionView.register(SummaryView.self, forCellWithReuseIdentifier: CellId.summaryCellId)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-    }
-    
-    private func setupLabel() {
-        titleLabel.text = city.name
-        titleLabel.backgroundColor = .clear
-        titleLabel.textColor = .white
-        titleLabel.shadowColor = .black
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        titleLabel.textAlignment = .center
-        titleLabel.layer.cornerRadius = Height.h5
-    }
-    
     private func setupGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(sender:)))
         view.addGestureRecognizer(gesture)
@@ -109,27 +84,51 @@ final class InformationViewController: UIViewController {
     private func setupUI() {
         containerView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
+        setupContainerView()
+        setupTitleLabel()
+        setupCollectionView()
+    }
+    
+    private func setupContainerView() {
         view.addSubview(containerView)
-
         containerView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
         }
-        
+    }
+    
+    private func setupTitleLabel() {
         containerView.addSubview(titleLabel)
-        containerView.addSubview(collectionView)
-        
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.p20)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(Height.h200)
         }
         
+        titleLabel.text = viewModel.city.name
+        titleLabel.backgroundColor = .clear
+        titleLabel.textColor = .white
+        titleLabel.shadowColor = .black
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        titleLabel.textAlignment = .center
+        titleLabel.layer.cornerRadius = Height.h5
+
+    }
+    
+    private func setupCollectionView() {
+        containerView.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(Padding.p30)
             $0.leading.equalToSuperview().offset(Padding.p10)
             $0.trailing.equalToSuperview().offset(-Padding.p10)
             $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-Padding.p10)
         }
+        
+        collectionView.register(TemperatureView.self, forCellWithReuseIdentifier: CellId.temperatureCellId)
+        collectionView.register(HumidityView.self, forCellWithReuseIdentifier: CellId.humidityCellId)
+        collectionView.register(NotesView.self, forCellWithReuseIdentifier: CellId.notesCellId)
+        collectionView.register(SummaryView.self, forCellWithReuseIdentifier: CellId.summaryCellId)
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
 }
 
@@ -144,7 +143,7 @@ extension InformationViewController: UICollectionViewDataSource {
         switch indexPath.item {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.temperatureCellId, for: indexPath) as! TemperatureView
-            guard let temperature = city.details?.temperature else {
+            guard let temperature = viewModel.city.details?.temperature else {
                 return UICollectionViewCell()
             }
             let temperatureInCelsius = (temperature - 32) * 5 / 9
@@ -154,7 +153,7 @@ extension InformationViewController: UICollectionViewDataSource {
             
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.humidityCellId, for: indexPath) as! HumidityView
-            guard let humidity = city.details?.humidity else {
+            guard let humidity = viewModel.city.details?.humidity else {
                 return UICollectionViewCell()
             }
             cell.humidity = humidity
@@ -163,8 +162,8 @@ extension InformationViewController: UICollectionViewDataSource {
             
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.summaryCellId, for: indexPath) as! SummaryView
-            guard let pressure = city.details?.pressure,
-                    let summary = city.details?.summary else {
+            guard let pressure = viewModel.city.details?.pressure,
+                    let summary = viewModel.city.details?.summary else {
                 return UICollectionViewCell()
             }
 
@@ -176,7 +175,7 @@ extension InformationViewController: UICollectionViewDataSource {
             
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.notesCellId, for: indexPath) as! NotesView
-            cell.notesTextView.text = city.note
+            cell.notesTextView.text = viewModel.city.note
             cell.notesTextView.delegate = self
             
             return cell
@@ -197,15 +196,16 @@ extension InformationViewController: UICollectionViewDelegateFlowLayout {
 
 extension InformationViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
-        city.note = textView.text
-        delegate?.didUpdateNote(for: city)
+        viewModel.city.note = textView.text
+        delegate?.didUpdateNote(for: viewModel.city)
     }
 }
 
 // MARK: - PointsOfInterestViewDelegate
 
 extension InformationViewController: PointsOfInterestViewDelegate {
-    func showPointsOfInterest() {        
+    func showPointsOfInterest() {
+        let city = viewModel.city
         let viewModel = VenuesViewModel(city: city)
         let venuesViewController = VenuesViewController(viewModel: viewModel)
         navigationController?.pushViewController(venuesViewController, animated: true)

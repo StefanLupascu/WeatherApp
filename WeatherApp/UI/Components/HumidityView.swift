@@ -50,6 +50,20 @@ final class HumidityView: UICollectionViewCell {
     
     // MARK: - Private Functions
     
+    private func setupUI() {
+        backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        
+        draw()
+        setupGesture()
+        setupHumidityLabel()
+        setupPercentegeLabel()
+        
+        layer.addSublayer(trackingCircle)
+        layer.addSublayer(loadingCircle)
+        
+        animate()
+    }
+    
     private func draw() {
         let loadingPath = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2), radius: bounds.width / 3 - Padding.p20, startAngle: -.pi / 2, endAngle: CGFloat(humidity) * 2 * .pi - .pi / 2, clockwise: true)
         let trackingPath = UIBezierPath(arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2), radius: bounds.width / 3 - Padding.p20, startAngle: CGFloat(humidity) * 2 * .pi - .pi / 2, endAngle: 2 * .pi - .pi / 2, clockwise: true)
@@ -65,23 +79,9 @@ final class HumidityView: UICollectionViewCell {
         let circle = CAShapeLayer()
         circle.strokeColor = color.cgColor
         circle.fillColor = UIColor.clear.cgColor
-        circle.lineWidth = 60
+        circle.lineWidth = Height.h60
         
         return circle
-    }
-    
-    private func setupUI() {
-        backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
-        
-        draw()
-        setupGesture()
-        setupHumidityLabel()
-        setupPercentegeLabel()
-        
-        layer.addSublayer(trackingCircle)
-        layer.addSublayer(loadingCircle)
-        
-        animate()
     }
     
     private func setupHumidityLabel() {

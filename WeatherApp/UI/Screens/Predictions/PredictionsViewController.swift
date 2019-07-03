@@ -67,15 +67,15 @@ final class PredictionsViewController: NavigationController {
     }
     
     private func setupCollectionView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(PredictionsCollectionViewCell.self, forCellWithReuseIdentifier: CellId.predictionsCellId)
-        
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(Padding.p20)
             $0.bottom.trailing.equalToSuperview().offset(-Padding.p20)
         }
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(PredictionsCollectionViewCell.self, forCellWithReuseIdentifier: CellId.predictionsCellId)
     }
     
     private func preparePrediction(for index: Int) {

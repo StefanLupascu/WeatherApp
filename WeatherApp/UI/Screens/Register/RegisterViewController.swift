@@ -13,6 +13,8 @@ import Firebase
 final class RegisterViewController: UIViewController {
     // MARK: - Properties
     
+    private let viewModel: RegisterViewModel
+    
     private let logoImageView = UIImageView()
     private let userTextfield = UITextField()
     private let passwordTextfield = UITextField()
@@ -20,6 +22,18 @@ final class RegisterViewController: UIViewController {
     private let registerButton = UIButton()
     private let cancelButton = UIButton()
     private let activityIndicator = UIActivityIndicatorView()
+    
+    // MARK: - Init
+    
+    init(viewModel: RegisterViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Base Class Overrides
     
@@ -52,22 +66,16 @@ final class RegisterViewController: UIViewController {
     }
     
     private func setupLogoImageView() {
-        logoImageView.image = UIImage(named: "logo")
-        
         view.addSubview(logoImageView)
         logoImageView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(Padding.p20)
             $0.centerX.equalToSuperview()
         }
+        
+        logoImageView.image = UIImage(named: viewModel.imageName)
     }
     
     private func setupUserTextfield() {
-        userTextfield.placeholder = "yourname@gmail.com"
-        userTextfield.backgroundColor = .white
-        userTextfield.layer.borderColor = UIColor.black.cgColor
-        userTextfield.textAlignment = .center
-        userTextfield.layer.cornerRadius = Height.h10
-        
         view.addSubview(userTextfield)
         userTextfield.snp.makeConstraints {
             $0.top.equalTo(logoImageView.snp.bottom).offset(Padding.p200)
@@ -76,16 +84,15 @@ final class RegisterViewController: UIViewController {
             $0.leading.equalToSuperview().offset(Padding.p50)
             $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
+        
+        userTextfield.placeholder = viewModel.emailPlaceholder
+        userTextfield.backgroundColor = .white
+        userTextfield.layer.borderColor = UIColor.black.cgColor
+        userTextfield.textAlignment = .center
+        userTextfield.layer.cornerRadius = Height.h10
     }
     
     private func setupPasswordTextfield() {
-        passwordTextfield.placeholder = "Password"
-        passwordTextfield.backgroundColor = .white
-        passwordTextfield.isSecureTextEntry = true
-        passwordTextfield.layer.borderColor = UIColor.black.cgColor
-        passwordTextfield.textAlignment = .center
-        passwordTextfield.layer.cornerRadius = Height.h10
-        
         view.addSubview(passwordTextfield)
         passwordTextfield.snp.makeConstraints {
             $0.top.equalTo(userTextfield.snp.bottom).offset(Padding.p5)
@@ -94,15 +101,16 @@ final class RegisterViewController: UIViewController {
             $0.leading.equalToSuperview().offset(Padding.p50)
             $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
+        
+        passwordTextfield.placeholder = viewModel.passwordPlaceholder
+        passwordTextfield.backgroundColor = .white
+        passwordTextfield.isSecureTextEntry = true
+        passwordTextfield.layer.borderColor = UIColor.black.cgColor
+        passwordTextfield.textAlignment = .center
+        passwordTextfield.layer.cornerRadius = Height.h10
     }
     
     private func setupNameTextfield() {
-        nameTextfield.placeholder = "Alias"
-        nameTextfield.backgroundColor = .white
-        nameTextfield.layer.borderColor = UIColor.black.cgColor
-        nameTextfield.textAlignment = .center
-        nameTextfield.layer.cornerRadius = Height.h10
-        
         view.addSubview(nameTextfield)
         nameTextfield.snp.makeConstraints {
             $0.top.equalTo(passwordTextfield.snp.bottom).offset(Padding.p5)
@@ -111,14 +119,15 @@ final class RegisterViewController: UIViewController {
             $0.leading.equalToSuperview().offset(Padding.p50)
             $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
+        
+        nameTextfield.placeholder = viewModel.aliasPlaceholder
+        nameTextfield.backgroundColor = .white
+        nameTextfield.layer.borderColor = UIColor.black.cgColor
+        nameTextfield.textAlignment = .center
+        nameTextfield.layer.cornerRadius = Height.h10
     }
     
     private func setupRegisterButton() {
-        registerButton.setTitle("Register", for: .normal)
-        registerButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        registerButton.layer.cornerRadius = Height.h10
-        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
-        
         view.addSubview(registerButton)
         registerButton.snp.makeConstraints {
             $0.top.equalTo(nameTextfield.snp.bottom).offset(Padding.p20)
@@ -127,14 +136,14 @@ final class RegisterViewController: UIViewController {
             $0.leading.equalToSuperview().offset(Padding.p50)
             $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
+        
+        registerButton.setTitle(viewModel.registerText, for: .normal)
+        registerButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        registerButton.layer.cornerRadius = Height.h10
+        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }
     
     private func setupCancelButton() {
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        cancelButton.layer.cornerRadius = Height.h10
-        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        
         view.addSubview(cancelButton)
         cancelButton.snp.makeConstraints {
             $0.top.equalTo(registerButton.snp.bottom).offset(Padding.p5)
@@ -143,6 +152,11 @@ final class RegisterViewController: UIViewController {
             $0.leading.equalToSuperview().offset(Padding.p50)
             $0.trailing.equalToSuperview().offset(-Padding.p50)
         }
+        
+        cancelButton.setTitle(viewModel.cancelText, for: .normal)
+        cancelButton.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        cancelButton.layer.cornerRadius = Height.h10
+        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
     }
     
     private func presentAlert(message: String) {

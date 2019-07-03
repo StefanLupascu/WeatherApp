@@ -66,12 +66,12 @@ class MapViewController: UIViewController {
     }
     
     private func setupMapView() {
-        mapView.setRegion(MKCoordinateRegion.init(center: location, latitudinalMeters: 900000, longitudinalMeters: 900000), animated: true)
-        
         view.addSubview(mapView)
         mapView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
         }
+        
+        mapView.setRegion(MKCoordinateRegion.init(center: location, latitudinalMeters: 900000, longitudinalMeters: 900000), animated: true)
     }
     
     private func showActivityIndicator() {

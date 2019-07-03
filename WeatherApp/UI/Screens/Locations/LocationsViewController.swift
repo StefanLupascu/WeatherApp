@@ -27,6 +27,7 @@ final class LocationsViewController: NavigationController {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel.delegate = self
+        mapViewController.delegate = self
     }
 
     
@@ -39,15 +40,18 @@ final class LocationsViewController: NavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapViewController.delegate = self
-        
         setupUI()
     }
     
     // MARK: - Private Functions
     
-    @objc private func goToMap() {
-        navigationController?.pushViewController(mapViewController, animated: true)
+    private func setupUI() {
+        view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        
+        setupNavigationBar()
+        showActivityIndicator()
+        setupButton()
+        setupTableView()
     }
     
     private func setupNavigationBar() {
@@ -70,8 +74,6 @@ final class LocationsViewController: NavigationController {
         activityIndicator.startAnimating()
     }
     
-    // MARK: - Delete
-    
     private func delete(deleteIndex: IndexPath) {
         viewModel.removeCity(at: deleteIndex.row)
         
@@ -88,15 +90,17 @@ final class LocationsViewController: NavigationController {
                 return
             }
             let updatedCity = self.update(city: city, with: details)
-            let detailsViewController = InformationViewController(city: updatedCity)
-            detailsViewController.delegate = self
-            self.navigationController?.pushViewController(detailsViewController, animated: true)
+            
+            let viewModel = InformationViewModel(city: updatedCity)
+            let informationViewController = InformationViewController(viewModel: viewModel)
+            informationViewController.delegate = self
+            self.navigationController?.pushViewController(informationViewController, animated: true)
             
             self.activityIndicator.stopAnimating()
         }
     }
     
-    @discardableResult private func update(city: City, with details: Detail) -> City {
+    private func update(city: City, with details: Detail) -> City {
         guard let index = viewModel.cities.firstIndex(of: city) else {
             fatalError("City not found!")
         }
@@ -124,13 +128,8 @@ final class LocationsViewController: NavigationController {
         tableView.delegate = self
     }
     
-    private func setupUI() {
-        view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        
-        setupNavigationBar()
-        showActivityIndicator()
-        setupButton()
-        setupTableView()
+    @objc private func goToMap() {
+        navigationController?.pushViewController(mapViewController, animated: true)
     }
 }
 
@@ -171,7 +170,7 @@ extension LocationsViewController: MapViewDelegate {
 
 // MARK: - DetailsViewDelegate
 
-extension LocationsViewController: DetailsViewDelegate {
+extension LocationsViewController: InformationViewDelegate {
     func didUpdateNote(for city: City) {
         viewModel.update(city)
     }

@@ -62,66 +62,58 @@ final class SummaryView: UICollectionViewCell {
     }
     
     private func setupPressureTitleLabel() {
-        pressureTitleLabel.textAlignment = .center
-        pressureTitleLabel.textColor = .white
-        pressureTitleLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        pressureTitleLabel.text = "Pressure: "
-        
         addSubview(pressureTitleLabel)
         pressureTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Padding.p75)
             $0.centerX.equalToSuperview()
         }
+        
+        pressureTitleLabel.textAlignment = .center
+        pressureTitleLabel.textColor = .white
+        pressureTitleLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        pressureTitleLabel.text = "Pressure: "
     }
     
     private func setupPressureLabel() {
-        pressureLabel.textAlignment = .center
-        pressureLabel.textColor = .white
-        pressureLabel.font = UIFont.systemFont(ofSize: 20)
-        
         addSubview(pressureLabel)
         pressureLabel.snp.makeConstraints {
             $0.top.equalTo(pressureTitleLabel.snp.bottom).offset(Padding.p30)
             $0.centerX.equalToSuperview()
         }
+        
+        pressureLabel.textAlignment = .center
+        pressureLabel.textColor = .white
+        pressureLabel.font = UIFont.systemFont(ofSize: 20)
     }
     
     private func setupSummaryTitleLabel() {
-        summaryTitleLabel.textAlignment = .center
-        summaryTitleLabel.textColor = .white
-        summaryTitleLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        summaryTitleLabel.text = "Summary: "
-        
         addSubview(summaryTitleLabel)
         summaryTitleLabel.snp.makeConstraints {
             $0.top.equalTo(pressureLabel.snp.bottom).offset(Padding.p50)
             $0.centerX.equalToSuperview()
         }
+        
+        summaryTitleLabel.textAlignment = .center
+        summaryTitleLabel.textColor = .white
+        summaryTitleLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        summaryTitleLabel.text = "Summary: "
     }
     
     private func setupSummaryLabel() {
-        summaryLabel.textAlignment = .center
-        summaryLabel.textColor = .white
-        summaryLabel.font = UIFont.systemFont(ofSize: 20)
-        summaryLabel.numberOfLines = 0
-        
         addSubview(summaryLabel)
         summaryLabel.snp.makeConstraints {
             $0.top.equalTo(summaryTitleLabel.snp.bottom).offset(Padding.p30)
             $0.leading.equalToSuperview().offset(Padding.p20)
             $0.trailing.equalToSuperview().offset(-Padding.p20)
         }
+        
+        summaryLabel.textAlignment = .center
+        summaryLabel.textColor = .white
+        summaryLabel.font = UIFont.systemFont(ofSize: 20)
+        summaryLabel.numberOfLines = 0
     }
     
     private func setupPointsOfInterestButton() {
-        pointsOfInterestButton.setTitle("Points of Interest", for: .normal)
-        pointsOfInterestButton.backgroundColor = .gray
-        pointsOfInterestButton.layer.cornerRadius = 10
-        pointsOfInterestButton.layer.borderColor = UIColor.white.cgColor
-        pointsOfInterestButton.layer.borderWidth = 2
-        pointsOfInterestButton.setTitleColor(UIColor.white, for: .normal)
-        pointsOfInterestButton.addTarget(self, action: #selector(pointsOfInterestButtonTapped), for: .touchUpInside)
-        
         addSubview(pointsOfInterestButton)
         pointsOfInterestButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-Padding.p40)
@@ -129,6 +121,14 @@ final class SummaryView: UICollectionViewCell {
             $0.trailing.equalToSuperview().offset(-Padding.p30)
             $0.height.equalTo(Height.h50)
         }
+        
+        pointsOfInterestButton.setTitle("Points of Interest", for: .normal)
+        pointsOfInterestButton.backgroundColor = .gray
+        pointsOfInterestButton.layer.cornerRadius = 10
+        pointsOfInterestButton.layer.borderColor = UIColor.white.cgColor
+        pointsOfInterestButton.layer.borderWidth = 2
+        pointsOfInterestButton.setTitleColor(UIColor.white, for: .normal)
+        pointsOfInterestButton.addTarget(self, action: #selector(pointsOfInterestButtonTapped), for: .touchUpInside)
     }
     
     @objc private func pointsOfInterestButtonTapped() {
